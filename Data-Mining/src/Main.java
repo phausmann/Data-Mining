@@ -13,9 +13,9 @@ public class Main {
 		Menuleiste menu = new Menuleiste();
 		JFrame fenster = new JFrame();
 		
-		// Menüleister hinzufügen
+		// Menueleiste hinzufuegen
 		fenster.setJMenuBar(menu);
-		// Oberfläche hinzufügen
+		// Oberflaeche hinzufuegen
 		fenster.getContentPane().add(oberflaeche);
 		fenster.setDefaultCloseOperation(fenster.DISPOSE_ON_CLOSE);
 		fenster.pack();
