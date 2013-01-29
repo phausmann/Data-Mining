@@ -16,7 +16,7 @@ public class Main {
 		// Menüleister hinzufügen
 		fenster.setJMenuBar(menu);
 		// Oberfläche hinzufügen
-		fenster.add(oberflaeche);
+		fenster.getContentPane().add(oberflaeche);
 		fenster.setDefaultCloseOperation(fenster.DISPOSE_ON_CLOSE);
 		fenster.pack();
 		fenster.setVisible(true);
