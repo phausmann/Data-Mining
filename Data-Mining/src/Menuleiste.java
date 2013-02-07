@@ -33,10 +33,13 @@ class Menuleiste extends JMenuBar {
 		exportieren.setAccelerator(KeyStroke.getKeyStroke("control E"));
 		datei.add(exportieren);
 		
-		// Hinzufuegen der Auswahl 'exportieren' mit Tastenkuerzel Strg+e
+		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
 		JMenuItem importieren = new JMenuItem("Importieren");
 		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
 		datei.add(importieren);
+		
+		// Hinzufügen eines Seperators zur optischen Trennung
+		datei.addSeparator();
 		
 		// Hinzufuegen der Auswahl 'beenden'
 		JMenuItem beenden = new JMenuItem("Beenden");

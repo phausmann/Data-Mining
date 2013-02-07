@@ -17,7 +17,7 @@ public class Main {
 		fenster.setJMenuBar(menu);
 		// Oberflaeche hinzufuegen
 		fenster.getContentPane().add(oberflaeche);
-		fenster.setDefaultCloseOperation(fenster.DISPOSE_ON_CLOSE);
+		fenster.setDefaultCloseOperation(fenster.EXIT_ON_CLOSE);
 		fenster.pack();
 		fenster.setVisible(true);
 	}
