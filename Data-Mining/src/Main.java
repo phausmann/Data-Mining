@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Objektinstanziierungen
 		Gui oberflaeche = new Gui();
-		Menuleiste menu = new Menuleiste();
+		Menuleiste menu = new Menuleiste(oberflaeche);
 		JFrame fenster = new JFrame();
 		
 		// Menueleiste hinzufuegen
@@ -18,7 +18,7 @@ public class Main {
 		// Oberflaeche hinzufuegen
 		fenster.getContentPane().add(oberflaeche);
 		fenster.setDefaultCloseOperation(fenster.EXIT_ON_CLOSE);
-		fenster.pack();
+		fenster.setSize(800, 500);
 		fenster.setVisible(true);
 	}
 

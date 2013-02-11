@@ -1,3 +1,7 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -5,7 +9,7 @@ import javax.swing.KeyStroke;
 
 class Menuleiste extends JMenuBar {
 
-	public Menuleiste() {
+	public Menuleiste(final Gui oberflaeche) {
 		JMenu datei = new JMenu("Datei");
 		
 		// Hinzufuegen der Auswahl 'neu' mit Tastenkaerzel Strg+n
@@ -36,6 +40,34 @@ class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
 		JMenuItem importieren = new JMenuItem("Importieren");
 		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
+		importieren.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Vector Test1 = new Vector();
+				Vector<String> Test2 = new Vector<String>();
+				Vector rowa = new Vector();
+				rowa.add("Datensatz1");
+				rowa.add("Datensatz1");
+				rowa.add("Datensatz1");
+				Vector rowb = new Vector();
+				rowb.add("Datensatz2");
+				rowb.add("Datensatz2");
+				rowb.add("Datensatz2");
+				Vector rowc = new Vector();
+				rowc.add("Datensatz3");
+				rowc.add("Datensatz3");
+				rowc.add("Datensatz3");
+				Test1.add(rowa);
+				Test1.add(rowb);
+				Test1.add(rowc);
+				Test2.add("Spalte 1");
+				Test2.add("Spalte 2");
+				Test2.add("Spalte 3");
+				oberflaeche.datenaktualisieren(Test1, Test2);
+			}
+		});
 		datei.add(importieren);
 		
 		// Hinzufügen eines Seperators zur optischen Trennung
@@ -43,6 +75,8 @@ class Menuleiste extends JMenuBar {
 		
 		// Hinzufuegen der Auswahl 'beenden'
 		JMenuItem beenden = new JMenuItem("Beenden");
+		// Listener zum Beenden der Anwendung aus dem Package "ereignisListener" registrieren
+		beenden.addActionListener(new ereignislistener.beenden()); 
 		datei.add(beenden);
 				
 		// Den Menuepunkt 'Datei' der Menueleiste hinzufuegen
