@@ -11,7 +11,9 @@ class Menuleiste extends JMenuBar {
 
 	public Menuleiste(final Gui oberflaeche) {
 		JMenu datei = new JMenu("Datei");
+		JMenu tabelle = new JMenu("Tabelle");
 		
+		// Menüpunkt Datei befüllen
 		// Hinzufuegen der Auswahl 'neu' mit Tastenkaerzel Strg+n
 		JMenuItem neu = new JMenuItem("Neu");
 		neu.setAccelerator(KeyStroke.getKeyStroke("control N"));
@@ -32,10 +34,20 @@ class Menuleiste extends JMenuBar {
 		speichernals.setAccelerator(KeyStroke.getKeyStroke("control shift S"));
 		datei.add(speichernals);
 		
+		// Hinzufügen eines Seperators zur optischen Trennung
+		datei.addSeparator();
+				
+		// Hinzufuegen der Auswahl 'beenden'
+		JMenuItem beenden = new JMenuItem("Beenden");
+		// Listener zum Beenden der Anwendung aus dem Package "ereignisListener" registrieren
+		beenden.addActionListener(new ereignislistener.beenden()); 
+		datei.add(beenden);
+		
+		// Menüpunkt Tabelle befüllen
 		// Hinzufuegen der Auswahl 'exportieren' mit Tastenkuerzel Strg+e
 		JMenuItem exportieren = new JMenuItem("Exportieren");
 		exportieren.setAccelerator(KeyStroke.getKeyStroke("control E"));
-		datei.add(exportieren);
+		tabelle.add(exportieren);
 		
 		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
 		JMenuItem importieren = new JMenuItem("Importieren");
@@ -68,19 +80,11 @@ class Menuleiste extends JMenuBar {
 				oberflaeche.datenaktualisieren(Test1, Test2);
 			}
 		});
-		datei.add(importieren);
-		
-		// Hinzufügen eines Seperators zur optischen Trennung
-		datei.addSeparator();
-		
-		// Hinzufuegen der Auswahl 'beenden'
-		JMenuItem beenden = new JMenuItem("Beenden");
-		// Listener zum Beenden der Anwendung aus dem Package "ereignisListener" registrieren
-		beenden.addActionListener(new ereignislistener.beenden()); 
-		datei.add(beenden);
+		tabelle.add(importieren);
 				
 		// Den Menuepunkt 'Datei' der Menueleiste hinzufuegen
 		add(datei);
+		add(tabelle);
 	}
 	
 }
