@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -47,12 +48,7 @@ class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'exportieren' mit Tastenkuerzel Strg+e
 		JMenuItem exportieren = new JMenuItem("Exportieren");
 		exportieren.setAccelerator(KeyStroke.getKeyStroke("control E"));
-		tabelle.add(exportieren);
-		
-		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
-		JMenuItem importieren = new JMenuItem("Importieren");
-		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
-		importieren.addActionListener(new ActionListener() {
+		exportieren.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -78,6 +74,20 @@ class Menuleiste extends JMenuBar {
 				Test2.add("Spalte 2");
 				Test2.add("Spalte 3");
 				oberflaeche.datenaktualisieren(Test1, Test2);
+			}
+		});
+		tabelle.add(exportieren);
+		
+		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
+		JMenuItem importieren = new JMenuItem("Importieren");
+		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
+		importieren.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFileChooser tabellenimport = new JFileChooser();
+				tabellenimport.showOpenDialog(oberflaeche);
 			}
 		});
 		tabelle.add(importieren);
