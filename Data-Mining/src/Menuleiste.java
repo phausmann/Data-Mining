@@ -45,6 +45,22 @@ class Menuleiste extends JMenuBar {
 		datei.add(beenden);
 		
 		// Menüpunkt Tabelle befüllen
+		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
+		JMenuItem importieren = new JMenuItem("Importieren");
+		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
+		importieren.addActionListener(new ActionListener() {
+					
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFileChooser tabellenimport = new JFileChooser();
+				tabellenimport.setFileFilter(new Dateifilter());
+				tabellenimport.showOpenDialog(oberflaeche);
+			}
+		});
+		tabelle.add(importieren);
+		
+		
 		// Hinzufuegen der Auswahl 'exportieren' mit Tastenkuerzel Strg+e
 		JMenuItem exportieren = new JMenuItem("Exportieren");
 		exportieren.setAccelerator(KeyStroke.getKeyStroke("control E"));
@@ -77,20 +93,6 @@ class Menuleiste extends JMenuBar {
 			}
 		});
 		tabelle.add(exportieren);
-		
-		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
-		JMenuItem importieren = new JMenuItem("Importieren");
-		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
-		importieren.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFileChooser tabellenimport = new JFileChooser();
-				tabellenimport.showOpenDialog(oberflaeche);
-			}
-		});
-		tabelle.add(importieren);
 				
 		// Den Menuepunkt 'Datei' der Menueleiste hinzufuegen
 		add(datei);

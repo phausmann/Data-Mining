@@ -16,7 +16,6 @@ private Tabellenmodell modell;
 	
 	private void zeiche() {
 		setLayout(new BorderLayout());
-		add(new JLabel("Hier wird die Tabellenansicht entstehen"), BorderLayout.NORTH);
 		datentabelle = new JTable();
 		add(new JScrollPane(datentabelle), BorderLayout.CENTER);	
 	}
