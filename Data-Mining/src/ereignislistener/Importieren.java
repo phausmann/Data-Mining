@@ -1,6 +1,5 @@
 package ereignislistener;
 
-import benutzerSchnittstelle.Dateifilter;
 import benutzerSchnittstelle.Gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
