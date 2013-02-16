@@ -14,57 +14,86 @@ import javax.swing.JFileChooser;
 
 public class Importieren implements ActionListener {
 private Gui oberflaeche;
-
+	
+	// Konstruktur zur Übergabe der des Oberflächenmanagers
 	public Importieren(Gui oberflaeche) {
-		// TODO Auto-generated constructor stub
 		this.oberflaeche = oberflaeche;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		JFileChooser tabellenimport = new JFileChooser();
+		// Initialisierung des Dateifilters
+		tabellenimport.setFileFilter(new Dateifilter());
+		
+		// Prüfung, ob die Auswahl bestätigt wurde
+		if (tabellenimport.showOpenDialog(oberflaeche) 
+			== JFileChooser.APPROVE_OPTION) {
+			
+			// Prüfung, ob es sich um eine CSV-Datei handelt
+			if (tabellenimport.getSelectedFile().getName().endsWith(".csv")) {
+				
+				// CSV-Datei importieren
+				ladeCSV(tabellenimport);
+			}
+		}
+	}
+
+	private void ladeCSV(JFileChooser tabellenimport) {
 		String zeile, zwischen;
 		int z = 0;
 		Vector kopfzeile = new Vector();
 		Vector daten = new Vector();
 		Vector speicher;
-		JFileChooser tabellenimport = new JFileChooser();
-		tabellenimport.setFileFilter(new Dateifilter());
-		if (tabellenimport.showOpenDialog(oberflaeche) 
-			== JFileChooser.APPROVE_OPTION) {
+		
+		try {
+			// Initialisieren des Readers zum Lesen aus der ausgewählten Datei
+			BufferedReader in = new BufferedReader(
+			new FileReader(tabellenimport.getSelectedFile()));
 			try {
-				BufferedReader in = new BufferedReader(
-				new FileReader(tabellenimport.getSelectedFile()));
-				try {
-					while ((zeile = in.readLine()) != null) {
-						z++;
-						StringTokenizer zerteiler = new StringTokenizer(zeile, "\n,");
-						speicher = new Vector();
-						while (zerteiler.hasMoreTokens()) {
-							if (z == 1) {
-								zwischen = zerteiler.nextToken();
-								kopfzeile.add(zwischen);
-								System.out.println("Kopfzeile: " + zwischen);
-							}
-							else {
-								zwischen = zerteiler.nextToken();
-								speicher.add(zwischen);
-								System.out.println(z + ". Datensatz: " + zwischen);
-							}
+				// Solange das Dateiende nicht erreicht ist ...
+				while ((zeile = in.readLine()) != null) {
+					// Erhöhung des Zählers zur Zuordnung, ob es sich um eine Kopfzeile handelt
+					z++;
+					// Initialisieren des Stringzerteilers
+					StringTokenizer zerteiler = new StringTokenizer(zeile, "\n,");
+					// Initialisierung des Vectors zur Zwischenspeicherung der Daten
+					speicher = new Vector();
+					
+					// Solange noch Daten vorhanden sind ...
+					while (zerteiler.hasMoreTokens()) {
+						// Sind es Kopfzeilendaten?
+						if (z == 1) {
+							zwischen = zerteiler.nextToken();
+							kopfzeile.add(zwischen);
 						}
-						if (z > 1) {
-							daten.add(speicher);
+						// Es handelt sich um Tabellendaten
+						else {
+							zwischen = zerteiler.nextToken();
+							speicher.add(zwischen);
 						}
-					oberflaeche.datenaktualisieren(daten, kopfzeile);
 					}
-				} catch (IOException e2) {
-					e2.printStackTrace();
+					
+					// Füge die Tabellendaten dem Tabellendatenvector zu
+					if (z > 1) {
+						daten.add(speicher);
+					}
+					
+				// Aktualisierung der Tabelle
+				oberflaeche.datenaktualisieren(daten, kopfzeile);
 				}
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
+				
+			} catch (IOException e2) {
+				e2.printStackTrace();
 			}
-		oberflaeche.setInteraktivEnabled(true);
-		oberflaeche.setAutomatischEnabled(true);
+			
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		}
+		
+	// Die Tabelle konnte erfolgreich eingelesen werden
+	// Aktiv setzen der Tabs Interaktiv und Automatisch
+	oberflaeche.setInteraktivEnabled(true);
+	oberflaeche.setAutomatischEnabled(true);
 	}
 }
