@@ -17,7 +17,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class Gui extends JTabbedPane {
-private JTable datentabelle = new JTable();
 private Tabellenpanel tabelle = new Tabellenpanel();
 private Interaktivpanel interaktiv = new Interaktivpanel();
 private Automatikpanel automatisch = new Automatikpanel();
@@ -27,6 +26,8 @@ private Automatikpanel automatisch = new Automatikpanel();
 		addTab("Tabellenansicht", tabelle);
 		addTab("Interaktive Erstellung", interaktiv);
 		addTab("Automatische Erstellung", automatisch);
+		setEnabledAt(1, false);
+		setEnabledAt(2, false);
 	}
 	
 	public void datenaktualisieren(Vector daten, Vector<String> tabellenkopf) {
