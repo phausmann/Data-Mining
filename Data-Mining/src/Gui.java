@@ -35,10 +35,10 @@ private Automatikpanel automatisch = new Automatikpanel();
 	}
 	
 	public void setInteraktivEnabled(boolean enabled) {
-		setEnabledAt(1, false);
+		setEnabledAt(1, enabled);
 	}
 	
 	public void setAutomatischEnabled(boolean enabled) {
-		setEnabledAt(2, false);
+		setEnabledAt(2, enabled);
 	}
 }

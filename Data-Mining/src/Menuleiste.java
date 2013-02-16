@@ -101,6 +101,8 @@ class Menuleiste extends JMenuBar {
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
+				oberflaeche.setInteraktivEnabled(true);
+				oberflaeche.setAutomatischEnabled(true);
 				}
 			}
 		});
