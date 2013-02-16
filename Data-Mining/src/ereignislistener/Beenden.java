@@ -3,7 +3,7 @@ package ereignislistener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class beenden implements ActionListener {
+public class Beenden implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

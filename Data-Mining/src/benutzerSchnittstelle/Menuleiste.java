@@ -51,7 +51,7 @@ class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'beenden'
 		JMenuItem beenden = new JMenuItem("Beenden");
 		// Listener zum Beenden der Anwendung aus dem Package "ereignisListener" registrieren
-		beenden.addActionListener(new ereignislistener.beenden()); 
+		beenden.addActionListener(new ereignislistener.Beenden()); 
 		datei.add(beenden);
 		
 		// Menüpunkt Tabelle befüllen
