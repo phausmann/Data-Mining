@@ -33,4 +33,12 @@ private Automatikpanel automatisch = new Automatikpanel();
 	public void datenaktualisieren(Vector daten, Vector<String> tabellenkopf) {
 		tabelle.setModel(daten, tabellenkopf);
 	}
+	
+	public void setInteraktivEnabled(boolean enabled) {
+		setEnabledAt(1, false);
+	}
+	
+	public void setAutomatischEnabled(boolean enabled) {
+		setEnabledAt(2, false);
+	}
 }
