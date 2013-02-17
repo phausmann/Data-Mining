@@ -23,7 +23,17 @@ private Gui oberflaeche;
 			oberflaeche.datenaktualisieren(daten, kopfzeile);
 		}
 		else if (e.getActionCommand() == "Zeile") {
-			System.out.println(oberflaeche.getAusgewaehlteZeile());
+			Vector<String> tabellenkopf = oberflaeche.getKopfzeile();
+			Vector daten = oberflaeche.getDaten();
+			int zeile = oberflaeche.getAusgewaehlteZeile();
+			Vector neueDaten = new Vector();
+			for (int i = 0; i < daten.size(); i++) {
+				if (i != zeile) {
+					Vector zwischenspeicher = (Vector) daten.get(i);
+					neueDaten.add(zwischenspeicher);
+				}
+			}
+			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 		}
 	}
 }
