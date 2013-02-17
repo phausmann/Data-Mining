@@ -17,21 +17,19 @@ private Gui oberflaeche;
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
 		if (e.getActionCommand() == "Zeile") {
-			Vector daten = oberflaeche.getDaten();
-			Vector<String> kopfzeile = oberflaeche.getKopfzeile();
-			Vector neu = new Vector();
-			String test = " ";
-			neu.add(test);
-			neu.add(test);
-			neu.add(test);
-			neu.add(test);
-			neu.add(test);
-//			for (int i = 0; i <  kopfzeile.size(); i++) {
-//				neu.add("...");
-//			}
-			daten.add(neu);
-			oberflaeche.datenaktualisieren(daten, kopfzeile);
+			zeileeinfuegen();
 		}
+	}
+	
+	private void zeileeinfuegen() {
+		Vector daten = oberflaeche.getDaten();
+		Vector<String> kopfzeile = oberflaeche.getKopfzeile();
+		Vector neu = new Vector();
+		for (int i = 0; i <  kopfzeile.size(); i++) {
+			neu.add(" ");
+		}
+		daten.add(neu);
+		oberflaeche.datenaktualisieren(daten, kopfzeile);
 	}
 
 }
