@@ -90,14 +90,17 @@ class Menuleiste extends JMenuBar {
 		JMenu loeschen = new JMenu("Loeschen");
 		// Hinzufuegen der Auswahl 'tabelle'
 		JMenuItem tabelleloeschen = new JMenuItem("Tabelle");
+		tabelleloeschen.setAccelerator(KeyStroke.getKeyStroke("alt R"));
 		tabelleloeschen.addActionListener(new ereignislistener.Loeschen(oberflaeche));
 		loeschen.add(tabelleloeschen);
 		// Hinzufuegen der Auswahl 'spalte'
 		JMenuItem spalteloeschen = new JMenuItem("Spalte");
-		loeschen.add(spalteloeschen);
+		spalteloeschen.setAccelerator(KeyStroke.getKeyStroke("alt E"));
 		spalteloeschen.addActionListener(new ereignislistener.Loeschen(oberflaeche));
+		loeschen.add(spalteloeschen);
 		// Spalte löschen
 		JMenuItem zeileloeschen = new JMenuItem("Zeile");
+		zeileloeschen.setAccelerator(KeyStroke.getKeyStroke("alt W"));
 		zeileloeschen.addActionListener(new ereignislistener.Loeschen(oberflaeche));
 		loeschen.add(zeileloeschen);
 		tabelle.add(loeschen);
