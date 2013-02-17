@@ -93,34 +93,7 @@ class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'exportieren' mit Tastenkuerzel Strg+e
 		JMenuItem exportieren = new JMenuItem("Exportieren");
 		exportieren.setAccelerator(KeyStroke.getKeyStroke("control E"));
-		exportieren.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Vector Test1 = new Vector();
-				Vector<String> Test2 = new Vector<String>();
-				Vector rowa = new Vector();
-				rowa.add("Datensatz1");
-				rowa.add("Datensatz1");
-				rowa.add("Datensatz1");
-				Vector rowb = new Vector();
-				rowb.add("Datensatz2");
-				rowb.add("Datensatz2");
-				rowb.add("Datensatz2");
-				Vector rowc = new Vector();
-				rowc.add("Datensatz3");
-				rowc.add("Datensatz3");
-				rowc.add("Datensatz3");
-				Test1.add(rowa);
-				Test1.add(rowb);
-				Test1.add(rowc);
-				Test2.add("Spalte 1");
-				Test2.add("Spalte 2");
-				Test2.add("Spalte 3");
-				oberflaeche.datenaktualisieren(Test1, Test2);
-			}
-		});
+		exportieren.addActionListener(new ereignislistener.Exportieren(oberflaeche));
 		tabelle.add(exportieren);
 				
 		// Den Menuepunkt 'Datei' der Menueleiste hinzufuegen

@@ -26,4 +26,12 @@ private Tabellenmodell modell;
 		modell = new Tabellenmodell(daten, tabellenkopf);
 		datentabelle.setModel(modell);
 	}
+	
+	public Vector getModelDaten() {
+		return modell.getDaten();
+	}
+	
+	public Vector<String> getModellKopf() {
+		return modell.getTabellenkopf();
+	}
 }

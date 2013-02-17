@@ -32,6 +32,14 @@ private Automatikpanel automatisch = new Automatikpanel();
 		setEnabledAt(2, false);
 	}
 	
+	public Vector<String> getKopfzeile() {
+		return tabelle.getModellKopf();
+	}
+	
+	public Vector getDaten() {
+		return tabelle.getModelDaten();
+	}
+
 	public void datenaktualisieren(Vector daten, Vector<String> tabellenkopf) {
 		tabelle.setModel(daten, tabellenkopf);
 	}

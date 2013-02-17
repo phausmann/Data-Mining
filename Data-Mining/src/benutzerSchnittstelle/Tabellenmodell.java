@@ -14,6 +14,14 @@ private Vector<String> kopfzeile;
 		reihen = daten;
 	}
 	
+	public Vector<String> getTabellenkopf() {
+		return kopfzeile;
+	}
+	
+	public Vector getDaten() {
+		return reihen;
+	}
+	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		return true;
