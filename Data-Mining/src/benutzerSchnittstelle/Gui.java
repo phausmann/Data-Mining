@@ -55,4 +55,8 @@ private Automatikpanel automatisch = new Automatikpanel();
 	public int getAusgewaehlteZeile() {
 		return tabelle.getausgewaehlteZeile();
 	}
+	
+	public int getausgewaehlteSpalte() {
+		return tabelle.getausgewaehlteSpalte();
+	}
 }

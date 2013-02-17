@@ -35,5 +35,18 @@ private Gui oberflaeche;
 			}
 			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 		}
+		else {
+			Vector<String> tabellenkopf = oberflaeche.getKopfzeile();
+			Vector daten = oberflaeche.getDaten();
+			int spalte = oberflaeche.getausgewaehlteSpalte();
+			tabellenkopf.remove(spalte);
+			Vector neueDaten = new Vector();
+			for (int i = 0; i < daten.size(); i++) {
+				Vector zwischenspeicher = (Vector) daten.get(i);
+				zwischenspeicher.remove(i);
+				neueDaten.add(zwischenspeicher);
+			}
+			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
+		}
 	}
 }

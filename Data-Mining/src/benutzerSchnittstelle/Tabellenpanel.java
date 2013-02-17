@@ -38,4 +38,8 @@ private Tabellenmodell modell;
 	public int getausgewaehlteZeile() {
 		return datentabelle.getSelectedRow();
 	}
+	
+	public int getausgewaehlteSpalte() {
+		return datentabelle.getSelectedColumn();
+	}
 }
