@@ -24,8 +24,8 @@ class Menuleiste extends JMenuBar {
 		JMenu datei = new JMenu("Datei");
 		JMenu tabelle = new JMenu("Tabelle");
 		
-		// Menüpunkt Datei befüllen
-		// Hinzufuegen der Auswahl 'neu' mit Tastenkaerzel Strg+n
+		// Menuepunkt Datei befuellen
+		// Hinzufuegen der Auswahl 'neu' mit Tastenkuerzel Strg+n
 		JMenuItem neu = new JMenuItem("Neu");
 		neu.setAccelerator(KeyStroke.getKeyStroke("control N"));
 		datei.add(neu);
@@ -54,34 +54,48 @@ class Menuleiste extends JMenuBar {
 		beenden.addActionListener(new ereignislistener.Beenden()); 
 		datei.add(beenden);
 		
-		// Menüpunkt Tabelle befüllen
-		// Hinzufügen der Auswahl 'spalte einfuegen'
-		JMenuItem spalteeinfuegen = new JMenuItem("Spalte einfügen");
-		spalteeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
-		tabelle.add(spalteeinfuegen);
+		// Menuepunkt Tabelle befuellen
+		// Hinzufügen der Auswahl 'neu'
+		JMenuItem tabelleneu = new JMenuItem("Neu ...");
+		// tabelleneu.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		tabelle.add(tabelleneu);
 		
-		// Hinzufügen der Auswahl 'spalte hinzufuegen'
-		JMenuItem spalteeinfuegenEnde = new JMenuItem("Spalte hinzufügen");
+		// Hinzufuegen der Auswahl 'hinzufuegen'
+		JMenu hinzufuegen = new JMenu("Hinzufuegen");
+		// Hinzufuegen der Auswahl 'spalte'
+		JMenuItem spalteeinfuegenEnde = new JMenuItem("Spalte");
 		spalteeinfuegenEnde.setAccelerator(KeyStroke.getKeyStroke("control V"));
-		tabelle.add(spalteeinfuegenEnde);
-		
-		// Spalte löschen
-		JMenuItem spalteloeschen = new JMenuItem("Spalte löschen");
-		tabelle.add(spalteloeschen);
-		
-		// Hinzufügen der Auswahl 'spalte einfuegen'
-		JMenuItem zeileeinfuegen = new JMenuItem("Zeile einfügen");
-		zeileeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
-		tabelle.add(zeileeinfuegen);
-				
-		// Hinzufügen der Auswahl 'spalte hinzufuegen'
-		JMenuItem zeileeinfuegenEnde = new JMenuItem("Zeile hinzufügen");
+		hinzufuegen.add(spalteeinfuegenEnde);
+		// Hinzufuegen der Auswahl 'zeile'
+		JMenuItem zeileeinfuegenEnde = new JMenuItem("Zeile");
 		zeileeinfuegenEnde.setAccelerator(KeyStroke.getKeyStroke("control V"));
-		tabelle.add(zeileeinfuegenEnde);
-				
+		hinzufuegen.add(zeileeinfuegenEnde);
+		tabelle.add(hinzufuegen);
+		
+		// Hinzufuegen der Auswahl 'einfuegen'
+		JMenu einfuegen = new JMenu("Einfuegen");
+		// Hinzufuegen der Auswahl "Spalte"
+		JMenuItem spalteeinfuegen = new JMenuItem("Spalte");
+		spalteeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		einfuegen.add(spalteeinfuegen);
+		// Hinzufuegen der Auswahl "Zeile"
+		JMenuItem zeileeinfuegen = new JMenuItem("Zeile");
+		zeileeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		einfuegen.add(zeileeinfuegen);
+		tabelle.add(einfuegen);
+		
+		// Hinzufuegen der Auswahl 'löschen'
+		JMenu loeschen = new JMenu("Loeschen");
+		// Hinzufuegen der Auswahl 'tabelle'
+		JMenuItem tabelleloeschen = new JMenuItem("Tabelle");
+		loeschen.add(tabelleloeschen);
+		// Hinzufuegen der Auswahl 'spalte'
+		JMenuItem spalteloeschen = new JMenuItem("Spalte");
+		loeschen.add(spalteloeschen);
 		// Spalte löschen
-		JMenuItem zeileloeschen = new JMenuItem("Zeile löschen");
-		tabelle.add(zeileloeschen);
+		JMenuItem zeileloeschen = new JMenuItem("Zeile");
+		loeschen.add(zeileloeschen);
+		tabelle.add(loeschen);
 		
 		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
 		JMenuItem importieren = new JMenuItem("Importieren");
