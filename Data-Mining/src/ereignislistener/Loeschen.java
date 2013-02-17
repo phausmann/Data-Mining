@@ -18,6 +18,8 @@ private Gui oberflaeche;
 		if (e.getActionCommand() == "Tabelle") {
 			Vector<String> kopfzeile = new Vector();
 			Vector daten = new Vector();
+			oberflaeche.setInteraktivEnabled(false);
+			oberflaeche.setAutomatischEnabled(false);
 			oberflaeche.datenaktualisieren(daten, kopfzeile);
 		}
 		else if (e.getActionCommand() == "Zeile") {
