@@ -55,6 +55,34 @@ class Menuleiste extends JMenuBar {
 		datei.add(beenden);
 		
 		// Menüpunkt Tabelle befüllen
+		// Hinzufügen der Auswahl 'spalte einfuegen'
+		JMenuItem spalteeinfuegen = new JMenuItem("Spalte einfügen");
+		spalteeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		tabelle.add(spalteeinfuegen);
+		
+		// Hinzufügen der Auswahl 'spalte hinzufuegen'
+		JMenuItem spalteeinfuegenEnde = new JMenuItem("Spalte hinzufügen");
+		spalteeinfuegenEnde.setAccelerator(KeyStroke.getKeyStroke("control V"));
+		tabelle.add(spalteeinfuegenEnde);
+		
+		// Spalte löschen
+		JMenuItem spalteloeschen = new JMenuItem("Spalte löschen");
+		tabelle.add(spalteloeschen);
+		
+		// Hinzufügen der Auswahl 'spalte einfuegen'
+		JMenuItem zeileeinfuegen = new JMenuItem("Zeile einfügen");
+		zeileeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		tabelle.add(zeileeinfuegen);
+				
+		// Hinzufügen der Auswahl 'spalte hinzufuegen'
+		JMenuItem zeileeinfuegenEnde = new JMenuItem("Zeile hinzufügen");
+		zeileeinfuegenEnde.setAccelerator(KeyStroke.getKeyStroke("control V"));
+		tabelle.add(zeileeinfuegenEnde);
+				
+		// Spalte löschen
+		JMenuItem zeileloeschen = new JMenuItem("Zeile löschen");
+		tabelle.add(zeileloeschen);
+		
 		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
 		JMenuItem importieren = new JMenuItem("Importieren");
 		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
