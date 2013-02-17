@@ -15,9 +15,14 @@ private Vector<String> kopfzeile;
 	}
 	
 	@Override
-		public String getColumnName(int column) {
-			return kopfzeile.get(column).toString();
-		}
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return true;
+	}
+	
+	@Override
+	public String getColumnName(int column) {
+		return kopfzeile.get(column).toString();
+	}
 	
 	@Override
 	public int getRowCount() {
@@ -26,15 +31,19 @@ private Vector<String> kopfzeile;
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return kopfzeile.size();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		Vector a = (Vector) reihen.get(rowIndex);
 		return a.get(columnIndex).toString();
+	}
+	
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		Vector a = (Vector) reihen.get(rowIndex);
+		a.set(columnIndex, aValue.toString());
 	}
 
 }
