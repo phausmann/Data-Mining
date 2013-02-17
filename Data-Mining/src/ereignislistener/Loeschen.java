@@ -20,5 +20,8 @@ private Gui oberflaeche;
 			Vector daten = new Vector();
 			oberflaeche.datenaktualisieren(daten, kopfzeile);
 		}
+		else if (e.getActionCommand() == "Zeile") {
+			System.out.println(oberflaeche.getAusgewaehlteZeile());
+		}
 	}
 }

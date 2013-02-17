@@ -34,4 +34,8 @@ private Tabellenmodell modell;
 	public Vector<String> getModellKopf() {
 		return modell.getTabellenkopf();
 	}
+	
+	public int getausgewaehlteZeile() {
+		return datentabelle.getSelectedRow();
+	}
 }

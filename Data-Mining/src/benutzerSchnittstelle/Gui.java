@@ -51,4 +51,8 @@ private Automatikpanel automatisch = new Automatikpanel();
 	public void setAutomatischEnabled(boolean enabled) {
 		setEnabledAt(2, enabled);
 	}
+	
+	public int getAusgewaehlteZeile() {
+		return tabelle.getausgewaehlteZeile();
+	}
 }
