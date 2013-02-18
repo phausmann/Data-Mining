@@ -28,6 +28,7 @@ private Gui oberflaeche;
 		Vector neu = new Vector();
 		int zeile = oberflaeche.getAusgewaehlteZeile();
 		Vector neueDaten = new Vector();
+		
 		for (int i = 0; i <  kopfzeile.size(); i++) {
 			neu.add(" ");
 		}
@@ -46,7 +47,19 @@ private Gui oberflaeche;
 	}
 	
 	private void spalteEinfuegen() {
+		Vector<String> tabellenkopf = oberflaeche.getKopfzeile();
+		Vector daten = oberflaeche.getDaten();
+		int spalte = oberflaeche.getausgewaehlteSpalte();
+		Vector neueDaten = new Vector();
+		String neu = " ";
 		
+		tabellenkopf.add(spalte, neu);
+		for (int i = 0; i < daten.size(); i++) {
+			Vector zwischenspeicher = (Vector) daten.get(i);
+			zwischenspeicher.add(spalte, neu);
+			neueDaten.add(zwischenspeicher);
+		}
+		oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 	}
 
 }
