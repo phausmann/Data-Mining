@@ -15,16 +15,15 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
 		if (e.getActionCommand() == "Zeile") {
-			zeileeinfuegen();
+			zeilehinzufuegen();
 		}
 		else {
-			spalteeinfuegen();
+			spaltehinzufuegen();
 		}
 	}
 
-	private void zeileeinfuegen() {
+	private void zeilehinzufuegen() {
 		Vector daten = oberflaeche.getDaten();
 		Vector<String> kopfzeile = oberflaeche.getKopfzeile();
 		Vector neu = new Vector();
@@ -35,7 +34,7 @@ private Gui oberflaeche;
 		oberflaeche.datenaktualisieren(daten, kopfzeile);
 	}
 	
-	private void spalteeinfuegen() {
+	private void spaltehinzufuegen() {
 		Vector daten = oberflaeche.getDaten();
 		Vector<String> kopfzeile = oberflaeche.getKopfzeile();
 		Vector neueDaten = new Vector();

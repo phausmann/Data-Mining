@@ -78,11 +78,13 @@ class Menuleiste extends JMenuBar {
 		JMenu einfuegen = new JMenu("Einfuegen");
 		// Hinzufuegen der Auswahl "Spalte"
 		JMenuItem spalteeinfuegen = new JMenuItem("Spalte");
-		spalteeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		spalteeinfuegen.setAccelerator(KeyStroke.getKeyStroke("alt V"));
+		spalteeinfuegen.addActionListener(new ereignislistener.Einfuegen(oberflaeche));
 		einfuegen.add(spalteeinfuegen);
 		// Hinzufuegen der Auswahl "Zeile"
 		JMenuItem zeileeinfuegen = new JMenuItem("Zeile");
-		zeileeinfuegen.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		zeileeinfuegen.setAccelerator(KeyStroke.getKeyStroke("alt C"));
+		zeileeinfuegen.addActionListener(new ereignislistener.Einfuegen(oberflaeche));
 		einfuegen.add(zeileeinfuegen);
 		tabelle.add(einfuegen);
 		
