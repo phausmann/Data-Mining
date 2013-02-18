@@ -36,6 +36,8 @@ private Gui oberflaeche;
 			}
 			if (neueDaten.isEmpty()) {
 				tabellenkopf = new Vector<String>();
+				oberflaeche.setInteraktivEnabled(false);
+				oberflaeche.setAutomatischEnabled(false);
 			}
 			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 		}
@@ -47,6 +49,8 @@ private Gui oberflaeche;
 			Vector neueDaten = new Vector();
 			if (tabellenkopf.isEmpty()) {
 				tabellenkopf = new Vector<String>();
+				oberflaeche.setInteraktivEnabled(false);
+				oberflaeche.setAutomatischEnabled(false);
 			}
 			else {
 				for (int i = 0; i < daten.size(); i++) {
