@@ -11,9 +11,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Objektinstanziierungen
-		Gui oberflaeche = new Gui();
-		Menuleiste menu = new Menuleiste(oberflaeche);
 		JFrame fenster = new JFrame();
+		Gui oberflaeche = new Gui(fenster);
+		Menuleiste menu = new Menuleiste(oberflaeche);
 		
 		// Menueleiste hinzufuegen
 		fenster.setJMenuBar(menu);

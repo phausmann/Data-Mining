@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,8 +23,10 @@ public class Gui extends JTabbedPane {
 private Tabellenpanel tabelle = new Tabellenpanel();
 private Interaktivpanel interaktiv = new Interaktivpanel();
 private Automatikpanel automatisch = new Automatikpanel();
-	
-	public Gui() {
+private JFrame fenster = new JFrame();
+
+	public Gui(JFrame fenster) {
+		this.fenster = fenster;
 		// Tabs mit Inhalten füllen
 		addTab("Tabellenansicht", tabelle);
 		addTab("Interaktive Erstellung", interaktiv);
@@ -58,5 +61,9 @@ private Automatikpanel automatisch = new Automatikpanel();
 	
 	public int getausgewaehlteSpalte() {
 		return tabelle.getausgewaehlteSpalte();
+	}
+	
+	public JFrame getFrame() {
+		return fenster;
 	}
 }
