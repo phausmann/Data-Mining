@@ -1,6 +1,8 @@
 package ereignislistener;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,19 +13,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import benutzerSchnittstelle.Gui;
+
 import com.sun.xml.internal.ws.api.server.Container;
 
 public class ZeilenSpaltenDialog extends JDialog {
 private JTextField spalten, zeilen;
 private boolean okButton;
-	
-	public ZeilenSpaltenDialog() {
-//		super(owner, "Zeilen- und Spalteneingabe", true);
+
+	public ZeilenSpaltenDialog(Gui oberflaeche) {
+		setLocationRelativeTo(oberflaeche);
 		setTitle("Zeilen- und Spalteneingabe");
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		JPanel aufnahme = new JPanel();
+		JPanel buttons = new JPanel();
 		JPanel inhalt = new JPanel();
-		inhalt.setLayout(new FlowLayout());
+		aufnahme.setLayout(new BorderLayout());
+		inhalt.setLayout(new GridLayout(2, 2));
+		buttons.setLayout(new FlowLayout());
 		
 		inhalt.add(new JLabel("Zeilenanzahl"));
 		zeilen = new JTextField(3);
@@ -47,7 +55,7 @@ private boolean okButton;
 			}
 		});
 		
-		inhalt.add(ok);
+		buttons.add(ok);
 		
 		JButton abbrechen = new JButton("Abbrechen");
 		abbrechen.addActionListener(new ActionListener() {
@@ -59,14 +67,17 @@ private boolean okButton;
 			}
 		});
 		
-		inhalt.add(abbrechen);
+		buttons.add(abbrechen);
 		
-		getContentPane().add(inhalt);
+		aufnahme.add(inhalt, BorderLayout.CENTER);
+		aufnahme.add(buttons, BorderLayout.SOUTH);
+		
+		getContentPane().add(aufnahme);
 		setSize(250, 100);
 		setResizable(false);
 		setVisible(true);
 	}
-	
+
 	public boolean getButtonklick() {
 		return okButton;
 	}
