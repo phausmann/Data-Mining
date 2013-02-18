@@ -29,9 +29,13 @@ private Gui oberflaeche;
 			Vector neueDaten = new Vector();
 			for (int i = 0; i < daten.size(); i++) {
 				if (i != zeile) {
+					System.out.println("reingegangen");
 					Vector zwischenspeicher = (Vector) daten.get(i);
 					neueDaten.add(zwischenspeicher);
 				}
+			}
+			if (neueDaten.isEmpty()) {
+				tabellenkopf = new Vector<String>();
 			}
 			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 		}
@@ -41,10 +45,16 @@ private Gui oberflaeche;
 			int spalte = oberflaeche.getausgewaehlteSpalte();
 			tabellenkopf.remove(spalte);
 			Vector neueDaten = new Vector();
-			for (int i = 0; i < daten.size(); i++) {
-				Vector zwischenspeicher = (Vector) daten.get(i);
-				zwischenspeicher.remove(i);
-				neueDaten.add(zwischenspeicher);
+			if (tabellenkopf.isEmpty()) {
+				tabellenkopf = new Vector<String>();
+			}
+			else {
+				for (int i = 0; i < daten.size(); i++) {
+					System.out.println("rauswerfen");
+					Vector zwischenspeicher = (Vector) daten.get(i);
+					zwischenspeicher.remove(spalte);
+					neueDaten.add(zwischenspeicher);
+				}
 			}
 			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 		}
