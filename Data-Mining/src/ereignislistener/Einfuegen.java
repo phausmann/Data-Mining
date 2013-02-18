@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class Einfuegen implements ActionListener {
 private Gui oberflaeche;
 	

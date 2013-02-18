@@ -57,7 +57,7 @@ class Menuleiste extends JMenuBar {
 		// Menuepunkt Tabelle befuellen
 		// Hinzufügen der Auswahl 'neu'
 		JMenuItem tabelleneu = new JMenuItem("Neu ...");
-		// tabelleneu.setAccelerator(KeyStroke.getKeyStroke("control shift V"));
+		tabelleneu.setAccelerator(KeyStroke.getKeyStroke("alt N"));
 		tabelle.add(tabelleneu);
 		
 		// Hinzufuegen der Auswahl 'hinzufuegen'
