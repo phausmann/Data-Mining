@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import benutzerSchnittstelle.Gui;
+import benutzerSchnittstelle.Menuleiste;
 
 public class NeueTabelle implements ActionListener {
 private Gui oberflaeche;

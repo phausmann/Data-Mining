@@ -18,7 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-class Menuleiste extends JMenuBar {
+public class Menuleiste extends JMenuBar {
 
 	public Menuleiste(final Gui oberflaeche) {
 		JMenu datei = new JMenu("Datei");
