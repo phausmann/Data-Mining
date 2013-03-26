@@ -53,5 +53,4 @@ private Vector<String> kopfzeile;
 		Vector a = (Vector) reihen.get(rowIndex);
 		a.set(columnIndex, aValue.toString());
 	}
-
 }
