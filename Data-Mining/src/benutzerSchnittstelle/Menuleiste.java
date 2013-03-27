@@ -123,14 +123,7 @@ public class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'als Zielattribut festlegen'
 		JMenuItem zielattribut = new JMenuItem("Als Zielattribut festlegen");
 		zielattribut.setAccelerator(KeyStroke.getKeyStroke("alt A"));
-		zielattribut.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				oberflaeche.spalteeinfaerben(oberflaeche.getausgewaehlteSpalte());
-			}
-		});
-		
+		zielattribut.addActionListener(new ereignislistener.SpalteFaerben(oberflaeche));
 		tabelle.add(zielattribut);
 		
 		// Den Menuepunkt 'Datei' der Menueleiste hinzufuegen
