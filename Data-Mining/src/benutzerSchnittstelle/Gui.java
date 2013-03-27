@@ -24,6 +24,7 @@ private Tabellenpanel tabelle = new Tabellenpanel();
 private Interaktivpanel interaktiv = new Interaktivpanel();
 private Automatikpanel automatisch = new Automatikpanel();
 private JFrame fenster = new JFrame();
+private static int zielattribut = -1;
 
 	public Gui(JFrame fenster) {
 		this.fenster = fenster;
@@ -68,6 +69,12 @@ private JFrame fenster = new JFrame();
 	}
 	
 	public void spalteeinfaerben(int spalte) {
+		zielattribut = spalte;
 		tabelle.spaltefaerben(spalte);
+		automatisch.setGenerierenButtonenable(true);
+	}
+	
+	public int getZielAttributsSpalte() {
+		return zielattribut;
 	}
 }
