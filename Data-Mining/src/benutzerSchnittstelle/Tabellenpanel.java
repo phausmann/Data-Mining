@@ -2,6 +2,7 @@ package benutzerSchnittstelle;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -18,7 +19,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import sun.swing.MenuItemLayoutHelper.ColumnAlignment;
@@ -31,12 +34,13 @@ private JPopupMenu umbenennen;
 private JTextField text;
 private TableColumn spalte;
 private int spaltenindex;
+private static int ziel = 0;
 
 	public Tabellenpanel() {
-		zeiche();
+		zeichne();
 	}
 	
-	private void zeiche() {
+	private void zeichne() {
 		setLayout(new BorderLayout());
 		datentabelle = new JTable();
 		
@@ -139,5 +143,36 @@ private int spaltenindex;
 		// PopupMenue nicht mehr sichtbar machen und Modelldaten aktualisieren
 		umbenennen.setVisible(false);
 		setModel(daten, kopfzeile);
+	}
+	
+	public void spaltefaerben(int spalte) {
+		ziel = spalte;
+		datentabelle.setDefaultRenderer(Object.class, new TableCellRenderer() {
+			public final DefaultTableCellRenderer DEFAULT_RENDERER =
+				    new DefaultTableCellRenderer();
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value,
+					boolean isSelected, boolean hasFocus, int row, int column) {
+				
+				Color vordergrund, hintergrund;
+				Component renderer = DEFAULT_RENDERER.getTableCellRendererComponent(
+						table, value, isSelected, hasFocus, row, column);
+				if (column == ziel) {
+					vordergrund = Color.BLACK;
+					hintergrund = Color.ORANGE;
+					renderer.setForeground(vordergrund);
+					renderer.setBackground(hintergrund);
+				}
+				else {
+					vordergrund = Color.BLACK;
+					hintergrund = Color.WHITE;
+				}
+				renderer.setForeground(vordergrund);
+				renderer.setBackground(hintergrund);
+				return renderer;
+			}
+		});
+		datentabelle.repaint();
 	}
 }

@@ -66,4 +66,8 @@ private JFrame fenster = new JFrame();
 	public JFrame getFrame() {
 		return fenster;
 	}
+	
+	public void spalteeinfaerben(int spalte) {
+		tabelle.spaltefaerben(spalte);
+	}
 }

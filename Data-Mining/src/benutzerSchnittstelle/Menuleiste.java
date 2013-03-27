@@ -98,10 +98,10 @@ public class Menuleiste extends JMenuBar {
 		loeschen.add(tabelleloeschen);
 		// Hinzufuegen der Auswahl 'spalte'
 		JMenuItem spalteloeschen = new JMenuItem("Spalte");
-		spalteloeschen.setAccelerator(KeyStroke.getKeyStroke("alt E"));
+		spalteloeschen.setAccelerator(KeyStroke.getKeyStroke("alt Q"));
 		spalteloeschen.addActionListener(new ereignislistener.Loeschen(oberflaeche));
 		loeschen.add(spalteloeschen);
-		// Spalte löschen
+		// Hinzufuegen der Auswahl Spalte löschen
 		JMenuItem zeileloeschen = new JMenuItem("Zeile");
 		zeileloeschen.setAccelerator(KeyStroke.getKeyStroke("alt W"));
 		zeileloeschen.addActionListener(new ereignislistener.Loeschen(oberflaeche));
@@ -110,17 +110,29 @@ public class Menuleiste extends JMenuBar {
 		
 		// Hinzufuegen der Auswahl 'importieren' mit Tastenkuerzel Strg+e
 		JMenuItem importieren = new JMenuItem("Importieren");
-		importieren.setAccelerator(KeyStroke.getKeyStroke("control I"));
+		importieren.setAccelerator(KeyStroke.getKeyStroke("alt I"));
 		importieren.addActionListener(new ereignislistener.Importieren(oberflaeche));
 		tabelle.add(importieren);
 		
-		
 		// Hinzufuegen der Auswahl 'exportieren' mit Tastenkuerzel Strg+e
 		JMenuItem exportieren = new JMenuItem("Exportieren");
-		exportieren.setAccelerator(KeyStroke.getKeyStroke("control E"));
+		exportieren.setAccelerator(KeyStroke.getKeyStroke("alt E"));
 		exportieren.addActionListener(new ereignislistener.Exportieren(oberflaeche));
 		tabelle.add(exportieren);
-				
+		
+		// Hinzufuegen der Auswahl 'als Zielattribut festlegen'
+		JMenuItem zielattribut = new JMenuItem("Als Zielattribut festlegen");
+		zielattribut.setAccelerator(KeyStroke.getKeyStroke("alt Z"));
+		zielattribut.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				oberflaeche.spalteeinfaerben(oberflaeche.getausgewaehlteSpalte());
+			}
+		});
+		
+		tabelle.add(zielattribut);
+		
 		// Den Menuepunkt 'Datei' der Menueleiste hinzufuegen
 		add(datei);
 		add(tabelle);
