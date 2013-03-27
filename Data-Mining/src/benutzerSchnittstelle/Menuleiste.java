@@ -122,7 +122,7 @@ public class Menuleiste extends JMenuBar {
 		
 		// Hinzufuegen der Auswahl 'als Zielattribut festlegen'
 		JMenuItem zielattribut = new JMenuItem("Als Zielattribut festlegen");
-		zielattribut.setAccelerator(KeyStroke.getKeyStroke("alt Z"));
+		zielattribut.setAccelerator(KeyStroke.getKeyStroke("alt A"));
 		zielattribut.addActionListener(new ActionListener() {
 			
 			@Override

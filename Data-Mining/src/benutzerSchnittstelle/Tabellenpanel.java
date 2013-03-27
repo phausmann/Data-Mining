@@ -76,7 +76,9 @@ private static int ziel = 0;
 		umbenennen.add(text);
 		
 		// Hinzufuegen der Tabelle zum Panel
-		add(new JScrollPane(datentabelle), BorderLayout.CENTER);	
+		add(new JScrollPane(datentabelle), BorderLayout.CENTER);
+		// Der Tabelle den Renderer zufügen
+		spaltefaerben(-1);
 	}
 	
 	// Modell festlegen
@@ -155,20 +157,15 @@ private static int ziel = 0;
 			public Component getTableCellRendererComponent(JTable table, Object value,
 					boolean isSelected, boolean hasFocus, int row, int column) {
 				
-				Color vordergrund, hintergrund;
+				Color hintergrund;
 				Component renderer = DEFAULT_RENDERER.getTableCellRendererComponent(
 						table, value, isSelected, hasFocus, row, column);
 				if (column == ziel) {
-					vordergrund = Color.BLACK;
-					hintergrund = Color.ORANGE;
-					renderer.setForeground(vordergrund);
-					renderer.setBackground(hintergrund);
+					hintergrund = new Color(255, 160, 125);
 				}
 				else {
-					vordergrund = Color.BLACK;
 					hintergrund = Color.WHITE;
 				}
-				renderer.setForeground(vordergrund);
 				renderer.setBackground(hintergrund);
 				return renderer;
 			}
