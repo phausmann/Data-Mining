@@ -53,4 +53,13 @@ private Vector<String> kopfzeile;
 		Vector a = (Vector) reihen.get(rowIndex);
 		a.set(columnIndex, aValue.toString());
 	}
+	
+	public Vector getSpaltenDatenN(int spalte) {
+		Vector spaltenDaten = new Vector();
+		for (int i = 0; i < reihen.size(); i++) {
+			Vector zwischenspeicher = (Vector) reihen.get(i);
+			spaltenDaten.add(zwischenspeicher.get(spalte));
+		}
+		return spaltenDaten;
+	}
 }

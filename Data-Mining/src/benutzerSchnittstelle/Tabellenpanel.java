@@ -107,6 +107,11 @@ private static int ziel = 0;
 		return datentabelle.getSelectedColumn();
 	}
 	
+	// Spalten Daten der entsprechenden Spalte
+	public Vector getSpaltenDatenN(int spalte) {
+		return modell.getSpaltenDatenN(spalte);
+	}
+	
 	// Kopfzeile an bestimmter Postion editieren
 	private void editiereSpalteBei(Point point) {
 		spaltenindex = kopf.columnAtPoint(point);

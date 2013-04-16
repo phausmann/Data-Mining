@@ -22,7 +22,7 @@ import javax.swing.table.TableColumnModel;
 public class Gui extends JTabbedPane {
 private Tabellenpanel tabelle = new Tabellenpanel();
 private Interaktivpanel interaktiv = new Interaktivpanel();
-private Automatikpanel automatisch = new Automatikpanel();
+private Automatikpanel automatisch = new Automatikpanel(this);
 private JFrame fenster = new JFrame();
 private static int zielattribut = -1;
 
@@ -76,5 +76,9 @@ private static int zielattribut = -1;
 	
 	public int getZielAttributsSpalte() {
 		return zielattribut;
+	}
+	
+	public Vector getSpaltenDatenN(int spalte) {
+		return tabelle.getSpaltenDatenN(spalte);
 	}
 }
