@@ -16,7 +16,7 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Thread t1 = new EntropieThread(oberflaeche.getSpaltenDatenN(2), 2);
+		Thread t1 = new EntropieThread(oberflaeche.getSpaltenDatenN(0), oberflaeche.getSpaltenDatenN(oberflaeche.getZielAttributsSpalte()), 2);
 		t1.start();
 	}
 
