@@ -23,7 +23,7 @@ private boolean okButton;
 
 	public ZeilenSpaltenDialog(Gui oberflaeche) {
 		super(oberflaeche.getFrame(), "Zeilen- und Spalteneingbae", true);
-//		setLocationRelativeTo(oberflaeche.getFrame());
+		setLocationRelativeTo(oberflaeche.getFrame());
 //		setTitle("Zeilen- und Spalteneingabe");
 //		setModal(true);
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
