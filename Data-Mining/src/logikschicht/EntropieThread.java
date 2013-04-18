@@ -104,4 +104,8 @@ private int klassenanzahl;
 	public static double[] getMinimaleEntropie() {
 		return wertpaar;
 	}
+	
+	public static void entropieZuruecksetzen() {
+		wertpaar[0] = Double.MAX_VALUE;
+	}
 }

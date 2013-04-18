@@ -81,4 +81,8 @@ private static int zielattribut = -1;
 	public Vector getSpaltenDatenN(int spalte) {
 		return tabelle.getSpaltenDatenN(spalte);
 	}
+	
+	public int getAttributanzahl() {
+		return tabelle.getModellKopf().size();
+	}
 }
