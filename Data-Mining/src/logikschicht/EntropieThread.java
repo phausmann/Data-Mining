@@ -3,7 +3,7 @@ package logikschicht;
 import java.util.Vector;
 
 public class EntropieThread extends Thread {
-private static double wertpaar[] = new double[2];
+private static double wertpaar[] = new double[3];
 private Vector spalte;
 private int spaltenindex;
 private double entropie;
@@ -11,10 +11,12 @@ private Vector auspraegungen;
 private Vector tabuliste;
 private Vector zielspalte;
 private int klassenanzahl;
+private int threadnummer;
 	
 	public EntropieThread(Vector spalte, Vector zielattributspalte, int spaltenindex) {
 		this.spalte = spalte;
 		this.spaltenindex = spaltenindex;
+		this.threadnummer = spaltenindex;
 		zielspalte = zielattributspalte;
 		klassenanzahl = 0;
 		entropie = 0;
@@ -76,7 +78,7 @@ private int klassenanzahl;
 		System.out.println(String.valueOf(entropie));
 		
 		// Übergabe der berechneten Entropie
-		setzeEntropie(entropie, spaltenindex);
+		setzeEntropie(entropie, spaltenindex, threadnummer);
 	}
 
 	// private Methode zur Identifikation des Klassenindex' im Array
@@ -92,11 +94,12 @@ private int klassenanzahl;
 		return (Integer) null;
 	}
 
-	public static synchronized void setzeEntropie(double entropie, int index) {
+	public static synchronized void setzeEntropie(double entropie, int index, int threadnummer) {
 		// Wenn die berechnete Entropie minimaler ist, als die bisherige, speichern dieser
 		if (entropie < wertpaar[0]) {
 			wertpaar[0] = entropie;
 			wertpaar[1] = index;
+			wertpaar[2] = threadnummer;
 		}
 	}
 	
@@ -107,5 +110,9 @@ private int klassenanzahl;
 	
 	public static void entropieZuruecksetzen() {
 		wertpaar[0] = Double.MAX_VALUE;
+	}
+	
+	public Vector getAuspraegungsVektor() {
+		return auspraegungen;
 	}
 }

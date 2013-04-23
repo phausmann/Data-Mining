@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 public class Automatikpanel extends JPanel {
 private JPanel regel = new JPanel();
+private JPanel zeichenflaeche = new JPanel();
 private JButton regelbutton = new JButton("Regeldarstellung");
 private JButton generierebutton = new JButton("Generieren");
 private Gui oberflaeche;
@@ -21,11 +22,11 @@ private Gui oberflaeche;
 
 	private void zeichne() {
 		setLayout(new BorderLayout());
-		add(new JLabel("Hier wird die automatische Baumdarstellung entstehen"), BorderLayout.NORTH);
+		add(zeichenflaeche, BorderLayout.NORTH);
 		regel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(regel, BorderLayout.SOUTH);
 		generierebutton.setEnabled(false);
-		generierebutton.addActionListener(new ereignislistener.Generieren(oberflaeche));
+		generierebutton.addActionListener(new ereignislistener.Generieren(oberflaeche, zeichenflaeche));
 		regel.add(generierebutton);
 		regel.add(regelbutton);
 	}
