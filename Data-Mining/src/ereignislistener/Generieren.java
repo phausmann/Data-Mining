@@ -143,7 +143,8 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 			}
 			
 			attributsanzahl--;
-		}	
+		}
+		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
 	}
 		
 		

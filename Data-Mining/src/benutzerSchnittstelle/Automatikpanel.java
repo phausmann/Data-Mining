@@ -2,15 +2,18 @@ package benutzerSchnittstelle;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import logikschicht.Zeichenkomponenten;
+
 
 public class Automatikpanel extends JPanel {
 private JPanel regel = new JPanel();
-private JPanel zeichenflaeche = new JPanel();
+private JPanel zeichenflaeche;
 private JButton regelbutton = new JButton("Regeldarstellung");
 private JButton generierebutton = new JButton("Generieren");
 private Gui oberflaeche;
@@ -22,7 +25,7 @@ private Gui oberflaeche;
 
 	private void zeichne() {
 		setLayout(new BorderLayout());
-		add(zeichenflaeche, BorderLayout.NORTH);
+//		add(zeichenflaeche, BorderLayout.NORTH);
 		regel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(regel, BorderLayout.SOUTH);
 		generierebutton.setEnabled(false);
@@ -33,5 +36,12 @@ private Gui oberflaeche;
 	
 	public void setGenerierenButtonenable(Boolean enable) {
 		generierebutton.setEnabled(enable);
+	}
+	
+	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
+		zeichenflaeche = new JPanel();
+		zeichenflaeche.add(new ZeichnungsBaum(speichersteine));
+		zeichenflaeche.setVisible(true);
+		add(zeichenflaeche, BorderLayout.NORTH);
 	}
 }

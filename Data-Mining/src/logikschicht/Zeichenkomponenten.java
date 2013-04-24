@@ -19,6 +19,4 @@ private int ebene;
 		this.objektanzahl = objektanzahl;
 		this.ebene = ebene;
 	}
-	
-	
 }

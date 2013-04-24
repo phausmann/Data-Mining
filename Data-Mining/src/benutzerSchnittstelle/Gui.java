@@ -19,6 +19,8 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import logikschicht.Zeichenkomponenten;
+
 public class Gui extends JTabbedPane {
 private Tabellenpanel tabelle = new Tabellenpanel();
 private Interaktivpanel interaktiv = new Interaktivpanel();
@@ -84,5 +86,10 @@ private static int zielattribut = -1;
 	
 	public int getAttributanzahl() {
 		return tabelle.getModellKopf().size();
+	}
+	
+	public void baumZeichnen(Vector<Zeichenkomponenten> speichersteine) {
+		automatisch.zeichneBaum(speichersteine);
+		repaint();
 	}
 }
