@@ -25,7 +25,7 @@ private Vector kopfzeile;
 private int gesamtauspraegungsanzahl = 0;
 private int attributsanzahl;
 private int iteration = 0;
-private Teilzustand[] zustandsverwaltung;
+private Vector<Teilzustand> zustandsverwaltung;
 private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zeichenkomponenten>();
 	
 	public Generieren(Gui oberflaeche, JPanel zeichenflaeche) {
@@ -44,48 +44,72 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 			
 			iteration++;
 			if (iteration > 1) {
-				Teilzustand[] zwischenspeicher = zustandsverwaltung;
-				zustandsverwaltung = new Teilzustand[gesamtauspraegungsanzahl];
+				Vector<Teilzustand> zwischenspeicher = zustandsverwaltung;
+				zustandsverwaltung = new Vector<Teilzustand>();
 				
 				int position = 0;
-				for (int i = 0; i < zwischenspeicher.length; i++) {
+				for (int i = 0; i < zwischenspeicher.size(); i++) {
 					int zaehler = 0;
-					for (int j = position; j < position + zwischenspeicher[i].getAuspraegungen().size();
+					for (int j = position; j < position + zwischenspeicher.get(i).getAuspraegungen().size();
 						 j++) {
-						zustandsverwaltung[j] = new Teilzustand(erzeugeKopfzeile(zwischenspeicher[i].getKopfzeile(),
-																				 zwischenspeicher[i].getEntropieattribut()),
-																erzeugeDaten(zwischenspeicher[i].getDaten(),
-																		     zwischenspeicher[i].getAuspraegungen().get(zaehler).toString()),
-																erzeugeKopfzeile(zwischenspeicher[i].getKopfzeile(),
-																				 zwischenspeicher[i].getEntropieattribut()).
-																				 indexOf(zwischenspeicher[i].getKopfzeile().get(zwischenspeicher[i].getZielattributsspalte())));
-						zaehler++;
+						// Abfrage bewirkt nicht das gewollte; = Müll!!!
+						
+						Teilzustand hinein = new Teilzustand(
+								erzeugeKopfzeile(
+										zwischenspeicher.get(i).getKopfzeile(),
+										zwischenspeicher.get(i)
+												.getEntropieattribut()),
+								erzeugeDaten(
+										zwischenspeicher.get(i).getDaten(),
+										zwischenspeicher.get(i)
+												.getAuspraegungen()
+												.get(zaehler).toString()),
+								erzeugeKopfzeile(
+										zwischenspeicher.get(i).getKopfzeile(),
+										zwischenspeicher.get(i)
+												.getEntropieattribut())
+										.indexOf(
+												zwischenspeicher.get(i)
+														.getKopfzeile()
+														.get(zwischenspeicher.get(i)
+																.getZielattributsspalte())));
+						
+						if (!(zielattributsspaltengleichheit(getSpaltenDatenN(
+								hinein.getDaten(),
+								hinein.getZielattributsspalte())))) {
+							
+							zustandsverwaltung.add(hinein);
+							zaehler++;
+						}
 					}
+				position = zaehler;
 				}
-				
-				gesamtauspraegungsanzahl = 0;
 			}
 			else {
-				zustandsverwaltung = new Teilzustand[1];
-				zustandsverwaltung[0] = new Teilzustand(kopfzeile, daten,
-														oberflaeche.getZielAttributsSpalte());
+				zustandsverwaltung = new Vector<Teilzustand>();
+				Teilzustand hinein = new Teilzustand(kopfzeile, daten, oberflaeche.getZielAttributsSpalte());
+				zustandsverwaltung.add(hinein);
 			}
 			
-			for (int j = 0; j < zustandsverwaltung.length; j++) {
+			if (zustandsverwaltung.isEmpty()) {
+				break;
+			}
+			
+			for (int j = 0; j < zustandsverwaltung.size(); j++) {
 				
 				// Arrayinitialisierung
 				EntropieThread threadverwaltung[] = new EntropieThread
-													[(zustandsverwaltung[j].getKopfzeile().size() - 1)];
+													[(zustandsverwaltung.get(j).getKopfzeile().size() - 1)];
 				EntropieThread.entropieZuruecksetzen();
 				
 				
 				
 				for (int i = 0; i < threadverwaltung.length + 1; i++) {
-					if (!(i == zustandsverwaltung[j].getZielattributsspalte())) {
+					if (!(i == zustandsverwaltung.get(j).getZielattributsspalte())) {
 						threadverwaltung[i] = new EntropieThread(
-								getSpaltenDatenN(zustandsverwaltung[j].getDaten(), i),
-								getSpaltenDatenN(zustandsverwaltung[j].getDaten(),
-												 zustandsverwaltung[j].getZielattributsspalte()), i);
+								getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(), i),
+								getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(),
+												 zustandsverwaltung.get(j).getZielattributsspalte()), i);
 						threadverwaltung[i].start();
 					}
 				}
@@ -104,16 +128,18 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 				
 				
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
-											  zustandsverwaltung[j].getKopfzeile().get((int) speicher[1]),
+											  zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]),
 											  threadverwaltung[(int) speicher[2]].getAuspraegungsVektor(),
-											  speicher[0], 0, 0);
+											  speicher[0], 0, 0, iteration);
 				gesamtheitzeichenkomponenten.add(speicherstein);
 				
-				zustandsverwaltung[j].setAuspraegungen(threadverwaltung[(int) speicher[2]].getAuspraegungsVektor());
-				zustandsverwaltung[j].setEntropieattribut(zustandsverwaltung[j].getKopfzeile().get((int) speicher[1]));
-				gesamtauspraegungsanzahl = gesamtauspraegungsanzahl + 
-										   threadverwaltung[(int) speicher[2]].getAuspraegungsVektor().size();
-				
+				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung[(int) speicher[2]].getAuspraegungsVektor());
+				zustandsverwaltung.get(j).setEntropieattribut(zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]));
+//				if (!(zielattributsspaltengleichheit(getSpaltenDatenN(zustandsverwaltung[j].getDaten(),
+//																	zustandsverwaltung[j].getZielattributsspalte())))) {
+//					gesamtauspraegungsanzahl = gesamtauspraegungsanzahl + 
+//							   				   threadverwaltung[(int) speicher[2]].getAuspraegungsVektor().size();
+//				}			
 			}
 			
 			attributsanzahl--;
@@ -125,10 +151,11 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 	private Vector erzeugeDaten(Vector datensammlung, String attribut) {
 		Vector speicher = new Vector();
 		for (int i = 0; i < datensammlung.size(); i++) {
-			Vector zwischenspeicher = (Vector) datensammlung.get(i);
-			if (zwischenspeicher.contains(attribut)) {
-				Vector pufferspeicher = zwischenspeicher;
-				pufferspeicher.remove(zwischenspeicher.indexOf(attribut));
+			Vector zwischenspeichern = (Vector) datensammlung.get(i);
+			if (zwischenspeichern.contains(attribut)) {
+				Vector pufferspeicher = new Vector();
+				pufferspeicher.addAll(zwischenspeichern);
+				pufferspeicher.remove(pufferspeicher.indexOf(attribut));
 				speicher.add(pufferspeicher);
 			}
 		}
@@ -145,12 +172,23 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 		return speicher;
 	}
 	
-	public Vector getSpaltenDatenN(Vector daten, int spalte) {
+	private Vector getSpaltenDatenN(Vector daten, int spalte) {
 		Vector spaltenDaten = new Vector();
 		for (int i = 0; i < daten.size(); i++) {
-			Vector zwischenspeicher = (Vector) daten.get(i);
-			spaltenDaten.add(zwischenspeicher.get(spalte));
+			Vector zwischenspeichern = (Vector) daten.get(i);
+			spaltenDaten.add(zwischenspeichern.get(spalte));
 		}
 		return spaltenDaten;
+	}
+	
+	private boolean zielattributsspaltengleichheit(Vector spalte) {
+		String attribut;
+		attribut = spalte.get(0).toString();
+		for (int i = 1; i < spalte.size(); i++) {
+			if (!(spalte.get(i).equals(attribut))) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

@@ -8,8 +8,6 @@ private Vector daten;
 private int zielattributsspalte;	
 private String entropieattribut;
 private Vector<String> auspraegungen;
-private boolean beendet;
-
 
 	public Teilzustand(Vector<String> kopfzeile, Vector daten, int zielattributsspalte) {
 		this.kopfzeile = kopfzeile;
