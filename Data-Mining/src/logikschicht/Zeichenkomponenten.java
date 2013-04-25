@@ -19,6 +19,11 @@ private int ebene;
 		this.objektanzahl = objektanzahl;
 		this.ebene = ebene;
 	}
+	
+	public Zeichenkomponenten(String zielattribut, int ebene) {
+		zeichenattribut = zielattribut;
+		this.ebene = ebene;
+	}
 
 	public String getZeichenattribut() {
 		return zeichenattribut;

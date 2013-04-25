@@ -80,6 +80,14 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 							zustandsverwaltung.add(hinein);
 							zaehler++;
 						}
+						else {
+							Vector kurz = (Vector) hinein.getDaten().get(0);
+							Zeichenkomponenten speicherstein = new Zeichenkomponenten(
+									kurz.get(hinein.getZielattributsspalte())
+											.toString(), iteration);
+							gesamtheitzeichenkomponenten.add(speicherstein);
+							zaehler++;
+						}
 					}
 				position = zaehler;
 				}
