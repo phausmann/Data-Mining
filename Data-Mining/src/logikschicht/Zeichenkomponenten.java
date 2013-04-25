@@ -19,4 +19,30 @@ private int ebene;
 		this.objektanzahl = objektanzahl;
 		this.ebene = ebene;
 	}
+
+	public String getZeichenattribut() {
+		return zeichenattribut;
+	}
+
+	public Vector<String> getAuspraegungen() {
+		return auspraegungen;
+	}
+
+	public double getEntropie() {
+		return entropie;
+	}
+
+	public int getKlassenanzahl() {
+		return klassenanzahl;
+	}
+
+	public int getObjektanzahl() {
+		return objektanzahl;
+	}
+
+	public int getEbene() {
+		return ebene;
+	}
+	
+	
 }

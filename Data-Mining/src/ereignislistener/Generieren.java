@@ -52,7 +52,6 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 					int zaehler = 0;
 					for (int j = position; j < position + zwischenspeicher.get(i).getAuspraegungen().size();
 						 j++) {
-						// Abfrage bewirkt nicht das gewollte; = Müll!!!
 						
 						Teilzustand hinein = new Teilzustand(
 								erzeugeKopfzeile(
@@ -122,10 +121,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 				}
 				
 				double speicher[] = EntropieThread.getMinimaleEntropie();
-				System.out.println("Entropie " + speicher[0] + " Index " + speicher[1] + "Thread-Index" + speicher[2]);
-//				erzeugeDaten(oberflaeche.getDaten(), "unter");
-//				erzeugeKopfzeile(oberflaeche.getKopfzeile(), oberflaeche.getKopfzeile().get((int) speicher[1]));
-				
+				System.out.println("Entropie " + speicher[0] + " Index " + speicher[1] + "Thread-Index" + speicher[2]);		
 				
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 											  zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]),
@@ -134,15 +130,21 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 				gesamtheitzeichenkomponenten.add(speicherstein);
 				
 				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung[(int) speicher[2]].getAuspraegungsVektor());
-				zustandsverwaltung.get(j).setEntropieattribut(zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]));
-//				if (!(zielattributsspaltengleichheit(getSpaltenDatenN(zustandsverwaltung[j].getDaten(),
-//																	zustandsverwaltung[j].getZielattributsspalte())))) {
-//					gesamtauspraegungsanzahl = gesamtauspraegungsanzahl + 
-//							   				   threadverwaltung[(int) speicher[2]].getAuspraegungsVektor().size();
-//				}			
+				zustandsverwaltung.get(j).setEntropieattribut(zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]));		
 			}
 			
 			attributsanzahl--;
+		}
+		int ebenenzahl = 1;
+		for (int i = 0; i < gesamtheitzeichenkomponenten.size(); i++) {
+			if (gesamtheitzeichenkomponenten.get(i).getEbene() > ebenenzahl) {
+				System.out.println();
+				System.out.print(gesamtheitzeichenkomponenten.get(i).getZeichenattribut());
+				ebenenzahl++;
+			}
+			else {
+				System.out.print(gesamtheitzeichenkomponenten.get(i).getZeichenattribut());
+			}
 		}
 		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
 	}
