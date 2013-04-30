@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.Vector;
 
 public class Zeichenkomponenten {
-private String parentattribut;
+private String sortKey;
 private String zeichenattribut;
 private Vector<String> auspraegungen;
 private double entropie;
@@ -17,7 +17,7 @@ private Vector daten = new Vector<>();
 private static int maxebene = 0;
 
 	public Zeichenkomponenten(String zeichenattribut, Vector<String> auspraegungen, double entropie, 
-							  int klassenanzahl, int objektanzahl, int ebene, String parentattribut,
+							  int klassenanzahl, int objektanzahl, int ebene, String sortkey,
 							  Vector<String> kopfzeile, Vector daten) {
 		this.zeichenattribut = zeichenattribut;
 		this.auspraegungen = auspraegungen;
@@ -25,7 +25,7 @@ private static int maxebene = 0;
 		this.klassenanzahl = klassenanzahl;
 		this.objektanzahl = objektanzahl;
 		this.ebene = ebene;
-		this.parentattribut = parentattribut;
+		this.sortKey = sortkey;
 		this.kopfzeile = kopfzeile;
 		this.daten = daten;
 		if (ebene > maxebene) {
@@ -33,10 +33,10 @@ private static int maxebene = 0;
 		}
 	}
 	
-	public Zeichenkomponenten(String zielattribut, String parentattribut, int ebene,
+	public Zeichenkomponenten(String zielattribut, String sortkey, int ebene,
 							  Vector<String> kopfzeile, Vector daten) {
 		zeichenattribut = zielattribut;
-		this.parentattribut = parentattribut;
+		this.sortKey = sortkey;
 		this.ebene = ebene;
 		this.kopfzeile = kopfzeile;
 		this.daten = daten;
@@ -100,6 +100,9 @@ private static int maxebene = 0;
 	public static void setMaxebene(int maxebene) {
 		Zeichenkomponenten.maxebene = maxebene;
 	}
-	
+
+	public String getSortKey() {
+		return sortKey;
+	}
 	
 }

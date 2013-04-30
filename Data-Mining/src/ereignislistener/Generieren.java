@@ -2,14 +2,10 @@ package ereignislistener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.Vector;
 
 import javax.swing.JPanel;
-
-import sun.reflect.generics.tree.Tree;
-
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Node;
 
 import logikschicht.EntropieThread;
 import logikschicht.Teilentropie;
@@ -72,8 +68,9 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 												zwischenspeicher.get(i)
 														.getKopfzeile()
 														.get(zwischenspeicher.get(i)
-																.getZielattributsspalte())));
-						
+																.getZielattributsspalte())), 
+								zwischenspeicher.get(i).getParentkey().concat("." + (char) (zaehler + 65)));
+
 						if (!(zielattributsspaltengleichheit(getSpaltenDatenN(
 								hinein.getDaten(),
 								hinein.getZielattributsspalte())))) {
@@ -85,7 +82,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 							Vector kurz = (Vector) hinein.getDaten().get(0);
 							Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 									kurz.get(hinein.getZielattributsspalte())
-											.toString(), zwischenspeicher.get(i).getEntropieattribut(),
+											.toString(), hinein.getParentkey(),
 											iteration, hinein.getKopfzeile(), hinein.getDaten());
 							gesamtheitzeichenkomponenten.add(speicherstein);
 							zaehler++;
@@ -96,7 +93,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 			}
 			else {
 				zustandsverwaltung = new Vector<Teilzustand>();
-				Teilzustand hinein = new Teilzustand(kopfzeile, daten, oberflaeche.getZielAttributsSpalte());
+				Teilzustand hinein = new Teilzustand(kopfzeile, daten, oberflaeche.getZielAttributsSpalte(), "0");
 				zustandsverwaltung.add(hinein);
 			}
 			
@@ -135,10 +132,13 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 				System.out.println("Entropie " + speicher[0] + " Index " + speicher[1] + "Thread-Index" + speicher[2]);		
 				
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
-											  zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]),
-											  threadverwaltung[(int) speicher[2]].getAuspraegungsVektor(),
-											  speicher[0], 0, 0, iteration, zustandsverwaltung.get(j).getEntropieattribut(),
-											  zustandsverwaltung.get(j).getKopfzeile(), zustandsverwaltung.get(j).getDaten());
+						zustandsverwaltung.get(j).getKopfzeile()
+								.get((int) speicher[1]),
+						threadverwaltung[(int) speicher[2]]
+								.getAuspraegungsVektor(), speicher[0], 0, 0,
+						iteration, zustandsverwaltung.get(j).getParentkey(),
+						zustandsverwaltung.get(j).getKopfzeile(),
+						zustandsverwaltung.get(j).getDaten());
 				gesamtheitzeichenkomponenten.add(speicherstein);
 				
 				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung[(int) speicher[2]].getAuspraegungsVektor());
@@ -148,14 +148,22 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 			attributsanzahl--;
 		}
 		int ebenenzahl = 1;
+		Collections.sort(gesamtheitzeichenkomponenten, new logikschicht.Vergleicher());
 		for (int i = 0; i < gesamtheitzeichenkomponenten.size(); i++) {
 			if (gesamtheitzeichenkomponenten.get(i).getEbene() > ebenenzahl) {
 				System.out.println();
-				System.out.print(gesamtheitzeichenkomponenten.get(i).getZeichenattribut());
+				System.out.print(gesamtheitzeichenkomponenten.get(i)
+						.getZeichenattribut()
+						+ " "
+						+ gesamtheitzeichenkomponenten.get(i).getSortKey());
 				ebenenzahl++;
 			}
 			else {
-				System.out.print(gesamtheitzeichenkomponenten.get(i).getZeichenattribut());
+				System.out.print(gesamtheitzeichenkomponenten.get(i)
+						.getZeichenattribut()
+						+ " "
+						+ gesamtheitzeichenkomponenten.get(i).getSortKey()
+						+ "||");
 			}
 		}
 		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
@@ -206,22 +214,4 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 		}
 		return true;
 	}
-	
-//	private Vector<Zeichenkomponenten> VectorSortieren(Vector<Zeichenkomponenten> speicherbausteine) {
-//		Vector<Zeichenkomponenten> speichern = new Vector<Zeichenkomponenten>();
-//		for (int i = 1; i < speicherbausteine.size(); i++) {
-//			int aktuelleEbene = speicherbausteine.get(i).getEbene();
-//			String aktuellesAttribut = speicherbausteine.get(i).getParentattribut();
-//			for (int j = i; j < speicherbausteine.size(); j++) {
-//				if (speicherbausteine.get(j).getEbene() != aktuelleEbene) {
-//					break;
-//				}
-//				else {
-//					
-//						
-//					}
-//				}
-//			}
-//		}
-//	}
 }

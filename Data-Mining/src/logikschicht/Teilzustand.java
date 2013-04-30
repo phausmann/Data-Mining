@@ -8,11 +8,13 @@ private Vector daten;
 private int zielattributsspalte;	
 private String entropieattribut;
 private Vector<String> auspraegungen;
+private String parentkey;
 
-	public Teilzustand(Vector<String> kopfzeile, Vector daten, int zielattributsspalte) {
+	public Teilzustand(Vector<String> kopfzeile, Vector daten, int zielattributsspalte, String parentkey) {
 		this.kopfzeile = kopfzeile;
 		this.daten = daten;
 		this.zielattributsspalte = zielattributsspalte;
+		this.parentkey = parentkey;
 	}
 	
 	public Vector<String> getKopfzeile() {
@@ -58,6 +60,14 @@ private Vector<String> auspraegungen;
 
 	public void setEntropieattribut(String entropieattribut) {
 		this.entropieattribut = entropieattribut;
+	}
+
+	public String getParentkey() {
+		return parentkey;
+	}
+
+	public void setParentkey(String parentkey) {
+		this.parentkey = parentkey;
 	}
 	
 	
