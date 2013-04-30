@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import sun.reflect.generics.tree.Tree;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Node;
 
 import logikschicht.EntropieThread;
@@ -84,7 +85,8 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 							Vector kurz = (Vector) hinein.getDaten().get(0);
 							Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 									kurz.get(hinein.getZielattributsspalte())
-											.toString(), iteration);
+											.toString(), zwischenspeicher.get(i).getEntropieattribut(),
+											iteration, hinein.getKopfzeile(), hinein.getDaten());
 							gesamtheitzeichenkomponenten.add(speicherstein);
 							zaehler++;
 						}
@@ -120,6 +122,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 						threadverwaltung[i].start();
 					}
 				}
+				
 				for (int i = 0; i < threadverwaltung.length; i++) {
 					try {
 						threadverwaltung[i].join();
@@ -134,7 +137,8 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 											  zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]),
 											  threadverwaltung[(int) speicher[2]].getAuspraegungsVektor(),
-											  speicher[0], 0, 0, iteration);
+											  speicher[0], 0, 0, iteration, zustandsverwaltung.get(j).getEntropieattribut(),
+											  zustandsverwaltung.get(j).getKopfzeile(), zustandsverwaltung.get(j).getDaten());
 				gesamtheitzeichenkomponenten.add(speicherstein);
 				
 				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung[(int) speicher[2]].getAuspraegungsVektor());
@@ -202,4 +206,22 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 		}
 		return true;
 	}
+	
+//	private Vector<Zeichenkomponenten> VectorSortieren(Vector<Zeichenkomponenten> speicherbausteine) {
+//		Vector<Zeichenkomponenten> speichern = new Vector<Zeichenkomponenten>();
+//		for (int i = 1; i < speicherbausteine.size(); i++) {
+//			int aktuelleEbene = speicherbausteine.get(i).getEbene();
+//			String aktuellesAttribut = speicherbausteine.get(i).getParentattribut();
+//			for (int j = i; j < speicherbausteine.size(); j++) {
+//				if (speicherbausteine.get(j).getEbene() != aktuelleEbene) {
+//					break;
+//				}
+//				else {
+//					
+//						
+//					}
+//				}
+//			}
+//		}
+//	}
 }

@@ -11,7 +11,8 @@ public class ZeichnungsBaum extends Component {
 private Vector<Zeichenkomponenten> speichersteine;
 private int[] rechteckmase = new int[2];
 private int maxbreite = 600;
-private int maxhoehe = 150;
+private int maxhoehe = 200;
+private int ebenenanzahl;
 
 
 
@@ -22,11 +23,20 @@ private int maxhoehe = 150;
 	}
 	
 	public void paint(Graphics g) {
-		g.drawRect(55, 5, rechteckmase[0], rechteckmase[1]);
-		g.drawString(speichersteine.get(0).getZeichenattribut(), 60, 20);
-		g.drawRect(10, 60, rechteckmase[0], rechteckmase[1]);
-		g.drawLine(75, 25, 30, 60);
-		g.drawRect(0, 60, rechteckmase[0], rechteckmase[1]);
+		for (int i = 0; i < speichersteine.size(); i++) {
+			if (i == 0) {
+				int y = ((int) ((maxhoehe * (double) speichersteine.get(i).getEbene() / Zeichenkomponenten.getMaxebene()) - (rechteckmase[1])));
+				int x = ((maxbreite / 2) - (rechteckmase[0] / 2));
+				System.out.println(y);
+				g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
+				for (int j = 1; j < speichersteine.get(i).getAuspraegungen().size() + 1; j++) {
+					speichersteine.get(j).setParent(x + (rechteckmase[0] / 2), y + rechteckmase[1]);
+				}
+			}
+			else {
+				// to go
+			}
+		}
 	}
 	
 	public Dimension getPreferredSize() {
