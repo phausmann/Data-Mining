@@ -43,6 +43,7 @@ private static int maxebene = 0;
 		if (ebene > maxebene) {
 			maxebene = ebene;
 		}
+		this.auspraegungen = new Vector<>();
 	}
 
 	public String getZeichenattribut() {
