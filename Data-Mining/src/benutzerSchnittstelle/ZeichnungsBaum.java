@@ -1,7 +1,9 @@
 package benutzerSchnittstelle;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Vector;
 
@@ -39,10 +41,22 @@ private int pos;
 				int x = ((maxbreite / 2) - (rechteckmase[0] / 2));
 				g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 				g.drawString(speichersteine.get(0).getZeichenattribut(), x + 5, y + 15);
-				g.drawString(String.valueOf(speichersteine.get(0).getEntropie()).substring(0, 7), x + 10, y + 30);
+				try {
+					g.drawString(
+							String.valueOf(
+									speichersteine.get(i).getEntropie())
+									.substring(0, 7), x + 10, y + 30);
+				} catch (StringIndexOutOfBoundsException e) {
+					g.drawString(String.valueOf(speichersteine.get(i)
+							.getEntropie()), x + 10, y + 30);
+				}
+				int za = 0;
 				for (int j = 1; j < speichersteine.get(i).getAuspraegungen().size() + 1; j++) {
 					speichersteine.get(j).setParentx(x + xdurch2);
 					speichersteine.get(j).setParenty(y + rechteckmase[1]);
+					speichersteine.get(j).setZeichneauspraegung(
+							speichersteine.get(i).getAuspraegungen().get(za));
+					za++;
 				}
 				pos = speichersteine.get(i).getAuspraegungen().size() + 1;
 				alteebenen = speichersteine.get(0).getAuspraegungen().size();
@@ -69,14 +83,22 @@ private int pos;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
+					g.setColor(Color.LIGHT_GRAY);
 					g.drawLine(speichersteine.get(i).getParentx(),
 							speichersteine.get(i).getParenty(), x
 									+ xdurch2, y);
+					g.setColor(Color.RED);
+					g.drawString(speichersteine.get(i).getZeichneauspraegung(), x, (y - 10));
+					g.setColor(Color.BLACK);
 					if (!(speichersteine.get(i).getAuspraegungen().isEmpty())) {
 						int temp = pos;
+						int za = 0;
 						for (int j = temp; j < (speichersteine.get(i).getAuspraegungen().size() + temp); j++) {
 							speichersteine.get(j).setParentx(x + xdurch2);
 							speichersteine.get(j).setParenty(y + rechteckmase[1]);
+							speichersteine.get(j).setZeichneauspraegung(
+									speichersteine.get(i).getAuspraegungen().get(za));
+							za++;
 							pos++;
 						}
 					}
@@ -101,14 +123,22 @@ private int pos;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
+					g.setColor(Color.LIGHT_GRAY);
 					g.drawLine(speichersteine.get(i).getParentx(),
 							speichersteine.get(i).getParenty(), x
 									+ xdurch2, y);
+					g.setColor(Color.RED);
+					g.drawString(speichersteine.get(i).getZeichneauspraegung(), x, (y - 10));
+					g.setColor(Color.BLACK);
 					if (!(speichersteine.get(i).getAuspraegungen().isEmpty())) {
 						int temp = pos;
+						int za = 0;
 						for (int j = pos; j < (speichersteine.get(i).getAuspraegungen().size() + temp); j++) {
 							speichersteine.get(j).setParentx(x + xdurch2);
 							speichersteine.get(j).setParenty(y + rechteckmase[1]);
+							speichersteine.get(j).setZeichneauspraegung(
+									speichersteine.get(i).getAuspraegungen().get(za));
+							za++;
 							pos++;
 						}
 					}

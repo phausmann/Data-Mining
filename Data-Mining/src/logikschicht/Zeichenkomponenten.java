@@ -6,6 +6,7 @@ import java.util.Vector;
 public class Zeichenkomponenten {
 private String sortKey;
 private String zeichenattribut;
+private String zeichneauspraegung;
 private Vector<String> auspraegungen;
 private double entropie;
 private int klassenanzahl;
@@ -108,12 +109,19 @@ private static int maxebene = 0;
 	}
 
 	public int getParenty() {
-		System.out.println(parenty);
 		return parenty;
 	}
 
 	public void setParenty(int parenty) {
 		this.parenty = parenty;
+	}
+
+	public String getZeichneauspraegung() {
+		return zeichneauspraegung;
+	}
+
+	public void setZeichneauspraegung(String zeichneauspraegung) {
+		this.zeichneauspraegung = zeichneauspraegung;
 	}
 	
 	
