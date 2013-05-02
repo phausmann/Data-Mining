@@ -21,9 +21,9 @@ private Vector daten;
 private Vector kopfzeile;
 private int gesamtauspraegungsanzahl = 0;
 private int attributsanzahl;
-private int iteration = 0;
+private int iteration;
 private Vector<Teilzustand> zustandsverwaltung;
-private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zeichenkomponenten>();
+private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 	
 	public Generieren(Gui oberflaeche, JPanel zeichenflaeche) {
 		this.oberflaeche = oberflaeche;
@@ -32,7 +32,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		gesamtheitzeichenkomponenten = new Vector<Zeichenkomponenten>();
 		daten = oberflaeche.getDaten();
 		kopfzeile = oberflaeche.getKopfzeile();
 		attributsanzahl = kopfzeile.size();
@@ -127,25 +127,24 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 			for (int j = 0; j < zustandsverwaltung.size(); j++) {
 				
 				// Arrayinitialisierung
-				EntropieThread threadverwaltung[] = new EntropieThread
-													[(zustandsverwaltung.get(j).getKopfzeile().size() - 1)];
+				Vector<EntropieThread> threadverwaltung = new Vector<EntropieThread>();
 				EntropieThread.entropieZuruecksetzen();
 				
-				
-				
-				for (int i = 0; i < threadverwaltung.length + 1; i++) {
+				int zpos = 0;
+				for (int i = 0; i < zustandsverwaltung.get(j).getKopfzeile().size(); i++) {
 					if (!(i == zustandsverwaltung.get(j).getZielattributsspalte())) {
-						threadverwaltung[i] = new EntropieThread(
-								getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(), i),
+						EntropieThread neu = new EntropieThread(getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(), i),
 								getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(),
-												 zustandsverwaltung.get(j).getZielattributsspalte()), i);
-						threadverwaltung[i].start();
+												 zustandsverwaltung.get(j).getZielattributsspalte()), i, zpos);
+						neu.start();
+						threadverwaltung.add(neu);
+						zpos++;
 					}
 				}
 				
-				for (int i = 0; i < threadverwaltung.length; i++) {
+				for (int i = 0; i < threadverwaltung.size(); i++) {
 					try {
-						threadverwaltung[i].join();
+						threadverwaltung.get(i).join();
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
@@ -156,14 +155,14 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 						zustandsverwaltung.get(j).getKopfzeile()
 								.get((int) speicher[1]),
-						threadverwaltung[(int) speicher[2]]
+						threadverwaltung.get((int) speicher[2])
 								.getAuspraegungsVektor(), speicher[0], 0, 0,
 						iteration, zustandsverwaltung.get(j).getParentkey(),
 						zustandsverwaltung.get(j).getKopfzeile(),
 						zustandsverwaltung.get(j).getDaten());
 				gesamtheitzeichenkomponenten.add(speicherstein);
 				
-				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung[(int) speicher[2]].getAuspraegungsVektor());
+				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung.get((int) speicher[2]).getAuspraegungsVektor());
 				zustandsverwaltung.get(j).setEntropieattribut(zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]));		
 			}
 			
@@ -188,6 +187,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 						+ "||");
 			}
 		}
+		iteration = 0;
 		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
 	}
 		

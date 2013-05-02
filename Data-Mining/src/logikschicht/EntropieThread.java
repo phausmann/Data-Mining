@@ -13,10 +13,10 @@ private Vector zielspalte;
 private int klassenanzahl;
 private int threadnummer;
 	
-	public EntropieThread(Vector spalte, Vector zielattributspalte, int spaltenindex) {
+	public EntropieThread(Vector spalte, Vector zielattributspalte, int spaltenindex, int threadnummer) {
 		this.spalte = spalte;
 		this.spaltenindex = spaltenindex;
-		this.threadnummer = spaltenindex;
+		this.threadnummer = threadnummer;
 		zielspalte = zielattributspalte;
 		klassenanzahl = 0;
 		entropie = 0;
