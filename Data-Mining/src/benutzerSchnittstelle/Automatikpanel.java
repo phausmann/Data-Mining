@@ -2,6 +2,8 @@ package benutzerSchnittstelle;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -40,7 +42,9 @@ private Gui oberflaeche;
 	
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
 		zeichenflaeche = new JPanel();
-		zeichenflaeche.add(new ZeichnungsBaum(speichersteine));
+		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
+		zeichenflaeche.add(baum);
+		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
 		zeichenflaeche.setVisible(true);
 		add(zeichenflaeche, BorderLayout.NORTH);
 	}

@@ -22,7 +22,7 @@ private JTextField spalten, zeilen;
 private boolean okButton;
 
 	public ZeilenSpaltenDialog(Gui oberflaeche) {
-		super(oberflaeche.getFrame(), "Zeilen- und Spalteneingbae", true);
+		super(oberflaeche.getFrame(), "Zeilen- und Spalteneingbabe", true);
 		setLocationRelativeTo(oberflaeche.getFrame());
 //		setTitle("Zeilen- und Spalteneingabe");
 //		setModal(true);

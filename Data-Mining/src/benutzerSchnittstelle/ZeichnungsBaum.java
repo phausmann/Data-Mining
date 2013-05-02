@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Vector;
 
 import logikschicht.Zeichenkomponenten;
@@ -22,6 +23,7 @@ private int multiplikator;
 private int xdurch2;
 private int ydurch2;
 private int pos;
+private Vector<Rectangle> Rechteckverwaltung;
 
 	public ZeichnungsBaum(Vector<Zeichenkomponenten> speichersteine) {
 		this.speichersteine = speichersteine;
@@ -33,12 +35,14 @@ private int pos;
 	}
 	
 	public void paint(Graphics g) {
+		Rechteckverwaltung = new Vector<Rectangle>();
 		for (int i = 0; i < speichersteine.size(); i++) {
 			if (i == 0) {
 				int y = ((int) ((maxhoehe
 						* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
 						.getMaxebene()) - (rechteckmase[1]))) - 10;
 				int x = ((maxbreite / 2) - (rechteckmase[0] / 2));
+				Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
 				g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 				g.drawString(speichersteine.get(0).getZeichenattribut(), x + 5, y + 15);
 				try {
@@ -72,6 +76,7 @@ private int pos;
 							* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
 							.getMaxebene()) - (rechteckmase[1]))) - 10;
 					int x = ((maxbreite / (ebenenauspraegungen + 1)) - (rechteckmase[0] / 2));
+					Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
 					g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 					g.drawString(speichersteine.get(i).getZeichenattribut(), x + 5, y + 15);
 					try {
@@ -112,6 +117,7 @@ private int pos;
 							.getMaxebene()) - (rechteckmase[1]))) - 10;
 					int x = (((maxbreite / (ebenenauspraegungen + 1)) * multiplikator)
 							- (rechteckmase[0] / 2));
+					Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
 					g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 					g.drawString(speichersteine.get(i).getZeichenattribut(), x + 5, y + 15);
 					try {
@@ -150,5 +156,15 @@ private int pos;
 	public Dimension getPreferredSize() {
 		return new Dimension(maxbreite, maxhoehe);
 	}
+
+	public Vector<Zeichenkomponenten> getSpeichersteine() {
+		return speichersteine;
+	}
+
+	public Vector<Rectangle> getRechteckverwaltung() {
+		return Rechteckverwaltung;
+	}
+	
+	
 	
 }
