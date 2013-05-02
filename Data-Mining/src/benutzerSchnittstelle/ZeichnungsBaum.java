@@ -42,7 +42,6 @@ private int multiplikator;
 				aktuelleEbene = speichersteine.get(0).getEbene();
 			}
 			else {
-				// to go
 				if (aktuelleEbene != speichersteine.get(i).getEbene()) {
 					ebenenauspraegungen = alteebenen;
 					alteebenen = 0;
