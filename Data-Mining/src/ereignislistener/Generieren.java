@@ -128,8 +128,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 					}
 				}
 				
-				double speicher[] = EntropieThread.getMinimaleEntropie();
-				System.out.println("Entropie " + speicher[0] + " Index " + speicher[1] + "Thread-Index" + speicher[2]);		
+				double speicher[] = EntropieThread.getMinimaleEntropie();	
 				
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 						zustandsverwaltung.get(j).getKopfzeile()

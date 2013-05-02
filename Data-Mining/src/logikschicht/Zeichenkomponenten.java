@@ -11,7 +11,8 @@ private double entropie;
 private int klassenanzahl;
 private int objektanzahl;
 private int ebene;
-private Point parent;
+private int parentx;
+private int parenty;
 private Vector<String> kopfzeile = new Vector<String>();
 private Vector daten = new Vector<>();
 private static int maxebene = 0;
@@ -70,14 +71,6 @@ private static int maxebene = 0;
 		return ebene;
 	}
 
-	public Point getParent() {
-		return parent;
-	}
-
-	public void setParent(int x, int y) {
-		this.parent = new Point(x, y);
-	}
-
 	public Vector<String> getKopfzeile() {
 		return kopfzeile;
 	}
@@ -105,5 +98,23 @@ private static int maxebene = 0;
 	public String getSortKey() {
 		return sortKey;
 	}
+
+	public int getParentx() {
+		return parentx;
+	}
+
+	public void setParentx(int parentx) {
+		this.parentx = parentx;
+	}
+
+	public int getParenty() {
+		return parenty;
+	}
+
+	public void setParenty(int parenty) {
+		this.parenty = parenty;
+	}
+	
+	
 	
 }

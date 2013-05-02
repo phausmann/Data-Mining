@@ -75,8 +75,6 @@ private int threadnummer;
 			entropie = entropie + klassenverwaltung[i].getTeilEntropie();
 		}
 		
-		System.out.println(String.valueOf(entropie));
-		
 		// Übergabe der berechneten Entropie
 		setzeEntropie(entropie, spaltenindex, threadnummer);
 	}
