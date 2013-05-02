@@ -108,6 +108,7 @@ private static int maxebene = 0;
 	}
 
 	public int getParenty() {
+		System.out.println(parenty);
 		return parenty;
 	}
 

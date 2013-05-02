@@ -19,6 +19,7 @@ private int alteebenen;
 private int multiplikator;
 private int xdurch2;
 private int ydurch2;
+private int pos;
 
 	public ZeichnungsBaum(Vector<Zeichenkomponenten> speichersteine) {
 		this.speichersteine = speichersteine;
@@ -26,11 +27,11 @@ private int ydurch2;
 		rechteckmase[1] = 40;
 		xdurch2 = 40;
 		ydurch2 = 20;
+		pos = 0;
 	}
 	
 	public void paint(Graphics g) {
 		for (int i = 0; i < speichersteine.size(); i++) {
-			int pos = 0;
 			if (i == 0) {
 				int y = ((int) ((maxhoehe
 						* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
@@ -68,16 +69,18 @@ private int ydurch2;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
-					System.out.println(speichersteine.get(i).getParentx());
-					System.out.println((int) speichersteine.get(i).getParentx());
 					g.drawLine(speichersteine.get(i).getParentx(),
 							speichersteine.get(i).getParenty(), x
-									+ (rechteckmase[0] / 2), y);
-					for (int j = pos; j < speichersteine.get(i).getAuspraegungen().size() + 1; j++) {
-						speichersteine.get(j).setParentx(x + xdurch2);
-						speichersteine.get(j).setParenty(y + rechteckmase[1]);
-						pos++;
+									+ xdurch2, y);
+					if (!(speichersteine.get(i).getAuspraegungen().isEmpty())) {
+						int temp = pos;
+						for (int j = temp; j < (speichersteine.get(i).getAuspraegungen().size() + temp); j++) {
+							speichersteine.get(j).setParentx(x + xdurch2);
+							speichersteine.get(j).setParenty(y + rechteckmase[1]);
+							pos++;
+						}
 					}
+					
 				}
 				else {
 					alteebenen += speichersteine.get(i).getAuspraegungen().size();
@@ -98,12 +101,16 @@ private int ydurch2;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
-					System.out.println(speichersteine.get(i).getParentx());
-					System.out.println((int) speichersteine.get(i).getParentx());
-					for (int j = pos; j < speichersteine.get(i).getAuspraegungen().size() + 1; j++) {
-						speichersteine.get(j).setParentx(x + xdurch2);
-						speichersteine.get(j).setParenty(y + rechteckmase[1]);
-						pos++;
+					g.drawLine(speichersteine.get(i).getParentx(),
+							speichersteine.get(i).getParenty(), x
+									+ xdurch2, y);
+					if (!(speichersteine.get(i).getAuspraegungen().isEmpty())) {
+						int temp = pos;
+						for (int j = pos; j < (speichersteine.get(i).getAuspraegungen().size() + temp); j++) {
+							speichersteine.get(j).setParentx(x + xdurch2);
+							speichersteine.get(j).setParenty(y + rechteckmase[1]);
+							pos++;
+						}
 					}
 				}
 			}

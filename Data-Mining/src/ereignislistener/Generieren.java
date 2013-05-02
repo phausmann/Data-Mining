@@ -75,8 +75,31 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten = new Vector<Zei
 								hinein.getDaten(),
 								hinein.getZielattributsspalte())))) {
 							
-							zustandsverwaltung.add(hinein);
-							zaehler++;
+							Vector<Boolean> allesgleich = new Vector<Boolean>();
+							for (int k = 0; k < hinein.getKopfzeile().size(); k++) {
+								if (!(k == hinein.getZielattributsspalte())) {
+									if (zielattributsspaltengleichheit(getSpaltenDatenN(hinein.getDaten(), k))) {
+										allesgleich.add(true);
+									}
+									else {
+										allesgleich.add(false);
+									}
+								}
+							}
+							if (allesgleich.contains(false)) {
+								zustandsverwaltung.add(hinein);
+								zaehler++;
+							}
+							else {
+								Vector kurz = (Vector) hinein.getDaten().get(0);
+								Zeichenkomponenten speicherstein = new Zeichenkomponenten(
+										kurz.get(hinein.getZielattributsspalte())
+												.toString(), hinein.getParentkey(),
+												iteration, hinein.getKopfzeile(), hinein.getDaten());
+								gesamtheitzeichenkomponenten.add(speicherstein);
+								zaehler++;
+							}
+							
 						}
 						else {
 							Vector kurz = (Vector) hinein.getDaten().get(0);
