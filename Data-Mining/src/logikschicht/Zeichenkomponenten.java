@@ -3,6 +3,7 @@ package logikschicht;
 import java.awt.Point;
 import java.util.Vector;
 
+// Speicherklasse für die zu zeichnenden Knoten
 public class Zeichenkomponenten {
 private String sortKey;
 private String zeichenattribut;
@@ -18,6 +19,7 @@ private Vector<String> kopfzeile = new Vector<String>();
 private Vector daten = new Vector<>();
 private static int maxebene = 0;
 
+	// Konstruktor 1 für nicht Endknoten
 	public Zeichenkomponenten(String zeichenattribut, Vector<String> auspraegungen, double entropie, 
 							  int klassenanzahl, int objektanzahl, int ebene, String sortkey,
 							  Vector<String> kopfzeile, Vector daten) {
@@ -35,6 +37,7 @@ private static int maxebene = 0;
 		}
 	}
 	
+	// Konstruktor 2 für Endknoten, die keine weiteren Kinder haben
 	public Zeichenkomponenten(String zielattribut, String sortkey, int ebene,
 							  Vector<String> kopfzeile, Vector daten) {
 		zeichenattribut = zielattribut;
@@ -48,6 +51,7 @@ private static int maxebene = 0;
 		this.auspraegungen = new Vector<>();
 	}
 
+	// Getter und Setter für die gespeicherten Werte
 	public String getZeichenattribut() {
 		return zeichenattribut;
 	}

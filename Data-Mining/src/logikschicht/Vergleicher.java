@@ -2,6 +2,7 @@ package logikschicht;
 
 import java.util.Comparator;
 
+// VergleicherKlasser für das Sortieren des ZeichenkomponentenVektors
 public class Vergleicher implements Comparator<Zeichenkomponenten> {
 
 	@Override

@@ -2,6 +2,7 @@ package logikschicht;
 
 import java.util.Vector;
 
+// Speicherklasse für die jeweiligen Teilzustaende
 public class Teilzustand {
 private Vector<String> kopfzeile;
 private Vector daten;
@@ -10,6 +11,7 @@ private String entropieattribut;
 private Vector<String> auspraegungen;
 private String parentkey;
 
+	// Konstruktor
 	public Teilzustand(Vector<String> kopfzeile, Vector daten, int zielattributsspalte, String parentkey) {
 		this.kopfzeile = kopfzeile;
 		this.daten = daten;
@@ -17,6 +19,7 @@ private String parentkey;
 		this.parentkey = parentkey;
 	}
 	
+	// Standard Getter und Setter für die gespeicherten Werte
 	public Vector<String> getKopfzeile() {
 		return kopfzeile;
 	}

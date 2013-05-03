@@ -2,6 +2,7 @@ package logikschicht;
 
 import java.util.Vector;
 
+// ThreadKlasse zur Berechnung der Entropie einer Spalte
 public class EntropieThread extends Thread {
 private static double wertpaar[] = new double[3];
 private Vector spalte;
@@ -13,6 +14,7 @@ private Vector zielspalte;
 private int klassenanzahl;
 private int threadnummer;
 	
+	// Konstruktor
 	public EntropieThread(Vector spalte, Vector zielattributspalte, int spaltenindex, int threadnummer) {
 		this.spalte = spalte;
 		this.spaltenindex = spaltenindex;

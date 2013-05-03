@@ -38,19 +38,26 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		kopfzeile = oberflaeche.getKopfzeile();
 		attributsanzahl = kopfzeile.size();
 		
+		// Abbruchbedingung, solange es mehr Spalten
+		// als nur die Zielattributsspalte gibt
 		while (attributsanzahl > 1) {
 			
 			iteration++;
+			// Abfangen der ersten Iteration
 			if (iteration > 1) {
+				// Vorhehrige Iterationsverwaltung zwischenspeichern
 				Vector<Teilzustand> zwischenspeicher = zustandsverwaltung;
 				zustandsverwaltung = new Vector<Teilzustand>();
 				
 				int position = 0;
+				// Für jeden Knoten des vorheriegen Durchgangs eventuell neue Knoten erstellen
 				for (int i = 0; i < zwischenspeicher.size(); i++) {
 					int zaehler = 0;
+					// Für jede Auspraegung des vorheriegen Knotens neue Teilzustaende erstellen
 					for (int j = position; j < position + zwischenspeicher.get(i).getAuspraegungen().size();
 						 j++) {
 						
+						// neuer Teilzustand mit neuen Daten
 						Teilzustand hinein = new Teilzustand(
 								erzeugeKopfzeile(
 										zwischenspeicher.get(i).getKopfzeile(),
@@ -71,11 +78,14 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 														.get(zwischenspeicher.get(i)
 																.getZielattributsspalte())), 
 								zwischenspeicher.get(i).getParentkey().concat("." + (char) (zaehler + 65)));
-
+						
+						// Abbruchbedingung eines Zweigs des Baums, wenn die Zielattributauspraegung
+						// alle identisch sind
 						if (!(zielattributsspaltengleichheit(getSpaltenDatenN(
 								hinein.getDaten(),
 								hinein.getZielattributsspalte())))) {
 							
+							// Pruefen, ob alle anderen Spalten ohne Zielattribut identisch sind
 							Vector<Boolean> allesgleich = new Vector<Boolean>();
 							for (int k = 0; k < hinein.getKopfzeile().size(); k++) {
 								if (!(k == hinein.getZielattributsspalte())) {
@@ -84,15 +94,21 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 									}
 									else {
 										allesgleich.add(false);
+										// Abbruch sobald es bei einem false liefert
 										break;
 									}
 								}
 							}
+							// Falls nur eine Spalte nicht nur gleiche Werte liefert
 							if (allesgleich.contains(false)) {
+								// den neuen Zustand hinzufuegen
 								zustandsverwaltung.add(hinein);
 								zaehler++;
 							}
+							// Falls alle Spalten außer Zielattributsspalte gleich
 							else {
+								// neuen Endknoten als Zeichenkomponente erstellen und
+								// der Verwaltung hinzufuegen
 								Vector kurz = (Vector) hinein.getDaten().get(0);
 								Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 										kurz.get(hinein.getZielattributsspalte())
@@ -103,7 +119,10 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 							}
 							
 						}
+						// Zielattributsauspraegungen alle gleich
 						else {
+							// Für diesen Endknoten den erstellten Teilzustand nicht zur Verwaltung
+							// hinzufuegen, aber einen neuen Zeichenknoten erstellen
 							Vector kurz = (Vector) hinein.getDaten().get(0);
 							Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 									kurz.get(hinein.getZielattributsspalte())
@@ -116,25 +135,35 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 				position = zaehler;
 				}
 			}
+			// erste Iteration
 			else {
+				// Für die initiale Tabelle einen neuen Zustand erstellen
 				zustandsverwaltung = new Vector<Teilzustand>();
 				Teilzustand hinein = new Teilzustand(kopfzeile, daten, oberflaeche.getZielAttributsSpalte(), "0");
 				zustandsverwaltung.add(hinein);
 			}
 			
+			// Exisiteren noch Zustände (zu betrachtende Knoten)
 			if (zustandsverwaltung.isEmpty()) {
+				// Übergeordnete Schleife vorzeitig abbrechen
 				break;
 			}
 			
+			// Für jeden Zustand die minimal Entropie berechnen
 			for (int j = 0; j < zustandsverwaltung.size(); j++) {
 				
-				// Arrayinitialisierung
+				// Initialisierung der Threadverwaltung für den uebergeordneten Zustand
 				Vector<EntropieThread> threadverwaltung = new Vector<EntropieThread>();
 				EntropieThread.entropieZuruecksetzen();
 				
 				int zpos = 0;
+				// Für jede Spalte des aktuellen Zustands die minimale Entropie berechnen
 				for (int i = 0; i < zustandsverwaltung.get(j).getKopfzeile().size(); i++) {
+					// Abfangen der Ausnahme, dass die Zielattributsspalte nicht
+					// betrachtet wird
 					if (!(i == zustandsverwaltung.get(j).getZielattributsspalte())) {
+						// Einen neuen Thread zur Berechnung der Entropie erstellen und starten
+						// Zusätzlich der Verwaltung hinzufuegen
 						EntropieThread neu = new EntropieThread(getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(), i),
 								getSpaltenDatenN(zustandsverwaltung.get(j).getDaten(),
 												 zustandsverwaltung.get(j).getZielattributsspalte()), i, zpos);
@@ -144,6 +173,8 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 					}
 				}
 				
+				// Sicherstellen, dass alle Thread zu Ende gerechnet haben, 
+				// bevor der Teilzustand ausgewertet wird
 				for (int i = 0; i < threadverwaltung.size(); i++) {
 					try {
 						threadverwaltung.get(i).join();
@@ -152,8 +183,10 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 					}
 				}
 				
+				// Bestimmung der minimalen Entropie
 				double speicher[] = EntropieThread.getMinimaleEntropie();	
 				
+				// Auf dieser Grundlage Erstellung einer neuen Zeichenkomponente
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 						zustandsverwaltung.get(j).getKopfzeile()
 								.get((int) speicher[1]),
@@ -168,33 +201,21 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 				zustandsverwaltung.get(j).setEntropieattribut(zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]));		
 			}
 			
+			// dekrementieren der Attributanzahl
 			attributsanzahl--;
 		}
+		
+		// Sortierung der Zeichenkomponentenverwaltung für das Zeichnen
+		// Grundlage = Ebene und Sortkey
 		int ebenenzahl = 1;
 		Collections.sort(gesamtheitzeichenkomponenten, new logikschicht.Vergleicher());
-		for (int i = 0; i < gesamtheitzeichenkomponenten.size(); i++) {
-			if (gesamtheitzeichenkomponenten.get(i).getEbene() > ebenenzahl) {
-				System.out.println();
-				System.out.print(gesamtheitzeichenkomponenten.get(i)
-						.getZeichenattribut()
-						+ " "
-						+ gesamtheitzeichenkomponenten.get(i).getSortKey());
-				ebenenzahl++;
-			}
-			else {
-				System.out.print(gesamtheitzeichenkomponenten.get(i)
-						.getZeichenattribut()
-						+ " "
-						+ gesamtheitzeichenkomponenten.get(i).getSortKey()
-						+ "||");
-			}
-		}
+		// Zurueksetzen der Iterationzahl
 		iteration = 0;
+		// Uebergabe der Zeichenkomponentenverwaltung für das Zeichnen an den Guikontroller
 		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
 	}
 		
-		
-	
+	// Interne Methode zum Erzeugen der neuen Tabellen
 	private Vector erzeugeDaten(Vector datensammlung, String attribut) {
 		Vector speicher = new Vector();
 		for (int i = 0; i < datensammlung.size(); i++) {
@@ -209,6 +230,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		return speicher;
 	}
 	
+	// Interne Methode zum Erzeugen der neuen Kopfzeile
 	private Vector erzeugeKopfzeile(Vector kopf, String attribut) {
 		Vector speicher = new Vector();
 		for (int i = 0; i < kopf.size(); i++) {
@@ -219,6 +241,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		return speicher;
 	}
 	
+	// Interne Methode zum Filtern der Spaltendaten einer uebergebenen Spalte
 	private Vector getSpaltenDatenN(Vector daten, int spalte) {
 		Vector spaltenDaten = new Vector();
 		for (int i = 0; i < daten.size(); i++) {
@@ -228,6 +251,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		return spaltenDaten;
 	}
 	
+	// Interne Methode zur Pruefung auf Spaltengleichheit
 	private boolean zielattributsspaltengleichheit(Vector spalte) {
 		String attribut;
 		attribut = spalte.get(0).toString();
