@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import benutzerSchnittstelle.Gui;
 
+// ListenerKlasse zum Hinzufuegen einer neuen Zeile oder Spalte 
+// zu der Datentabelle im Tabellenpannel
 public class Hinzufuegen implements ActionListener {
 private Gui oberflaeche;
 
@@ -15,6 +17,7 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Zeile oder Spalte
 		if (e.getActionCommand() == "Zeile") {
 			zeilehinzufuegen();
 		}
@@ -23,6 +26,7 @@ private Gui oberflaeche;
 		}
 	}
 
+	// Interne Methode zum Hinzufuegen einer Zeile
 	private void zeilehinzufuegen() {
 		Vector daten = oberflaeche.getDaten();
 		Vector<String> kopfzeile = oberflaeche.getKopfzeile();
@@ -34,6 +38,7 @@ private Gui oberflaeche;
 		oberflaeche.datenaktualisieren(daten, kopfzeile);
 	}
 	
+	// Interne Methode zum Hinzufuegen einer neuen Spalte
 	private void spaltehinzufuegen() {
 		Vector daten = oberflaeche.getDaten();
 		Vector<String> kopfzeile = oberflaeche.getKopfzeile();

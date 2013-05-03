@@ -14,6 +14,7 @@ import logikschicht.Zeichenkomponenten;
 
 import benutzerSchnittstelle.Gui;
 
+// Listener zur Generierung des Zeichnungsbaums
 public class Generieren implements ActionListener {
 private Gui oberflaeche;
 private JPanel zeichenflaeche;
@@ -83,6 +84,7 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 									}
 									else {
 										allesgleich.add(false);
+										break;
 									}
 								}
 							}

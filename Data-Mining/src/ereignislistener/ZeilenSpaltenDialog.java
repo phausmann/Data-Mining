@@ -17,15 +17,17 @@ import benutzerSchnittstelle.Gui;
 
 import com.sun.xml.internal.ws.api.server.Container;
 
+// JDialogKlasse zur Filterung der Zeilen und Spalteneingabe
 public class ZeilenSpaltenDialog extends JDialog {
 private JTextField spalten, zeilen;
 private boolean okButton;
 
+	// Konstruktor
 	public ZeilenSpaltenDialog(Gui oberflaeche) {
+		// Position des Dialogs relativ zu dem uebergeordneten Frame
 		super(oberflaeche.getFrame(), "Zeilen- und Spalteneingbabe", true);
 		setLocationRelativeTo(oberflaeche.getFrame());
-//		setTitle("Zeilen- und Spalteneingabe");
-//		setModal(true);
+		// Schließen nur ueber Buttons moeglich
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		JPanel aufnahme = new JPanel();
 		JPanel buttons = new JPanel();
@@ -47,6 +49,8 @@ private boolean okButton;
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Wenn Zeilen- oder Spaltentextfeld leer
+				// Ruckgabe false
 				if ((zeilen.getText().length() == 0) || 
 				(spalten.getText().length() == 0)) {
 					return;
@@ -63,6 +67,7 @@ private boolean okButton;
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Wenn Abbrechen, dann Schließen des Dialogs
 				okButton = false;
 				dispose();
 			}
@@ -79,14 +84,17 @@ private boolean okButton;
 		setVisible(true);
 	}
 
+	// Rückgabe True, wenn Okay geklickt wurde, sonst false
 	public boolean getButtonklick() {
 		return okButton;
 	}
 	
+	// Rueckgabe der Zeilenanzahl
 	public int getZeilenAnzahl() {
 		return Integer.valueOf(zeilen.getText());
 	}
 	
+	// Rueckgabe der Spaltenanzahl
 	public int getSpaltenAnzahl() {
 		return Integer.valueOf(spalten.getText());
 	}

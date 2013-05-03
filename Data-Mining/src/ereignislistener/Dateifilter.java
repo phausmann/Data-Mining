@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-
+// FileFilterKlasse zur Ueberpruefung der ausgewaehlten Datei
 public class Dateifilter extends FileFilter {
 
 	@Override

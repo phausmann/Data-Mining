@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import benutzerSchnittstelle.Gui;
 
+// ListenerKlasse zum Einfaerben der Tabellenspalte des Zielattributs im Tabellenpannel
 public class SpalteFaerben implements ActionListener {
 private Gui oberflaeche;
 

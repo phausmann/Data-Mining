@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import benutzerSchnittstelle.Gui;
 
+// ListenerKlasse zum Loeschen einer gesamten bestehenden Datentabelle,
+// einer Zeile oder Spalte im Tabellenpannel
 public class Loeschen implements ActionListener {
 private Gui oberflaeche;
 	
@@ -15,13 +17,18 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Gesamte Tabelle
 		if (e.getActionCommand() == "Tabelle") {
+			// Initialisierung neuer leerer Vectoren
 			Vector<String> kopfzeile = new Vector();
 			Vector daten = new Vector();
+			// Keine Tabelle vorhanden
+			// => Tabs Automatik und Interaktiv sind disabled
 			oberflaeche.setInteraktivEnabled(false);
 			oberflaeche.setAutomatischEnabled(false);
 			oberflaeche.datenaktualisieren(daten, kopfzeile);
 		}
+		// Zeile loeschen
 		else if (e.getActionCommand() == "Zeile") {
 			Vector<String> tabellenkopf = oberflaeche.getKopfzeile();
 			Vector daten = oberflaeche.getDaten();
@@ -34,13 +41,16 @@ private Gui oberflaeche;
 					neueDaten.add(zwischenspeicher);
 				}
 			}
+			// Wenn die letzte Tabellenzeile geloescht wurde
 			if (neueDaten.isEmpty()) {
+				// Tabellenkopf leeren und Tabs disablen
 				tabellenkopf = new Vector<String>();
 				oberflaeche.setInteraktivEnabled(false);
 				oberflaeche.setAutomatischEnabled(false);
 			}
 			oberflaeche.datenaktualisieren(neueDaten, tabellenkopf);
 		}
+		// Spalte loeschen
 		else {
 			Vector<String> tabellenkopf = oberflaeche.getKopfzeile();
 			Vector daten = oberflaeche.getDaten();
@@ -54,7 +64,6 @@ private Gui oberflaeche;
 			}
 			else {
 				for (int i = 0; i < daten.size(); i++) {
-					System.out.println("rauswerfen");
 					Vector zwischenspeicher = (Vector) daten.get(i);
 					zwischenspeicher.remove(spalte);
 					neueDaten.add(zwischenspeicher);

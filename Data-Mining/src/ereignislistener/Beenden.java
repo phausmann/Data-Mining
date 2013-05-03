@@ -3,6 +3,7 @@ package ereignislistener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// ListenerKlasse zum Beenden der Applikation
 public class Beenden implements ActionListener {
 
 	@Override

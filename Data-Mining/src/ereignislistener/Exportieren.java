@@ -11,6 +11,8 @@ import java.util.Vector;
 
 import javax.swing.JFileChooser;
 
+// ListenerKlasse zur Exportierung der Datentabelle im Tabellenpannel
+// als CSV-Datei
 public class Exportieren implements ActionListener {
 private Gui oberflaeche;
 
@@ -20,6 +22,7 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Instanziierung des Filechoosers zur Bestimmung des Speicherorts
 		JFileChooser tabellenexport = new JFileChooser();
 		if (tabellenexport.showSaveDialog(oberflaeche) == JFileChooser.APPROVE_OPTION) {
 			exportiereCSV(tabellenexport.getSelectedFile());

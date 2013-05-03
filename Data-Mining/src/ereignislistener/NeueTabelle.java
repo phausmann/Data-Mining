@@ -7,6 +7,8 @@ import java.util.Vector;
 import benutzerSchnittstelle.Gui;
 import benutzerSchnittstelle.Menuleiste;
 
+// ListenerKlasse zur Erzeugung einer neuen leeren Tabelle mit 
+// übergebener Zeilen und Spaltenanzahl
 public class NeueTabelle implements ActionListener {
 private Gui oberflaeche;
 	
@@ -16,10 +18,13 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// Oeffnen des Dialogs zur Bestimmung der Zeilen und Spaltenanzahl
 		ZeilenSpaltenDialog abfrage = new ZeilenSpaltenDialog(oberflaeche);
+		// Wenn "OK" geklickt wurde
 		if (abfrage.getButtonklick()) {
 			Vector<String> kopfzeile = new Vector<String>();
 			Vector daten = new Vector();
+			// So viele leere Zeilen und Spalten Hinzufuegen, wie angegeben wurden
 			for (int i = 0; i < abfrage.getSpaltenAnzahl(); i++) {
 				kopfzeile.add(" ");
 			}
@@ -32,6 +37,7 @@ private Gui oberflaeche;
 				}
 				daten.add(zwischenspeicher);
 			}
+			// Enablen des Interaktiven und Automatischen Tabs
 			oberflaeche.datenaktualisieren(daten, kopfzeile);
 			oberflaeche.setInteraktivEnabled(true);
 			oberflaeche.setAutomatischEnabled(true);
