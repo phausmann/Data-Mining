@@ -21,6 +21,8 @@ import javax.swing.table.TableColumnModel;
 
 import logikschicht.Zeichenkomponenten;
 
+// Controllerklasse ueber die Oberflaechenklassen
+// Zugriffe auf Einzelkomponenten nur ueber diese Klasse moeglich
 public class Gui extends JTabbedPane {
 private Tabellenpanel tabelle = new Tabellenpanel();
 private Interaktivpanel interaktiv = new Interaktivpanel();
@@ -50,6 +52,7 @@ private int zielattribut = -1;
 		tabelle.setModel(daten, tabellenkopf);
 	}
 	
+	// Methoden zum Setzen der Erstellungsbuttons in den Tabs
 	public void setInteraktivEnabled(boolean enabled) {
 		setEnabledAt(1, enabled);
 	}
@@ -58,6 +61,7 @@ private int zielattribut = -1;
 		setEnabledAt(2, enabled);
 	}
 	
+	// Methoden zum Getten der ausgewählten Spalten und Zeilen in der Datentabelle
 	public int getAusgewaehlteZeile() {
 		return tabelle.getausgewaehlteZeile();
 	}
@@ -70,28 +74,34 @@ private int zielattribut = -1;
 		return fenster;
 	}
 	
+	// Methode zum Einfaerben der ausgewählten Zielattributsspalte
 	public void spalteeinfaerben(int spalte) {
 		setZielAttributsSpalte(spalte);
 		tabelle.spaltefaerben(spalte);
 		automatisch.setGenerierenButtonenable(true);
 	}
 	
+	// Gibt aktuelle Zielattributsspalte zurueck
 	public int getZielAttributsSpalte() {
 		return zielattribut;
 	}
 	
+	// Setzen einer neuen Zielattributsspalte
 	public void setZielAttributsSpalte(int spalte) {
 		zielattribut = spalte;
 	}
 	
+	// Rückgabe der Daten einer einzelnen Spalte als Vector
 	public Vector getSpaltenDatenN(int spalte) {
 		return tabelle.getSpaltenDatenN(spalte);
 	}
 	
+	// Rueckgabe Attributanzahl
 	public int getAttributanzahl() {
 		return tabelle.getModellKopf().size();
 	}
 	
+	// Controllermethode zum Aufruf des Zeichnen des Baums im Automatikpannel
 	public void baumZeichnen(Vector<Zeichenkomponenten> speichersteine) {
 		automatisch.zeichneBaum(speichersteine);
 		repaint();

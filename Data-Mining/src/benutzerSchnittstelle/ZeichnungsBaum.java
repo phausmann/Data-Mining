@@ -10,6 +10,8 @@ import java.util.Vector;
 
 import logikschicht.Zeichenkomponenten;
 
+// Komponentenklasse zur Zeichnung und Darstellung des berechneten Baums
+// anhand der minimal gewichteten Entropie
 public class ZeichnungsBaum extends Component {
 private Vector<Zeichenkomponenten> speichersteine;
 private int[] rechteckmase = new int[2];
@@ -33,17 +35,28 @@ private Vector<Rectangle> Rechteckverwaltung;
 		ydurch2 = 20;
 		pos = 0;
 	}
+	
+	// Paint-Methode der Komponente
 	public void paint(Graphics g) {
+		// Instanziieren einer neuen Rechteckverwaltung
 		Rechteckverwaltung = new Vector<Rectangle>();
+		// Für jeden vorhandenen Knoten ...
 		for (int i = 0; i < speichersteine.size(); i++) {
+			// Prüfung auf Wurzel
 			if (i == 0) {
+				// Berechnung der x und y Koordinate anhand der maximalen zur Verfügung
+				// stehenden Laenge und Breite der Komponente
 				int y = ((int) ((maxhoehe
 						* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
 						.getMaxebene()) - (rechteckmase[1]))) - 10;
 				int x = ((maxbreite / 2) - (rechteckmase[0] / 2));
+				// Das zu zeichnende Rechteckt der Rechteckverwaltung hinzufügen
 				Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
+				// Zeichnen des Rechtecks und der Daten
 				g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 				g.drawString(speichersteine.get(0).getZeichenattribut(), x + 5, y + 15);
+				// Wenn die berechnete Entropie nicht gekürzt werden kann
+				// Wird sie ohne Kürzung dargestellt (bsp: 0.0)
 				try {
 					g.drawString(
 							String.valueOf(
@@ -54,6 +67,7 @@ private Vector<Rectangle> Rechteckverwaltung;
 							.getEntropie()), x + 10, y + 30);
 				}
 				int za = 0;
+				// Setzen der Parrentkoordinate des Kindes und deren zugehörige Auspraegung
 				for (int j = 1; j < speichersteine.get(i).getAuspraegungen().size() + 1; j++) {
 					speichersteine.get(j).setParentx(x + xdurch2);
 					speichersteine.get(j).setParenty(y + rechteckmase[1]);
@@ -65,19 +79,28 @@ private Vector<Rectangle> Rechteckverwaltung;
 				alteebenen = speichersteine.get(0).getAuspraegungen().size();
 				aktuelleEbene = speichersteine.get(0).getEbene();
 			}
+			// es handelt sich nicht um den Wurzelknoten
 			else {
+				// Pruefung, ob neue Ebene
 				if (aktuelleEbene != speichersteine.get(i).getEbene()) {
+					// bei neuer Ebene Aktualisierung aller Trackingvariablen
 					aktuelleEbene = speichersteine.get(i).getEbene();
 					ebenenauspraegungen = alteebenen;
 					alteebenen = speichersteine.get(i).getAuspraegungen().size();
 					multiplikator = 1;
+					// Berechnung der x und y Koordinate anhand der maximalen zur Verfügung
+					// stehenden Laenge und Breite der Komponente
 					int y = ((int) ((maxhoehe
 							* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
 							.getMaxebene()) - (rechteckmase[1]))) - 10;
 					int x = ((maxbreite / (ebenenauspraegungen + 1)) - (rechteckmase[0] / 2));
+					// Das zu zeichnende Rechteckt der Rechteckverwaltung hinzufügen
 					Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
+					// Zeichnen des Rechtecks und der Daten
 					g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 					g.drawString(speichersteine.get(i).getZeichenattribut(), x + 5, y + 15);
+					// Wenn die berechnete Entropie nicht gekürzt werden kann
+					// Wird sie ohne Kürzung dargestellt (bsp: 0.0)
 					try {
 						g.drawString(
 								String.valueOf(
@@ -87,16 +110,22 @@ private Vector<Rectangle> Rechteckverwaltung;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
+					// Farbe des Zeichnungsstiftes für das Linienzeichnen umsetzen
 					g.setColor(Color.LIGHT_GRAY);
+					// KindKnoten mit Parrentknoten verbinden
 					g.drawLine(speichersteine.get(i).getParentx(),
 							speichersteine.get(i).getParenty(), x
 									+ xdurch2, y);
+					// Farbe für die Auspraegungseinfaerbung auf rot setzen und zeichnen
 					g.setColor(Color.RED);
 					g.drawString(speichersteine.get(i).getZeichneauspraegung(), x, (y - 10));
+					// Setzen der Farbe des Stifts auf Standard
 					g.setColor(Color.BLACK);
+					// Wenn es sich nicht um ein Zielattributsknoten handelt
 					if (!(speichersteine.get(i).getAuspraegungen().isEmpty())) {
 						int temp = pos;
 						int za = 0;
+						// Setzen der Parrentdaten in die entsprechenden Kinder
 						for (int j = temp; j < (speichersteine.get(i).getAuspraegungen().size() + temp); j++) {
 							speichersteine.get(j).setParentx(x + xdurch2);
 							speichersteine.get(j).setParenty(y + rechteckmase[1]);
@@ -108,17 +137,25 @@ private Vector<Rectangle> Rechteckverwaltung;
 					}
 					
 				}
+				// Wenn es sich um keine neue Ebene handelt
 				else {
+					// Gesamtauspraegungen und Multiplikator entsprechend inkrementieren
 					alteebenen += speichersteine.get(i).getAuspraegungen().size();
 					multiplikator++;
+					// Berechnung der x und y Koordinate anhand der maximalen zur Verfügung
+					// stehenden Laenge und Breite der Komponente
 					int y = ((int) ((maxhoehe
 							* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
 							.getMaxebene()) - (rechteckmase[1]))) - 10;
 					int x = (((maxbreite / (ebenenauspraegungen + 1)) * multiplikator)
 							- (rechteckmase[0] / 2));
+					// Das zu zeichnende Rechteckt der Rechteckverwaltung hinzufügen
 					Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
+					// Zeichnen des Rechtecks und der Daten
 					g.drawRect(x, y, rechteckmase[0], rechteckmase[1]);
 					g.drawString(speichersteine.get(i).getZeichenattribut(), x + 5, y + 15);
+					// Wenn die berechnete Entropie nicht gekürzt werden kann
+					// Wird sie ohne Kürzung dargestellt (bsp: 0.0)
 					try {
 						g.drawString(
 								String.valueOf(
@@ -135,9 +172,11 @@ private Vector<Rectangle> Rechteckverwaltung;
 					g.setColor(Color.RED);
 					g.drawString(speichersteine.get(i).getZeichneauspraegung(), x, (y - 10));
 					g.setColor(Color.BLACK);
+					// Wenn es sich nicht um ein Zielattributsknoten handelt
 					if (!(speichersteine.get(i).getAuspraegungen().isEmpty())) {
 						int temp = pos;
 						int za = 0;
+						// Setzen der Parrentdaten in die entsprechenden Kinder
 						for (int j = pos; j < (speichersteine.get(i).getAuspraegungen().size() + temp); j++) {
 							speichersteine.get(j).setParentx(x + xdurch2);
 							speichersteine.get(j).setParenty(y + rechteckmase[1]);

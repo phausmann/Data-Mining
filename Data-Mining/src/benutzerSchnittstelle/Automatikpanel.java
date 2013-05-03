@@ -43,17 +43,22 @@ private Gui oberflaeche;
 		add(zeichenflaeche, BorderLayout.NORTH);
 	}
 	
+	// Public Methode zum Setzen des Generieren-Buttons durch den Gui-Controller
 	public void setGenerierenButtonenable(Boolean enable) {
 		generierebutton.setEnabled(enable);
 	}
 	
+	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
+		// bestehendes Pannel loeschen
 		remove(zeichenflaeche);
+		// neue Zeichenflaeche und Zeichnungsbaum instanziieren
 		zeichenflaeche = new JPanel();
 		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
 		zeichenflaeche.add(baum);
+		// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
 		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
-		zeichenflaeche.setVisible(true);
 		add(zeichenflaeche, BorderLayout.NORTH);
+		zeichenflaeche.setVisible(true);
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
-
+// Modellklasse der Datentabelle des Tabellenpannels
 public class Tabellenmodell extends AbstractTableModel {
 private Vector reihen;
 private Vector<String> kopfzeile;
@@ -54,6 +54,7 @@ private Vector<String> kopfzeile;
 		a.set(columnIndex, aValue.toString());
 	}
 	
+	// Erzeugen eines Vectors der Spaltendaten anhand der übergebenen Spalte
 	public Vector getSpaltenDatenN(int spalte) {
 		Vector spaltenDaten = new Vector();
 		for (int i = 0; i < reihen.size(); i++) {

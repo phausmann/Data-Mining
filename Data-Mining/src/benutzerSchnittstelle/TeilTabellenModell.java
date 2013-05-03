@@ -4,6 +4,8 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+// Tabellenmodell Klasse zur Speicherung und Verwahltung der Daten
+// Darstellung im JDialog bei Doppelklick auf einen Knoten
 public class TeilTabellenModell extends AbstractTableModel {
 	private Vector reihen;
 	private Vector<String> kopfzeile;

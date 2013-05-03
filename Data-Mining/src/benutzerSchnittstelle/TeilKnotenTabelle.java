@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 
 import logikschicht.Zeichenkomponenten;
 
+// JDialog zur Darstellung der Tabelle des ausgewählten Knoten identifiziert durch
+// den registrierten Mouselistener
 public class TeilKnotenTabelle extends JDialog {
 
 	public TeilKnotenTabelle(Gui oberflaeche, Zeichenkomponenten knoten) {
@@ -23,6 +25,8 @@ public class TeilKnotenTabelle extends JDialog {
 		setLocationRelativeTo(oberflaeche.getFrame());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
+		// Instanziieren eines neuen Datenmodells anhand der Knotendaten
+		// Einbetten der Tabelle in eine JScrollpane
 		TeilTabellenModell datenmodell = new TeilTabellenModell(knoten.getDaten(), knoten.getKopfzeile());
 		JTable datentabelle = new JTable(datenmodell);
 		add(new JPanel().add(new JScrollPane(datentabelle)));
