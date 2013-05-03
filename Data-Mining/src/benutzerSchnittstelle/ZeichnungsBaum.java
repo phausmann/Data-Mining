@@ -33,7 +33,6 @@ private Vector<Rectangle> Rechteckverwaltung;
 		ydurch2 = 20;
 		pos = 0;
 	}
-	
 	public void paint(Graphics g) {
 		Rechteckverwaltung = new Vector<Rectangle>();
 		for (int i = 0; i < speichersteine.size(); i++) {
@@ -164,7 +163,5 @@ private Vector<Rectangle> Rechteckverwaltung;
 	public Vector<Rectangle> getRechteckverwaltung() {
 		return Rechteckverwaltung;
 	}
-	
-	
-	
+		
 }

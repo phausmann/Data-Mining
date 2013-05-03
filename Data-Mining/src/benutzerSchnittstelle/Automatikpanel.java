@@ -25,15 +25,22 @@ private Gui oberflaeche;
 		zeichne();
 	}
 
+	// Konstruktormethode zur Erstellung des Tabs Automatik
 	private void zeichne() {
 		setLayout(new BorderLayout());
-//		add(zeichenflaeche, BorderLayout.NORTH);
+		// Regeldarstellungsbutton am rechten unteren Tabrand anordnen
 		regel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(regel, BorderLayout.SOUTH);
+		// Generierenbutton daneben
 		generierebutton.setEnabled(false);
+		// Registrierung des Actionlisteners aus der Ereignislistenerschicht
 		generierebutton.addActionListener(new ereignislistener.Generieren(oberflaeche, zeichenflaeche));
 		regel.add(generierebutton);
 		regel.add(regelbutton);
+		// leere Zeichenflaeche instanziieren und dem Panel hinzufügen
+		// --> NullPointerExeption Vorbeugung
+		zeichenflaeche = new JPanel();
+		add(zeichenflaeche, BorderLayout.NORTH);
 	}
 	
 	public void setGenerierenButtonenable(Boolean enable) {
@@ -41,6 +48,7 @@ private Gui oberflaeche;
 	}
 	
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
+		remove(zeichenflaeche);
 		zeichenflaeche = new JPanel();
 		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
 		zeichenflaeche.add(baum);
