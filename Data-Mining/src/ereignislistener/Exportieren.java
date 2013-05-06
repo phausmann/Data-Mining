@@ -25,6 +25,11 @@ private Gui oberflaeche;
 		// Instanziierung des Filechoosers zur Bestimmung des Speicherorts
 		JFileChooser tabellenexport = new JFileChooser();
 		if (tabellenexport.showSaveDialog(oberflaeche) == JFileChooser.APPROVE_OPTION) {
+			if (!(tabellenexport.getSelectedFile().getName().endsWith(".csv"))) {
+				String zwischen = tabellenexport.getSelectedFile().getAbsolutePath().concat(".csv");
+				File einfuegen = new File(zwischen);
+				tabellenexport.setSelectedFile(einfuegen);
+			}
 			exportiereCSV(tabellenexport.getSelectedFile());
 		}
 	}
