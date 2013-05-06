@@ -90,6 +90,7 @@ private Gui oberflaeche;
 							daten.add(speicher);
 						}
 					}
+					// Zielattributsspalte einlesen
 					else {
 						zielattribut = false;
 						StringTokenizer zerteiler = new StringTokenizer(zeile,
@@ -112,6 +113,7 @@ private Gui oberflaeche;
 		
 	// Die Tabelle konnte erfolgreich eingelesen werden
 	// Aktiv setzen der Tabs Interaktiv und Automatisch
+	// GenerierenButton aktiv setzen und zur Berechnung und Zeichnung betätigen
 	oberflaeche.setInteraktivEnabled(true);
 	oberflaeche.setAutomatischEnabled(true);
 	oberflaeche.setGenerierenButtonenable(true);

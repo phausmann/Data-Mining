@@ -69,6 +69,7 @@ private Gui oberflaeche;
 				out.println(zeile);
 			}
 			
+			// Zielattributsspalte speichern
 			out.println("Zielattribut");
 			out.println(oberflaeche.getZielAttributsSpalte());
 			
