@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import benutzerSchnittstelle.Gui;
 import benutzerSchnittstelle.Menuleiste;
+import benutzerSchnittstelle.ZeilenSpaltenDialog;
 
 // ListenerKlasse zur Erzeugung einer neuen leeren Tabelle mit 
 // übergebener Zeilen und Spaltenanzahl
