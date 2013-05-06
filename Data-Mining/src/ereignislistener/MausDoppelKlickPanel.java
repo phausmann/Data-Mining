@@ -20,10 +20,6 @@ private Gui oberflaeche;
 		this.oberflaeche = oberflaeche;
 	}
 	
-	private void ausgabeTextFeldfuellen() {
-		
-	}
-	
 	@Override
 	public void mouseClicked(MouseEvent event) {
 		// Doppelklick
