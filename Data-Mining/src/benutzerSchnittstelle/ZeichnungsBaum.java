@@ -30,7 +30,7 @@ private Vector<Rectangle> Rechteckverwaltung;
 	public ZeichnungsBaum(Vector<Zeichenkomponenten> speichersteine) {
 		this.speichersteine = speichersteine;
 		rechteckmase[0] = 80;
-		rechteckmase[1] = 40;
+		rechteckmase[1] = 50;
 		xdurch2 = 40;
 		ydurch2 = 20;
 		pos = 0;
@@ -66,6 +66,7 @@ private Vector<Rectangle> Rechteckverwaltung;
 					g.drawString(String.valueOf(speichersteine.get(i)
 							.getEntropie()), x + 10, y + 30);
 				}
+				g.drawString(String.valueOf(speichersteine.get(i).getObjektanzahl()), x + xdurch2 - 10, y + 45);
 				int za = 0;
 				// Setzen der Parrentkoordinate des Kindes und deren zugehörige Auspraegung
 				for (int j = 1; j < speichersteine.get(i).getAuspraegungen().size() + 1; j++) {
@@ -110,6 +111,7 @@ private Vector<Rectangle> Rechteckverwaltung;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
+					g.drawString(String.valueOf(speichersteine.get(i).getObjektanzahl()), x + xdurch2 - 10, y + 45);
 					// Farbe des Zeichnungsstiftes für das Linienzeichnen umsetzen
 					g.setColor(Color.LIGHT_GRAY);
 					// KindKnoten mit Parrentknoten verbinden
@@ -165,6 +167,7 @@ private Vector<Rectangle> Rechteckverwaltung;
 						g.drawString(String.valueOf(speichersteine.get(i)
 								.getEntropie()), x + 10, y + 30);
 					}
+					g.drawString(String.valueOf(speichersteine.get(i).getObjektanzahl()), x + xdurch2 - 10, y + 45);
 					g.setColor(Color.LIGHT_GRAY);
 					g.drawLine(speichersteine.get(i).getParentx(),
 							speichersteine.get(i).getParenty(), x

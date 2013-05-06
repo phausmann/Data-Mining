@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import logikschicht.Zeichenkomponenten;
 
@@ -19,6 +20,7 @@ private JPanel zeichenflaeche;
 private JButton regelbutton = new JButton("Regeldarstellung");
 private JButton generierebutton = new JButton("Generieren");
 private Gui oberflaeche;
+private JTextField ausgabe = new JTextField(45);
 
 	public Automatikpanel(Gui oberflaeche) {
 		this.oberflaeche = oberflaeche;
@@ -35,6 +37,8 @@ private Gui oberflaeche;
 		generierebutton.setEnabled(false);
 		// Registrierung des Actionlisteners aus der Ereignislistenerschicht
 		generierebutton.addActionListener(new ereignislistener.Generieren(oberflaeche, zeichenflaeche));
+		ausgabe.setEditable(false);
+		regel.add(ausgabe);
 		regel.add(generierebutton);
 		regel.add(regelbutton);
 		// leere Zeichenflaeche instanziieren und dem Panel hinzufügen
@@ -64,5 +68,9 @@ private Gui oberflaeche;
 		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
 		add(zeichenflaeche, BorderLayout.NORTH);
 		zeichenflaeche.setVisible(true);
+	}
+	
+	public void setTextfeld(String text) {
+		ausgabe.setText(text);
 	}
 }

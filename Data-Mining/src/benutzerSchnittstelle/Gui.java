@@ -122,4 +122,8 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 	public void setGenerierenButtonenable(Boolean enable) {
 		automatisch.setGenerierenButtonenable(enable);
 	}
+	
+	public void setTextInTextFeld(String text) {
+		automatisch.setTextfeld(text);
+	}
 }

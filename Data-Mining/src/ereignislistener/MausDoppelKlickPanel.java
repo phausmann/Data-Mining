@@ -20,6 +20,10 @@ private Gui oberflaeche;
 		this.oberflaeche = oberflaeche;
 	}
 	
+	private void ausgabeTextFeldfuellen() {
+		
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent event) {
 		// Doppelklick
@@ -28,9 +32,27 @@ private Gui oberflaeche;
 			for (int i = 0; i < bild.getRechteckverwaltung().size(); i++) {
 				// Gefunden
 				if (bild.getRechteckverwaltung().get(i).contains(event.getX(), event.getY())) {
+					// Ausgabefeld füllen
+					oberflaeche.setTextInTextFeld(bild.getSpeichersteine().get(i).getKlassenAnzahl());
+					
 					// Erstellung der Teiltabelle anhand der Daten des Knotens
 					TeilKnotenTabelle dialog = new TeilKnotenTabelle(
 							oberflaeche, bild.getSpeichersteine().get(i));
+					// Abbruch der Schleife
+					break;
+				}
+			}
+		}
+		// Single-Klick auf einen Knoten
+		else {
+			// Suchen des entsprechenden Rechtecks aus der Verwaltung
+			for (int i = 0; i < bild.getRechteckverwaltung().size(); i++) {
+				
+				// Gefunden
+				if (bild.getRechteckverwaltung().get(i).contains(event.getX(), event.getY())) {
+					
+					// Ausgabefeld füllen
+					oberflaeche.setTextInTextFeld(bild.getSpeichersteine().get(i).getKlassenAnzahl());
 					// Abbruch der Schleife
 					break;
 				}
@@ -57,5 +79,4 @@ private Gui oberflaeche;
 	public void mouseExited(MouseEvent e) {
 		
 	}
-
 }

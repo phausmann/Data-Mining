@@ -111,9 +111,16 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 								// der Verwaltung hinzufuegen
 								Vector kurz = (Vector) hinein.getDaten().get(0);
 								Zeichenkomponenten speicherstein = new Zeichenkomponenten(
-										kurz.get(hinein.getZielattributsspalte())
-												.toString(), hinein.getParentkey(),
-												iteration, hinein.getKopfzeile(), hinein.getDaten());
+										kurz.get(
+												hinein.getZielattributsspalte())
+												.toString(),
+										hinein.getParentkey(),
+										iteration,
+										hinein.getKopfzeile(),
+										hinein.getDaten(),
+										erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+												hinein.getDaten(),
+												hinein.getZielattributsspalte())));
 								gesamtheitzeichenkomponenten.add(speicherstein);
 								zaehler++;
 							}
@@ -126,8 +133,14 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 							Vector kurz = (Vector) hinein.getDaten().get(0);
 							Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 									kurz.get(hinein.getZielattributsspalte())
-											.toString(), hinein.getParentkey(),
-											iteration, hinein.getKopfzeile(), hinein.getDaten());
+											.toString(),
+									hinein.getParentkey(),
+									iteration,
+									hinein.getKopfzeile(),
+									hinein.getDaten(),
+									erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+											hinein.getDaten(),
+											hinein.getZielattributsspalte())));
 							gesamtheitzeichenkomponenten.add(speicherstein);
 							zaehler++;
 						}
@@ -189,12 +202,16 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 				// Auf dieser Grundlage Erstellung einer neuen Zeichenkomponente
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 						zustandsverwaltung.get(j).getKopfzeile()
-								.get((int) speicher[1]),
-						threadverwaltung.get((int) speicher[2])
-								.getAuspraegungsVektor(), speicher[0], 0, 0,
-						iteration, zustandsverwaltung.get(j).getParentkey(),
-						zustandsverwaltung.get(j).getKopfzeile(),
-						zustandsverwaltung.get(j).getDaten());
+								.get((int) speicher[1]), threadverwaltung.get(
+								(int) speicher[2]).getAuspraegungsVektor(),
+						speicher[0], iteration, zustandsverwaltung.get(j)
+								.getParentkey(), zustandsverwaltung.get(j)
+								.getKopfzeile(), zustandsverwaltung.get(j)
+								.getDaten(),
+						erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+								zustandsverwaltung.get(j).getDaten(),
+								zustandsverwaltung.get(j)
+										.getZielattributsspalte())));
 				gesamtheitzeichenkomponenten.add(speicherstein);
 				
 				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung.get((int) speicher[2]).getAuspraegungsVektor());
@@ -214,7 +231,35 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		// Uebergabe der Zeichenkomponentenverwaltung für das Zeichnen an den Guikontroller
 		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
 	}
+	
+	private String erzeugeKlassenAnzahlsVector(Vector spalte) {
 		
+		Vector<String> zielAttributWert = new Vector<String>();
+		Vector<Integer> zielAttributAnzahl = new Vector<Integer>();
+		
+		for (int i = 0; i < spalte.size(); i++) {
+			if (zielAttributWert.contains(spalte.get(i).toString())) {
+				zielAttributAnzahl.set(zielAttributWert.indexOf(spalte.get(i)
+						.toString()), zielAttributAnzahl.get(zielAttributWert
+						.indexOf(spalte.get(i).toString())) + 1);
+			}
+			else {
+				zielAttributWert.add(spalte.get(i).toString());
+				zielAttributAnzahl.add(1);
+			}
+		}
+		
+		StringBuilder zeile = new StringBuilder();
+		String seperator = " | ";
+		for (int i = 0; i < zielAttributWert.size(); i++) {
+			zeile.append(zielAttributWert.get(i));
+			zeile.append(" ");
+			zeile.append(String.valueOf(zielAttributAnzahl.get(i)));
+			zeile.append(seperator);
+		}
+		return zeile.toString();
+	}
+	
 	// Interne Methode zum Erzeugen der neuen Tabellen
 	private Vector erzeugeDaten(Vector datensammlung, String attribut) {
 		Vector speicher = new Vector();

@@ -9,8 +9,8 @@ private String sortKey;
 private String zeichenattribut;
 private String zeichneauspraegung;
 private Vector<String> auspraegungen;
+private String klassenAnzahl;
 private double entropie;
-private int klassenanzahl;
 private int objektanzahl;
 private int ebene;
 private int parentx;
@@ -21,17 +21,17 @@ private static int maxebene = 0;
 
 	// Konstruktor 1 für nicht Endknoten
 	public Zeichenkomponenten(String zeichenattribut, Vector<String> auspraegungen, double entropie, 
-							  int klassenanzahl, int objektanzahl, int ebene, String sortkey,
-							  Vector<String> kopfzeile, Vector daten) {
+							  int ebene, String sortkey,
+							  Vector<String> kopfzeile, Vector daten, String klassenAnzahl) {
 		this.zeichenattribut = zeichenattribut;
 		this.auspraegungen = auspraegungen;
 		this.entropie = entropie;
-		this.klassenanzahl = klassenanzahl;
-		this.objektanzahl = objektanzahl;
 		this.ebene = ebene;
 		this.sortKey = sortkey;
 		this.kopfzeile = kopfzeile;
 		this.daten = daten;
+		this.objektanzahl = daten.size();
+		this.klassenAnzahl = klassenAnzahl;
 		if (ebene > maxebene) {
 			maxebene = ebene;
 		}
@@ -39,12 +39,14 @@ private static int maxebene = 0;
 	
 	// Konstruktor 2 für Endknoten, die keine weiteren Kinder haben
 	public Zeichenkomponenten(String zielattribut, String sortkey, int ebene,
-							  Vector<String> kopfzeile, Vector daten) {
+							  Vector<String> kopfzeile, Vector daten, String klassenAnzahl) {
 		zeichenattribut = zielattribut;
 		this.sortKey = sortkey;
 		this.ebene = ebene;
 		this.kopfzeile = kopfzeile;
 		this.daten = daten;
+		this.objektanzahl = daten.size();
+		this.klassenAnzahl = klassenAnzahl;
 		if (ebene > maxebene) {
 			maxebene = ebene;
 		}
@@ -62,10 +64,6 @@ private static int maxebene = 0;
 
 	public double getEntropie() {
 		return entropie;
-	}
-
-	public int getKlassenanzahl() {
-		return klassenanzahl;
 	}
 
 	public int getObjektanzahl() {
@@ -127,7 +125,9 @@ private static int maxebene = 0;
 	public void setZeichneauspraegung(String zeichneauspraegung) {
 		this.zeichneauspraegung = zeichneauspraegung;
 	}
-	
-	
+
+	public String getKlassenAnzahl() {
+		return klassenAnzahl;
+	}
 	
 }
