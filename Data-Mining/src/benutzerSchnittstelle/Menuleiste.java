@@ -29,6 +29,7 @@ public class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'neu' mit Tastenkuerzel Strg+n
 		JMenuItem neu = new JMenuItem("Neu");
 		neu.setAccelerator(KeyStroke.getKeyStroke("control N"));
+		neu.addActionListener(new ereignislistener.Neu());
 		datei.add(neu);
 		
 		// Hinzufuegen der Auswahl 'oeffnen' mit Tastenkuerzel Strg+o
@@ -42,11 +43,6 @@ public class Menuleiste extends JMenuBar {
 		speichern.setAccelerator(KeyStroke.getKeyStroke("control S"));
 		speichern.addActionListener(new ereignislistener.Speichern(oberflaeche));
 		datei.add(speichern);
-		
-		// Hinzufuegen der Auswahl 'speichern als' mit Tastenkuerzel Strg+Shift+s
-		JMenuItem speichernals = new JMenuItem("Speichern als");
-		speichernals.setAccelerator(KeyStroke.getKeyStroke("control shift S"));
-		datei.add(speichernals);
 		
 		// Hinzufügen eines Seperators zur optischen Trennung
 		datei.addSeparator();
