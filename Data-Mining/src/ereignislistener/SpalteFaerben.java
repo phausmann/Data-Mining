@@ -15,7 +15,7 @@ private Gui oberflaeche;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		oberflaeche.spalteeinfaerben(oberflaeche.getausgewaehlteSpalte());
+		this.oberflaeche.spalteeinfaerben(this.oberflaeche.getausgewaehlteSpalte());
 	}
 
 }
