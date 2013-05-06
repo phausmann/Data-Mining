@@ -34,11 +34,13 @@ public class Menuleiste extends JMenuBar {
 		// Hinzufuegen der Auswahl 'oeffnen' mit Tastenkuerzel Strg+o
 		JMenuItem oeffnen = new JMenuItem("Oeffnen");
 		oeffnen.setAccelerator(KeyStroke.getKeyStroke("control O"));
+		oeffnen.addActionListener(new ereignislistener.Oeffnen(oberflaeche));
 		datei.add(oeffnen);
 		
 		// Hinzufuegen der Auswahl 'speichern' mit Tastenkuerzel Strg+s
 		JMenuItem speichern = new JMenuItem("Speichern");
 		speichern.setAccelerator(KeyStroke.getKeyStroke("control S"));
+		speichern.addActionListener(new ereignislistener.Speichern(oberflaeche));
 		datei.add(speichern);
 		
 		// Hinzufuegen der Auswahl 'speichern als' mit Tastenkuerzel Strg+Shift+s

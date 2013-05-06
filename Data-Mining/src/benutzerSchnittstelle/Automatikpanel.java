@@ -48,6 +48,10 @@ private Gui oberflaeche;
 		generierebutton.setEnabled(enable);
 	}
 	
+	public void rechnenUndZeichnen() {
+		generierebutton.doClick();
+	}
+	
 	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
 		// bestehendes Pannel loeschen

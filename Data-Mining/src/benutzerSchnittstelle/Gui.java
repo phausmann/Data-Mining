@@ -19,6 +19,8 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import ereignislistener.Speichern;
+
 import logikschicht.Zeichenkomponenten;
 
 // Controllerklasse ueber die Oberflaechenklassen
@@ -29,6 +31,7 @@ private Interaktivpanel interaktiv = new Interaktivpanel();
 private Automatikpanel automatisch = new Automatikpanel(this);
 private JFrame fenster = new JFrame();
 private int zielattribut = -1;
+private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 
 	public Gui(JFrame fenster) {
 		this.fenster = fenster;
@@ -103,7 +106,20 @@ private int zielattribut = -1;
 	
 	// Controllermethode zum Aufruf des Zeichnen des Baums im Automatikpannel
 	public void baumZeichnen(Vector<Zeichenkomponenten> speichersteine) {
+		this.speichersteine = speichersteine;
 		automatisch.zeichneBaum(speichersteine);
 		repaint();
+	}
+	
+	public Vector<Zeichenkomponenten> getSpeichersteine() {
+		return this.speichersteine;
+	}
+	
+	public void rechnenUndZeichnen() {
+		automatisch.rechnenUndZeichnen();
+	}
+	
+	public void setGenerierenButtonenable(Boolean enable) {
+		automatisch.setGenerierenButtonenable(enable);
 	}
 }

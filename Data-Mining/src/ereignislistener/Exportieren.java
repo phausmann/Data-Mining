@@ -24,12 +24,14 @@ private Gui oberflaeche;
 	public void actionPerformed(ActionEvent e) {
 		// Instanziierung des Filechoosers zur Bestimmung des Speicherorts
 		JFileChooser tabellenexport = new JFileChooser();
+		// Ueberpruefung, ob der Dateiname der Norm entspricht
 		if (tabellenexport.showSaveDialog(oberflaeche) == JFileChooser.APPROVE_OPTION) {
 			if (!(tabellenexport.getSelectedFile().getName().endsWith(".csv"))) {
 				String zwischen = tabellenexport.getSelectedFile().getAbsolutePath().concat(".csv");
 				File einfuegen = new File(zwischen);
 				tabellenexport.setSelectedFile(einfuegen);
 			}
+			// Exportieren
 			exportiereCSV(tabellenexport.getSelectedFile());
 		}
 	}
