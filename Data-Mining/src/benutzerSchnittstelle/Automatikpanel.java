@@ -21,6 +21,7 @@ private JButton regelbutton = new JButton("Regeldarstellung");
 private JButton generierebutton = new JButton("Generieren");
 private Gui oberflaeche;
 private JTextField ausgabe = new JTextField(45);
+private Vector<Zeichenkomponenten> automatikDaten = new Vector<Zeichenkomponenten>();
 
 	public Automatikpanel(Gui oberflaeche) {
 		this.oberflaeche = oberflaeche;
@@ -36,6 +37,7 @@ private JTextField ausgabe = new JTextField(45);
 		// Generierenbutton daneben
 		generierebutton.setEnabled(false);
 		// Registrierung des Actionlisteners aus der Ereignislistenerschicht
+		regelbutton.addActionListener(new ereignislistener.Regeldarstellung(oberflaeche));
 		generierebutton.addActionListener(new ereignislistener.Generieren(oberflaeche, zeichenflaeche));
 		ausgabe.setEditable(false);
 		regel.add(ausgabe);
@@ -58,6 +60,7 @@ private JTextField ausgabe = new JTextField(45);
 	
 	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
+		automatikDaten = speichersteine;
 		// bestehendes Pannel loeschen
 		remove(zeichenflaeche);
 		// neue Zeichenflaeche und Zeichnungsbaum instanziieren
@@ -72,5 +75,9 @@ private JTextField ausgabe = new JTextField(45);
 	
 	public void setTextfeld(String text) {
 		ausgabe.setText(text);
+	}
+
+	public Vector<Zeichenkomponenten> getAutomatikDaten() {
+		return automatikDaten;
 	}
 }

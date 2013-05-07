@@ -126,4 +126,8 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 	public void setTextInTextFeld(String text) {
 		automatisch.setTextfeld(text);
 	}
+	
+	public Vector<Zeichenkomponenten> getAutomatikDaten() {
+		return automatisch.getAutomatikDaten();
+	}
 }

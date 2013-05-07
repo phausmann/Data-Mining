@@ -14,12 +14,16 @@ private JPanel zeichenflaeche = new JPanel();
 private JPanel auswahlflaeche = new JPanel();
 
 
-	public Regeldarstellung(Gui oberflaeche, Zeichenkomponenten knoten) {
+	public Regeldarstellung(Gui oberflaeche) {
 		super(oberflaeche.getFrame(), "Regeldarstellung", true);
 		setLocationRelativeTo(oberflaeche.getFrame());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		setLayout(new BorderLayout());
+		
+		RegelZeichnung zeichnung = new RegelZeichnung(oberflaeche.getAutomatikDaten());
+		
+		zeichenflaeche.add(zeichnung);
 		
 		add(zeichenflaeche, BorderLayout.CENTER);
 		add(auswahlflaeche, BorderLayout.SOUTH);
