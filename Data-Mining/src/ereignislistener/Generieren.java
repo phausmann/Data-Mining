@@ -8,6 +8,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import logikschicht.EntropieThread;
+import logikschicht.MengenObjekt;
 import logikschicht.Teilentropie;
 import logikschicht.Teilzustand;
 import logikschicht.Zeichenkomponenten;
@@ -110,17 +111,19 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 								// neuen Endknoten als Zeichenkomponente erstellen und
 								// der Verwaltung hinzufuegen
 								Vector kurz = (Vector) hinein.getDaten().get(0);
+								MengenObjekt zwischen = erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+										hinein.getDaten(),
+										hinein.getZielattributsspalte()));
+								
 								Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 										kurz.get(
 												hinein.getZielattributsspalte())
 												.toString(),
-										hinein.getParentkey(),
-										iteration,
+										hinein.getParentkey(), iteration,
 										hinein.getKopfzeile(),
 										hinein.getDaten(),
-										erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
-												hinein.getDaten(),
-												hinein.getZielattributsspalte())));
+										zwischen.getAusgabeString(),
+										zwischen.getRegelString());
 								gesamtheitzeichenkomponenten.add(speicherstein);
 								zaehler++;
 							}
@@ -131,16 +134,17 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 							// Für diesen Endknoten den erstellten Teilzustand nicht zur Verwaltung
 							// hinzufuegen, aber einen neuen Zeichenknoten erstellen
 							Vector kurz = (Vector) hinein.getDaten().get(0);
+							MengenObjekt zwischen = erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+									hinein.getDaten(),
+									hinein.getZielattributsspalte()));
+
 							Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 									kurz.get(hinein.getZielattributsspalte())
-											.toString(),
-									hinein.getParentkey(),
-									iteration,
-									hinein.getKopfzeile(),
+											.toString(), hinein.getParentkey(),
+									iteration, hinein.getKopfzeile(),
 									hinein.getDaten(),
-									erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
-											hinein.getDaten(),
-											hinein.getZielattributsspalte())));
+									zwischen.getAusgabeString(),
+									zwischen.getRegelString());
 							gesamtheitzeichenkomponenten.add(speicherstein);
 							zaehler++;
 						}
@@ -200,6 +204,10 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 				double speicher[] = EntropieThread.getMinimaleEntropie();	
 				
 				// Auf dieser Grundlage Erstellung einer neuen Zeichenkomponente
+				MengenObjekt zwischen = erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+						zustandsverwaltung.get(j).getDaten(),
+						zustandsverwaltung.get(j).getZielattributsspalte()));
+				
 				Zeichenkomponenten speicherstein = new Zeichenkomponenten(
 						zustandsverwaltung.get(j).getKopfzeile()
 								.get((int) speicher[1]), threadverwaltung.get(
@@ -207,13 +215,10 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 						speicher[0], iteration, zustandsverwaltung.get(j)
 								.getParentkey(), zustandsverwaltung.get(j)
 								.getKopfzeile(), zustandsverwaltung.get(j)
-								.getDaten(),
-						erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
-								zustandsverwaltung.get(j).getDaten(),
-								zustandsverwaltung.get(j)
-										.getZielattributsspalte())));
+								.getDaten(), zwischen.getAusgabeString(),
+						zwischen.getRegelString());
 				gesamtheitzeichenkomponenten.add(speicherstein);
-				
+
 				zustandsverwaltung.get(j).setAuspraegungen(threadverwaltung.get((int) speicher[2]).getAuspraegungsVektor());
 				zustandsverwaltung.get(j).setEntropieattribut(zustandsverwaltung.get(j).getKopfzeile().get((int) speicher[1]));		
 			}
@@ -232,7 +237,9 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		oberflaeche.baumZeichnen(gesamtheitzeichenkomponenten);
 	}
 	
-	private String erzeugeKlassenAnzahlsVector(Vector spalte) {
+	private MengenObjekt erzeugeKlassenAnzahlsVector(Vector spalte) {
+		
+		MengenObjekt temp = new MengenObjekt();
 		
 		Vector<String> zielAttributWert = new Vector<String>();
 		Vector<Integer> zielAttributAnzahl = new Vector<Integer>();
@@ -251,13 +258,21 @@ private Vector<Zeichenkomponenten> gesamtheitzeichenkomponenten;
 		
 		StringBuilder zeile = new StringBuilder();
 		String seperator = " | ";
+		int groessterIndex = 0;
+		int groessterWert = 0;
 		for (int i = 0; i < zielAttributWert.size(); i++) {
 			zeile.append(zielAttributWert.get(i));
 			zeile.append(" ");
 			zeile.append(String.valueOf(zielAttributAnzahl.get(i)));
 			zeile.append(seperator);
+			if (zielAttributAnzahl.get(i) > groessterWert) {
+				groessterWert = zielAttributAnzahl.get(i);
+				groessterIndex = i;
+			}
 		}
-		return zeile.toString();
+		temp.setAusgabeString(zeile.toString());
+		temp.setRegelString(zielAttributWert.get(groessterIndex));
+		return temp;
 	}
 	
 	// Interne Methode zum Erzeugen der neuen Tabellen

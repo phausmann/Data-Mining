@@ -8,6 +8,7 @@ public class Zeichenkomponenten {
 private String sortKey;
 private String zeichenattribut;
 private String zeichneauspraegung;
+private String regelAttribut;
 private Vector<String> auspraegungen;
 private String klassenAnzahl;
 private double entropie;
@@ -22,7 +23,7 @@ private static int maxebene = 0;
 	// Konstruktor 1 für nicht Endknoten
 	public Zeichenkomponenten(String zeichenattribut, Vector<String> auspraegungen, double entropie, 
 							  int ebene, String sortkey,
-							  Vector<String> kopfzeile, Vector daten, String klassenAnzahl) {
+							  Vector<String> kopfzeile, Vector daten, String klassenAnzahl, String regelAttribut) {
 		this.zeichenattribut = zeichenattribut;
 		this.auspraegungen = auspraegungen;
 		this.entropie = entropie;
@@ -32,6 +33,7 @@ private static int maxebene = 0;
 		this.daten = daten;
 		this.objektanzahl = daten.size();
 		this.klassenAnzahl = klassenAnzahl;
+		this.regelAttribut = regelAttribut;
 		if (ebene > maxebene) {
 			maxebene = ebene;
 		}
@@ -39,7 +41,7 @@ private static int maxebene = 0;
 	
 	// Konstruktor 2 für Endknoten, die keine weiteren Kinder haben
 	public Zeichenkomponenten(String zielattribut, String sortkey, int ebene,
-							  Vector<String> kopfzeile, Vector daten, String klassenAnzahl) {
+							  Vector<String> kopfzeile, Vector daten, String klassenAnzahl, String regelAttribut) {
 		zeichenattribut = zielattribut;
 		this.sortKey = sortkey;
 		this.ebene = ebene;
@@ -47,6 +49,7 @@ private static int maxebene = 0;
 		this.daten = daten;
 		this.objektanzahl = daten.size();
 		this.klassenAnzahl = klassenAnzahl;
+		this.regelAttribut = regelAttribut;
 		if (ebene > maxebene) {
 			maxebene = ebene;
 		}
@@ -129,5 +132,11 @@ private static int maxebene = 0;
 	public String getKlassenAnzahl() {
 		return klassenAnzahl;
 	}
+
+	public String getRegelAttribut() {
+		return regelAttribut;
+	}
+	
+	
 	
 }
