@@ -57,10 +57,15 @@ private int pos;
 				// Auspraegung
 				for (int j = 1; j < speichersteine.get(i).getAuspraegungen()
 						.size() + 1; j++) {
-					speichersteine.get(j).setParentx(x + xdurch2);
-					speichersteine.get(j).setParenty(y + rechteckmase[1]);
-					speichersteine.get(j).setZeichneauspraegung(
-							speichersteine.get(i).getAuspraegungen().get(za));
+					try {
+						speichersteine.get(j).setParentx(x + xdurch2);
+						speichersteine.get(j).setParenty(y + rechteckmase[1]);
+						speichersteine.get(j).setZeichneauspraegung(
+								speichersteine.get(i).getAuspraegungen().get(za));
+					} catch (Exception e) {
+						System.out.println("fail3");
+					}
+					
 					za++;
 				}
 				pos = speichersteine.get(i).getAuspraegungen().size() + 1;
@@ -109,12 +114,17 @@ private int pos;
 						// Setzen der Parrentdaten in die entsprechenden Kinder
 						for (int j = temp; j < (speichersteine.get(i)
 								.getAuspraegungen().size() + temp); j++) {
-							speichersteine.get(j).setParentx(x + xdurch2);
-							speichersteine.get(j).setParenty(
-									y + rechteckmase[1]);
-							speichersteine.get(j).setZeichneauspraegung(
-									speichersteine.get(i).getAuspraegungen()
-											.get(za));
+							try {
+								speichersteine.get(j).setParentx(x + xdurch2);
+								speichersteine.get(j).setParenty(
+										y + rechteckmase[1]);
+								speichersteine.get(j).setZeichneauspraegung(
+										speichersteine.get(i).getAuspraegungen()
+												.get(za));
+							} catch (Exception e) {
+								System.out.println("fail1");
+							}
+							
 							za++;
 							pos++;
 						}
@@ -155,12 +165,17 @@ private int pos;
 						// Setzen der Parrentdaten in die entsprechenden Kinder
 						for (int j = pos; j < (speichersteine.get(i)
 								.getAuspraegungen().size() + temp); j++) {
-							speichersteine.get(j).setParentx(x + xdurch2);
-							speichersteine.get(j).setParenty(
-									y + rechteckmase[1]);
-							speichersteine.get(j).setZeichneauspraegung(
-									speichersteine.get(i).getAuspraegungen()
-											.get(za));
+							try {
+								speichersteine.get(j).setParentx(x + xdurch2);
+								speichersteine.get(j).setParenty(
+										y + rechteckmase[1]);
+								speichersteine.get(j).setZeichneauspraegung(
+										speichersteine.get(i).getAuspraegungen()
+												.get(za));
+							} catch (Exception e) {
+								System.out.println("fail");
+							}
+							
 							za++;
 							pos++;
 						}

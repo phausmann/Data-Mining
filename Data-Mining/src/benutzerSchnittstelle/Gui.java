@@ -130,4 +130,8 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 	public Vector<Zeichenkomponenten> getAutomatikDaten() {
 		return automatisch.getAutomatikDaten();
 	}
+	
+	public Vector getAuspraegungsVektor(int spalte) {
+		return tabelle.getAuspraegungsVektor(spalte);
+	}
 }

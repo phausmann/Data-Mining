@@ -129,6 +129,10 @@ private static int ziel = 0;
 		return modell.getSpaltenDatenN(spalte);
 	}
 	
+	public Vector getAuspraegungsVektor(int spalte) {
+		return modell.getSpaltenAuspraegungen(spalte);
+	}
+	
 	// Kopfzeile an bestimmter Postion editieren
 	private void editiereSpalteBei(Point point) {
 		spaltenindex = kopf.columnAtPoint(point);

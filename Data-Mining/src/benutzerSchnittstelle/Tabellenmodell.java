@@ -63,4 +63,16 @@ private Vector<String> kopfzeile;
 		}
 		return spaltenDaten;
 	}
+	
+	public Vector getSpaltenAuspraegungen(int spalte) {
+		Vector auspraegungen = new Vector();
+		Vector spaltenvector = getSpaltenDatenN(spalte);
+		
+		for (int i = 0; i < spaltenvector.size(); i++) {
+			if (!(auspraegungen.contains(spaltenvector.get(i)))) {
+				auspraegungen.add(spaltenvector.get(i));
+			}
+		}
+		return auspraegungen;
+	}
 }
