@@ -27,7 +27,7 @@ private Gui oberflaeche;
 			// Suchen des entsprechenden Rechtecks aus der Verwaltung
 			for (int i = 0; i < bild.getRechteckverwaltung().size(); i++) {
 				// Gefunden
-				if (bild.getRechteckverwaltung().get(i).contains(event.getX(), event.getY())) {
+				if (bild.getRechteckverwaltung().get(i).contains((event.getX() + 30), (event.getY() - 20))) {
 					// Ausgabefeld füllen
 					oberflaeche.setTextInTextFeld(bild.getSpeichersteine().get(i).getKlassenAnzahl());
 					
@@ -45,7 +45,7 @@ private Gui oberflaeche;
 			for (int i = 0; i < bild.getRechteckverwaltung().size(); i++) {
 				
 				// Gefunden
-				if (bild.getRechteckverwaltung().get(i).contains(event.getX(), event.getY())) {
+				if (bild.getRechteckverwaltung().get(i).contains((event.getX() + 30), (event.getY() - 20))) {
 					
 					// Ausgabefeld füllen
 					oberflaeche.setTextInTextFeld(bild.getSpeichersteine().get(i).getKlassenAnzahl());
