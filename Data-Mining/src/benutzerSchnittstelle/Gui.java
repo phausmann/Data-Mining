@@ -27,7 +27,7 @@ import logikschicht.Zeichenkomponenten;
 // Zugriffe auf Einzelkomponenten nur ueber diese Klasse moeglich
 public class Gui extends JTabbedPane {
 private Tabellenpanel tabelle = new Tabellenpanel();
-private Interaktivpanel interaktiv = new Interaktivpanel();
+private Interaktivpanel interaktiv = new Interaktivpanel(this);
 private Automatikpanel automatisch = new Automatikpanel(this);
 private JFrame fenster = new JFrame();
 private int zielattribut = -1;
