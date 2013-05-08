@@ -1,5 +1,7 @@
 package benutzerSchnittstelle;
 
+import java.awt.Frame;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -20,7 +22,9 @@ public class Main {
 		// Oberflaeche hinzufuegen
 		fenster.getContentPane().add(oberflaeche);
 		fenster.setDefaultCloseOperation(fenster.DISPOSE_ON_CLOSE);
-		fenster.setSize(800, 500);
+		fenster.setSize(
+				java.awt.Toolkit.getDefaultToolkit().getScreenSize());
+		fenster.setExtendedState(Frame.MAXIMIZED_BOTH);
 		fenster.setVisible(true);
 	}
 

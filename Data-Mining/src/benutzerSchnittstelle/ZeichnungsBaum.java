@@ -15,8 +15,10 @@ import logikschicht.Zeichenkomponenten;
 public class ZeichnungsBaum extends Component {
 private Vector<Zeichenkomponenten> speichersteine;
 private int[] rechteckmase = new int[2];
-private int maxbreite = 800;
-private int maxhoehe = 350;
+private int maxbreite = java.awt.Toolkit.getDefaultToolkit()
+			.getScreenSize().width;
+private int maxhoehe = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height
+			- (java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 6);
 private int ebenenanzahl;
 private int ebenenauspraegungen;
 private int aktuelleEbene;
@@ -40,6 +42,7 @@ private Vector<Rectangle> Rechteckverwaltung;
 	public void paint(Graphics g) {
 		// Instanziieren einer neuen Rechteckverwaltung
 		Rechteckverwaltung = new Vector<Rectangle>();
+		
 		// Für jeden vorhandenen Knoten ...
 		for (int i = 0; i < speichersteine.size(); i++) {
 			// Prüfung auf Wurzel
