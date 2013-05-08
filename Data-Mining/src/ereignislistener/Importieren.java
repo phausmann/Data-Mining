@@ -81,6 +81,7 @@ private Gui oberflaeche;
 					
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
+				oberflaeche.zeichneInteraktiv(null);
 				}
 				
 			} catch (IOException e2) {

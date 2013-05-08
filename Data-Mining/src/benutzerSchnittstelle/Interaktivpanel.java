@@ -41,4 +41,34 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 		add(zeichenflaeche, BorderLayout.NORTH);
 	}
 	
+	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
+	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
+		if (speichersteine == null) {
+			Zeichenkomponenten wurzel = new Zeichenkomponenten(" ", "0.", 0,
+					oberflaeche.getKopfzeile(), oberflaeche.getDaten(), " ",
+					" ");
+			// bestehendes Pannel loeschen
+			remove(zeichenflaeche);
+			// neue Zeichenflaeche und Zeichnungsbaum instanziieren
+			zeichenflaeche = new JPanel();
+			ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
+			zeichenflaeche.add(baum);
+			zeichenflaeche.setVisible(true);
+			repaint();
+			validate();
+		}
+//		interaktivDaten = speichersteine;
+//		// bestehendes Pannel loeschen
+//		remove(zeichenflaeche);
+//		// neue Zeichenflaeche und Zeichnungsbaum instanziieren
+//		zeichenflaeche = new JPanel();
+//		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
+//		zeichenflaeche.add(baum);
+//		// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
+//		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
+//		add(zeichenflaeche, BorderLayout.NORTH);
+//		zeichenflaeche.setVisible(true);
+	}
+	
+	
 }

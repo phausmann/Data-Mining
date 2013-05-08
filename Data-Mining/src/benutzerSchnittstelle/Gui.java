@@ -134,4 +134,9 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 	public Vector getAuspraegungsVektor(int spalte) {
 		return tabelle.getAuspraegungsVektor(spalte);
 	}
+	
+	public void zeichneInteraktiv(Vector<Zeichenkomponenten> speichersteine) {
+		interaktiv.zeichneBaum(speichersteine);
+		repaint();
+	}
 }
