@@ -20,7 +20,7 @@ private JPanel zeichenflaeche;
 private JButton regelbutton = new JButton("Regeldarstellung");
 private JButton generierebutton = new JButton("Generieren");
 private Gui oberflaeche;
-private JTextField ausgabe = new JTextField(90);
+private JTextField ausgabe = new JTextField(80);
 private Vector<Zeichenkomponenten> automatikDaten = new Vector<Zeichenkomponenten>();
 
 	public Automatikpanel(Gui oberflaeche) {
