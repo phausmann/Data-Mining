@@ -35,7 +35,7 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 
 	public Gui(JFrame fenster) {
 		this.fenster = fenster;
-		// Tabs mit Inhalten füllen
+		// Tabs mit Inhalten fuellen
 		addTab("Tabellenansicht", tabelle);
 		addTab("Interaktive Erstellung", interaktiv);
 		addTab("Automatische Erstellung", automatisch);
@@ -64,7 +64,7 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 		setEnabledAt(2, enabled);
 	}
 	
-	// Methoden zum Getten der ausgewählten Spalten und Zeilen in der Datentabelle
+	// Methoden zum Getten der ausgew��hlten Spalten und Zeilen in der Datentabelle
 	public int getAusgewaehlteZeile() {
 		return tabelle.getausgewaehlteZeile();
 	}
@@ -77,7 +77,7 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 		return fenster;
 	}
 	
-	// Methode zum Einfaerben der ausgewählten Zielattributsspalte
+	// Methode zum Einfaerben der ausgew��hlten Zielattributsspalte
 	public void spalteeinfaerben(int spalte) {
 		setZielAttributsSpalte(spalte);
 		tabelle.spaltefaerben(spalte);
@@ -94,7 +94,7 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 		zielattribut = spalte;
 	}
 	
-	// Rückgabe der Daten einer einzelnen Spalte als Vector
+	// R��ckgabe der Daten einer einzelnen Spalte als Vector
 	public Vector getSpaltenDatenN(int spalte) {
 		return tabelle.getSpaltenDatenN(spalte);
 	}

@@ -19,6 +19,8 @@ public class Dateifilter extends FileFilter {
 			return true;
 		else if (dateiname.endsWith(".xls"))
 			return true;
+		else if (dateiname.endsWith(".xlsx"))
+			return true;
 		else
 			return false;
 	}
@@ -26,7 +28,7 @@ public class Dateifilter extends FileFilter {
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return "Tabellendatei (*.csv,*.xls)";
+		return "Tabellendatei (*.csv,*.xls,*.xlsx)";
 	}
 
 }
