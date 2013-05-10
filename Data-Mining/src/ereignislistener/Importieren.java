@@ -32,7 +32,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Importieren implements ActionListener {
 private static Gui oberflaeche;
 	
-	// Konstruktur zur ��bergabe der des Oberfl��chenmanagers
+	// Konstruktur zur uebergabe der des Oberflaechenmanagers
 	public Importieren(Gui oberflaeche) {
 		this.oberflaeche = oberflaeche;
 	}
@@ -43,25 +43,25 @@ private static Gui oberflaeche;
 		// Initialisierung des Dateifilters
 		tabellenimport.setFileFilter(new Dateifilter());
 		
-		// Pr��fung, ob die Auswahl best��tigt wurde
+		// Pruefung, ob die Auswahl bestoetigt wurde
 		if (tabellenimport.showOpenDialog(oberflaeche) 
 			== JFileChooser.APPROVE_OPTION) {
 			
-			// Pr��fung, ob es sich um eine CSV-Datei handelt
+			// Pruefung, ob es sich um eine CSV-Datei handelt
 			if (tabellenimport.getSelectedFile().getName().endsWith(".csv")) {
 				
 				// CSV-Datei importieren
 				ladeCSV(tabellenimport);
 			}
 			
-			// Pr��fung, ob es sich um eine XLS-Datei handelt
+			// Pruefung, ob es sich um eine XLS-Datei handelt
 			if (tabellenimport.getSelectedFile().getName().endsWith(".xls")) {
 				
 				// CSV-Datei importieren
 				ladeXLS(tabellenimport);
 			}
 			
-			// Pr��fung, ob es sich um eine XLSX-Datei handelt
+			// Pruefung, ob es sich um eine XLSX-Datei handelt
 			if (tabellenimport.getSelectedFile().getName().endsWith(".xlsx")) {
 				
 				// CSV-Datei importieren
@@ -84,7 +84,7 @@ private static Gui oberflaeche;
 			try {
 				// Solange das Dateiende nicht erreicht ist ...
 				while ((zeile = in.readLine()) != null) {
-					// Erh��hung des Z��hlers zur Zuordnung, ob es sich um eine Kopfzeile handelt
+					// Erhoehung des Zaehlers zur Zuordnung, ob es sich um eine Kopfzeile handelt
 					z++;
 					// Initialisieren des Stringzerteilers
 					StringTokenizer zerteiler = new StringTokenizer(zeile, "\n,");
@@ -105,7 +105,7 @@ private static Gui oberflaeche;
 						}
 					}
 					
-					// F��ge die Tabellendaten dem Tabellendatenvector zu
+					// Fuege die Tabellendaten dem Tabellendatenvector zu
 					if (z > 1) {
 						daten.add(speicher);
 					}
@@ -148,7 +148,7 @@ private static Gui oberflaeche;
                HSSFRow row = (HSSFRow) rows.next();
                Iterator<Cell> cells = row.cellIterator();
                
-               // Erh��hung des Z��hlers zur Zuordnung, ob es sich um eine Kopfzeile handelt
+               // Erhoehung des Zaehlers zur Zuordnung, ob es sich um eine Kopfzeile handelt
 			   z++;
 			   // Vektor wird initialisiert
 			   speicher = new Vector();
@@ -224,7 +224,7 @@ private static Gui oberflaeche;
                XSSFRow row = (XSSFRow) rows.next();
                Iterator<Cell> cells = row.cellIterator();
                
-               // Erh��hung des Z��hlers zur Zuordnung, ob es sich um eine Kopfzeile handelt
+               // Erhoehung des Zaehlers zur Zuordnung, ob es sich um eine Kopfzeile handelt
     		   z++;
     		   // Vektor wird initialisiert
     		   speicher = new Vector();
