@@ -16,6 +16,8 @@ import java.util.Vector;
 
 import javax.swing.JFileChooser;
 
+import logikschicht.Zeichenkomponenten;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -112,7 +114,8 @@ private static Gui oberflaeche;
 					
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				oberflaeche.zeichneInteraktiv(null);
+				Vector<Zeichenkomponenten> nichts = new Vector<>();
+				oberflaeche.zeichneInteraktiv(nichts);
 				}
 				
 			} catch (IOException e2) {

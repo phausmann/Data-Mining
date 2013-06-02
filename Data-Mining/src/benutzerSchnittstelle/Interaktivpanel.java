@@ -43,10 +43,12 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 	
 	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
-		if (speichersteine == null) {
+		if (speichersteine.isEmpty()) {
 			Zeichenkomponenten wurzel = new Zeichenkomponenten(" ", "0.", 0,
 					oberflaeche.getKopfzeile(), oberflaeche.getDaten(), " ",
 					" ");
+			speichersteine.add(wurzel);
+			interaktivDaten = speichersteine;
 			// bestehendes Pannel loeschen
 			remove(zeichenflaeche);
 			// neue Zeichenflaeche und Zeichnungsbaum instanziieren
@@ -57,17 +59,32 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 			repaint();
 			validate();
 		}
-//		interaktivDaten = speichersteine;
-//		// bestehendes Pannel loeschen
-//		remove(zeichenflaeche);
-//		// neue Zeichenflaeche und Zeichnungsbaum instanziieren
-//		zeichenflaeche = new JPanel();
-//		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
-//		zeichenflaeche.add(baum);
-//		// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
-//		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
-//		add(zeichenflaeche, BorderLayout.NORTH);
-//		zeichenflaeche.setVisible(true);
+//		else {
+//			interaktivDaten = speichersteine;
+//			// bestehendes Pannel loeschen
+//			remove(zeichenflaeche);
+//			// neue Zeichenflaeche und Zeichnungsbaum instanziieren
+//			zeichenflaeche = new JPanel();
+//			ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
+//			zeichenflaeche.add(baum);
+//			// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
+//			zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
+//			add(zeichenflaeche, BorderLayout.NORTH);
+//			zeichenflaeche.setVisible(true);
+//		}
+		interaktivDaten = speichersteine;
+		// bestehendes Pannel loeschen
+		remove(zeichenflaeche);
+		// neue Zeichenflaeche und Zeichnungsbaum instanziieren
+		zeichenflaeche = new JPanel();
+		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
+		zeichenflaeche.add(baum);
+		// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
+		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
+		add(zeichenflaeche, BorderLayout.NORTH);
+		zeichenflaeche.setVisible(true);
+		repaint();
+		validate();
 	}
 	
 	
