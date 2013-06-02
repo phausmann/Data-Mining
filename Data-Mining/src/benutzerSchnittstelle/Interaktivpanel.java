@@ -48,18 +48,6 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 					oberflaeche.getKopfzeile(), oberflaeche.getDaten(), " ",
 					" ");
 			speichersteine.add(wurzel);
-			interaktivDaten = speichersteine;
-			// bestehendes Pannel loeschen
-			remove(zeichenflaeche);
-			// neue Zeichenflaeche und Zeichnungsbaum instanziieren
-			zeichenflaeche = new JPanel();
-			ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
-			zeichenflaeche.add(baum);
-			zeichenflaeche.setVisible(true);
-			repaint();
-			validate();
-		}
-//		else {
 //			interaktivDaten = speichersteine;
 //			// bestehendes Pannel loeschen
 //			remove(zeichenflaeche);
@@ -67,11 +55,10 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 //			zeichenflaeche = new JPanel();
 //			ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
 //			zeichenflaeche.add(baum);
-//			// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
-//			zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
-//			add(zeichenflaeche, BorderLayout.NORTH);
 //			zeichenflaeche.setVisible(true);
-//		}
+//			repaint();
+//			validate();
+		}
 		interaktivDaten = speichersteine;
 		// bestehendes Pannel loeschen
 		remove(zeichenflaeche);
