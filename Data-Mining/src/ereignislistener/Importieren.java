@@ -32,7 +32,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Importieren implements ActionListener {
-private static Gui oberflaeche;
+private Gui oberflaeche;
 	
 	// Konstruktur zur uebergabe der des Oberflaechenmanagers
 	public Importieren(Gui oberflaeche) {
@@ -132,7 +132,7 @@ private static Gui oberflaeche;
 	oberflaeche.setAutomatischEnabled(true);
 	}
 	
-	private static void ladeXLS(JFileChooser tabellenimport){
+	private void ladeXLS(JFileChooser tabellenimport){
 		int z = 0;
 		Vector kopfzeile = new Vector();
 		Vector daten = new Vector();
@@ -195,7 +195,9 @@ private static Gui oberflaeche;
         	   
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				oberflaeche.zeichneInteraktiv(null);
+				oberflaeche.datenaktualisieren(daten, kopfzeile);
+				Vector<Zeichenkomponenten> nichts = new Vector<>();
+				oberflaeche.zeichneInteraktiv(nichts);
                 
            }
            
@@ -209,7 +211,7 @@ private static Gui oberflaeche;
     	oberflaeche.setAutomatischEnabled(true);
     }
     
-    private static void ladeXLSX(JFileChooser tabellenimport){
+    private void ladeXLSX(JFileChooser tabellenimport){
 		int z = 0;
 		Vector kopfzeile = new Vector();
 		Vector daten = new Vector();
@@ -271,7 +273,9 @@ private static Gui oberflaeche;
         	   
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				oberflaeche.zeichneInteraktiv(null);
+				oberflaeche.datenaktualisieren(daten, kopfzeile);
+				Vector<Zeichenkomponenten> nichts = new Vector<>();
+				oberflaeche.zeichneInteraktiv(nichts);
                 
            }
            
