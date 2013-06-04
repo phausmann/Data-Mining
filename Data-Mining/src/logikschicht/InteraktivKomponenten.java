@@ -17,6 +17,7 @@ public class InteraktivKomponenten {
 	private Vector<String> kopfzeile = new Vector<String>();
 	private Vector daten = new Vector<>();
 	private static int maxebene = 0;
+	private int zielattributsspalte;
 
 		// Konstruktor 1 für nicht Endknoten
 	
@@ -149,6 +150,16 @@ public class InteraktivKomponenten {
 
 		public void setAuspraegungen(Vector<String> auspraegungen) {
 			this.auspraegungen = auspraegungen;
+		}
+
+
+		public int getZielattributsspalte() {
+			return zielattributsspalte;
+		}
+
+
+		public void setZielattributsspalte(int zielattributsspalte) {
+			this.zielattributsspalte = zielattributsspalte;
 		}
 		
 		

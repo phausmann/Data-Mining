@@ -83,6 +83,8 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 		setZielAttributsSpalte(spalte);
 		tabelle.spaltefaerben(spalte);
 		automatisch.setGenerierenButtonenable(true);
+		Vector<InteraktivKomponenten> nichts = new Vector<InteraktivKomponenten>();
+		interaktiv.zeichneBaum(nichts);
 	}
 	
 	// Gibt aktuelle Zielattributsspalte zurueck

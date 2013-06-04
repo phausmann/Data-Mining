@@ -8,7 +8,6 @@ import java.awt.Rectangle;
 import java.util.Vector;
 
 import logikschicht.InteraktivKomponenten;
-import logikschicht.Zeichenkomponenten;
 
 public class InteraktivBaum extends Component {
 	private Vector<InteraktivKomponenten> speichersteine;
@@ -54,7 +53,7 @@ public class InteraktivBaum extends Component {
 						// Berechnung der x und y Koordinate anhand der maximalen zur Verfügung
 						// stehenden Laenge und Breite der Komponente
 						y = ((int) ((maxhoehe
-								* ( (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
+								* ( (double) speichersteine.get(i).getEbene() / InteraktivKomponenten
 								.getMaxebene()))- (rechteckmase[1]))) - 10;
 						x = ((maxbreite / 2) - (rechteckmase[0] / 2));
 					}
@@ -101,7 +100,7 @@ public class InteraktivBaum extends Component {
 						// Berechnung der x und y Koordinate anhand der maximalen zur Verfügung
 						// stehenden Laenge und Breite der Komponente
 						int y = ((int) ((maxhoehe
-								* ( (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
+								* ( (double) speichersteine.get(i).getEbene() / InteraktivKomponenten
 								.getMaxebene())) - (rechteckmase[1]))) - 10;
 						int x = ((maxbreite / (ebenenauspraegungen + 1)) - (rechteckmase[0] / 2));
 						// Das zu zeichnende Rechteckt der Rechteckverwaltung hinzufügen
@@ -156,7 +155,7 @@ public class InteraktivBaum extends Component {
 						// Berechnung der x und y Koordinate anhand der maximalen zur Verfügung
 						// stehenden Laenge und Breite der Komponente
 						int y = ((int) ((maxhoehe
-								* ( (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
+								* ( (double) speichersteine.get(i).getEbene() / InteraktivKomponenten
 								.getMaxebene())) - (rechteckmase[1]))) - 10;
 						int x = (((maxbreite / (ebenenauspraegungen + 1)) * multiplikator)
 								- (rechteckmase[0] / 2));

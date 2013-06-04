@@ -45,9 +45,10 @@ private Vector<InteraktivKomponenten> interaktivDaten = new Vector<InteraktivKom
 	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
 	public void zeichneBaum(Vector<InteraktivKomponenten> speichersteine) {
 		if (speichersteine.isEmpty()) {
-			InteraktivKomponenten wurzel = new InteraktivKomponenten(" ", "0", 0,
+			InteraktivKomponenten wurzel = new InteraktivKomponenten(" ", "0", 1,
 					oberflaeche.getKopfzeile(), oberflaeche.getDaten(), " ",
 					" ");
+			wurzel.setZielattributsspalte(oberflaeche.getZielAttributsSpalte());
 			speichersteine.add(wurzel);
 //			interaktivDaten = speichersteine;
 //			// bestehendes Pannel loeschen
