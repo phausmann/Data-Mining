@@ -30,6 +30,7 @@ private Vector<InteraktivKomponenten> interaktivDaten = new Vector<InteraktivKom
 		setLayout(new BorderLayout());
 		regel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(regel, BorderLayout.SOUTH);
+		regelbutton.addActionListener(new ereignislistener.InteraktivRegeldarstellung(oberflaeche));
 		regel.add(regelbutton);
 		
 		// Registrierung des Actionlisteners aus der Ereignislistenerschicht

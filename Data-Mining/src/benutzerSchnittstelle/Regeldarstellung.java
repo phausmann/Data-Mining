@@ -22,16 +22,21 @@ private JButton filterKnopf = new JButton("Filtern");
 private Vector<Choice> auswahlverwaltung;
 
 
-	public Regeldarstellung(final Gui oberflaeche) {
+	public Regeldarstellung(final Gui oberflaeche, boolean automatik) {
 		super(oberflaeche.getFrame(), "Regeldarstellung", true);
 		setLocationRelativeTo(oberflaeche.getFrame());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		setLayout(new BorderLayout());
 		
-		RegelZeichnung zeichnung = new RegelZeichnung(oberflaeche.getAutomatikDaten());
-		
-		zeichenflaeche.add(zeichnung);
+		if (automatik) {
+			RegelZeichnung zeichnung = new RegelZeichnung(oberflaeche.getAutomatikDaten());
+			zeichenflaeche.add(zeichnung);
+		}
+		else {
+			InteraktivRegelZeichnung zeichnung = new InteraktivRegelZeichnung(oberflaeche.getInteraktivDaten());
+			zeichenflaeche.add(zeichnung);
+		}
 		
 		auswahlflaeche.setLayout(new FlowLayout(FlowLayout.LEFT));
 		

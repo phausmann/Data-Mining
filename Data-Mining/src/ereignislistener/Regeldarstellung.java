@@ -14,7 +14,7 @@ private Gui oberflaeche;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		benutzerSchnittstelle.Regeldarstellung dialog = new benutzerSchnittstelle.Regeldarstellung(oberflaeche);
+		benutzerSchnittstelle.Regeldarstellung dialog = new benutzerSchnittstelle.Regeldarstellung(oberflaeche, true);
 		
 	}
 
