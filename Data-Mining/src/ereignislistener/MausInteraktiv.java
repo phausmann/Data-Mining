@@ -2,6 +2,9 @@ package ereignislistener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Vector;
+
+import logikschicht.EntropieThread;
 
 import benutzerSchnittstelle.Gui;
 import benutzerSchnittstelle.InteraktivBaum;
@@ -44,13 +47,26 @@ private Gui oberflaeche;
 												.getKopfzeile()
 												.get(dialog.getSelectedcolumn())
 												.toString());
-						System.out.println(bild.getSpeichersteine()
-												.get(i)
-												.getKopfzeile()
-												.get(dialog.getSelectedcolumn())
-												.toString());
 					}
 					oberflaeche.zeichneInteraktiv(bild.getSpeichersteine());
+					EntropieThread.entropieZuruecksetzen();
+					EntropieThread neu = new EntropieThread(getSpaltenDatenN(
+							bild.getSpeichersteine().get(i).getDaten(),
+							dialog.getSelectedcolumn()), getSpaltenDatenN(bild
+							.getSpeichersteine().get(i).getDaten(),
+							oberflaeche.getZielAttributsSpalte()),
+							dialog.getSelectedcolumn(), 1);
+					neu.start();
+					try {
+						neu.join();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					double speicher[] = EntropieThread.getMinimaleEntropie();
+					System.out.println("Der Speicher ist: " + speicher[0]);
+					bild.getSpeichersteine().get(i).setEntropie(speicher[0]);
+//					bild.getSpeichersteine().get(i).setAuspraegungen(neu.getAuspraegungsVektor());
 					break;
 				}
 			}
@@ -97,6 +113,53 @@ private Gui oberflaeche;
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private Vector erzeugeDaten(Vector datensammlung, String attribut) {
+		Vector speicher = new Vector();
+		for (int i = 0; i < datensammlung.size(); i++) {
+			Vector zwischenspeichern = (Vector) datensammlung.get(i);
+			if (zwischenspeichern.contains(attribut)) {
+				Vector pufferspeicher = new Vector();
+				pufferspeicher.addAll(zwischenspeichern);
+				pufferspeicher.remove(pufferspeicher.indexOf(attribut));
+				speicher.add(pufferspeicher);
+			}
+		}
+		return speicher;
+	}
+	
+	// Interne Methode zum Erzeugen der neuen Kopfzeile
+	private Vector erzeugeKopfzeile(Vector kopf, String attribut) {
+		Vector speicher = new Vector();
+		for (int i = 0; i < kopf.size(); i++) {
+			if (!kopf.get(i).equals(attribut)) {
+				speicher.add(kopf.get(i));
+			}
+		}
+		return speicher;
+	}
+	
+	// Interne Methode zum Filtern der Spaltendaten einer uebergebenen Spalte
+	private Vector getSpaltenDatenN(Vector daten, int spalte) {
+		Vector spaltenDaten = new Vector();
+		for (int i = 0; i < daten.size(); i++) {
+			Vector zwischenspeichern = (Vector) daten.get(i);
+			spaltenDaten.add(zwischenspeichern.get(spalte));
+		}
+		return spaltenDaten;
+	}
+	
+	// Interne Methode zur Pruefung auf Spaltengleichheit
+	private boolean zielattributsspaltengleichheit(Vector spalte) {
+		String attribut;
+		attribut = spalte.get(0).toString();
+		for (int i = 1; i < spalte.size(); i++) {
+			if (!(spalte.get(i).equals(attribut))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

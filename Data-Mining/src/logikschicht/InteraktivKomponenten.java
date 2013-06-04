@@ -140,6 +140,16 @@ public class InteraktivKomponenten {
 		public String getRegelAttribut() {
 			return regelAttribut;
 		}
+
+
+		public void setEntropie(double entropie) {
+			this.entropie = entropie;
+		}
+
+
+		public void setAuspraegungen(Vector<String> auspraegungen) {
+			this.auspraegungen = auspraegungen;
+		}
 		
 		
 }
