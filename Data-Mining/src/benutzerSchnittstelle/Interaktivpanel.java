@@ -44,7 +44,7 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
 	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
 		if (speichersteine.isEmpty()) {
-			Zeichenkomponenten wurzel = new Zeichenkomponenten(" ", "0.", 0,
+			Zeichenkomponenten wurzel = new Zeichenkomponenten(" ", "0", 0,
 					oberflaeche.getKopfzeile(), oberflaeche.getDaten(), " ",
 					" ");
 			speichersteine.add(wurzel);
