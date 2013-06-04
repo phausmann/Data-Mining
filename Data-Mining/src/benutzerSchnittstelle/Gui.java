@@ -21,6 +21,7 @@ import javax.swing.table.TableColumnModel;
 
 import ereignislistener.Speichern;
 
+import logikschicht.InteraktivKomponenten;
 import logikschicht.Zeichenkomponenten;
 
 // Controllerklasse ueber die Oberflaechenklassen
@@ -135,7 +136,7 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 		return tabelle.getAuspraegungsVektor(spalte);
 	}
 	
-	public void zeichneInteraktiv(Vector<Zeichenkomponenten> speichersteine) {
+	public void zeichneInteraktiv(Vector<InteraktivKomponenten> speichersteine) {
 		interaktiv.zeichneBaum(speichersteine);
 		repaint();
 	}

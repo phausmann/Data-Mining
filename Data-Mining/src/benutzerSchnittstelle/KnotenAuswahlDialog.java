@@ -12,11 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import logikschicht.InteraktivKomponenten;
 import logikschicht.Zeichenkomponenten;
 
 public class KnotenAuswahlDialog extends JDialog {
 	
-	public KnotenAuswahlDialog(Gui oberflaeche, Zeichenkomponenten knoten) {
+	public KnotenAuswahlDialog(Gui oberflaeche, InteraktivKomponenten knoten) {
 		super(oberflaeche.getFrame(), "Tabelle zu " + knoten.getZeichenattribut().toString(), true);
 		setLocationRelativeTo(oberflaeche.getFrame());
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);

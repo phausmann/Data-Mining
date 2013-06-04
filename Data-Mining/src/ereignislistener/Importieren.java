@@ -16,6 +16,7 @@ import java.util.Vector;
 
 import javax.swing.JFileChooser;
 
+import logikschicht.InteraktivKomponenten;
 import logikschicht.Zeichenkomponenten;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -114,7 +115,7 @@ private Gui oberflaeche;
 					
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				Vector<Zeichenkomponenten> nichts = new Vector<>();
+				Vector<InteraktivKomponenten> nichts = new Vector<>();
 				oberflaeche.zeichneInteraktiv(nichts);
 				}
 				
@@ -196,7 +197,7 @@ private Gui oberflaeche;
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				Vector<Zeichenkomponenten> nichts = new Vector<>();
+				Vector<InteraktivKomponenten> nichts = new Vector<>();
 				oberflaeche.zeichneInteraktiv(nichts);
                 
            }
@@ -274,7 +275,7 @@ private Gui oberflaeche;
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				Vector<Zeichenkomponenten> nichts = new Vector<>();
+				Vector<InteraktivKomponenten> nichts = new Vector<>();
 				oberflaeche.zeichneInteraktiv(nichts);
                 
            }

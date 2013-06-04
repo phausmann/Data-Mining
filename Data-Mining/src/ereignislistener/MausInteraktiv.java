@@ -4,15 +4,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import benutzerSchnittstelle.Gui;
+import benutzerSchnittstelle.InteraktivBaum;
 import benutzerSchnittstelle.KnotenAuswahlDialog;
 import benutzerSchnittstelle.TeilKnotenTabelle;
 import benutzerSchnittstelle.ZeichnungsBaum;
 
 public class MausInteraktiv implements MouseListener {
-private ZeichnungsBaum bild;
+private InteraktivBaum bild;
 private Gui oberflaeche;
 	
-	public MausInteraktiv(ZeichnungsBaum bild, Gui oberflaeche) {
+	public MausInteraktiv(InteraktivBaum bild, Gui oberflaeche) {
 		this.bild = bild;
 		this.oberflaeche = oberflaeche;
 	}

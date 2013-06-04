@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import logikschicht.InteraktivKomponenten;
 import logikschicht.Zeichenkomponenten;
 
 
@@ -18,7 +19,7 @@ private JPanel regel = new JPanel();
 private JButton regelbutton = new JButton("Regeldarstellung");
 private JPanel zeichenflaeche;
 private JTextField ausgabe = new JTextField(90);
-private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponenten>();
+private Vector<InteraktivKomponenten> interaktivDaten = new Vector<InteraktivKomponenten>();
 
 	public Interaktivpanel(Gui oberflaeche) {
 		this.oberflaeche = oberflaeche;
@@ -42,9 +43,9 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 	}
 	
 	// Methode zum Zeichnen des berechneten Baums anhand der Speichersteine als Grundlage
-	public void zeichneBaum(Vector<Zeichenkomponenten> speichersteine) {
+	public void zeichneBaum(Vector<InteraktivKomponenten> speichersteine) {
 		if (speichersteine.isEmpty()) {
-			Zeichenkomponenten wurzel = new Zeichenkomponenten(" ", "0", 0,
+			InteraktivKomponenten wurzel = new InteraktivKomponenten(" ", "0", 0,
 					oberflaeche.getKopfzeile(), oberflaeche.getDaten(), " ",
 					" ");
 			speichersteine.add(wurzel);
@@ -64,7 +65,7 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 		remove(zeichenflaeche);
 		// neue Zeichenflaeche und Zeichnungsbaum instanziieren
 		zeichenflaeche = new JPanel();
-		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
+		InteraktivBaum baum = new InteraktivBaum(interaktivDaten);
 		zeichenflaeche.add(baum);
 		// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
 		zeichenflaeche.addMouseListener(new ereignislistener.MausInteraktiv(baum, oberflaeche));
