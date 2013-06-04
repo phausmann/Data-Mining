@@ -139,4 +139,8 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 		interaktiv.zeichneBaum(speichersteine);
 		repaint();
 	}
+	
+	public void setTextInteraktiv(String text) {
+		interaktiv.setText(text);
+	}
 }

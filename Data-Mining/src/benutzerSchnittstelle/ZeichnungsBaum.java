@@ -42,8 +42,6 @@ private Vector<Rectangle> Rechteckverwaltung;
 	public void paint(Graphics g) {
 		// Instanziieren einer neuen Rechteckverwaltung
 		Rechteckverwaltung = new Vector<Rectangle>();
-		int xtest = 0;
-		int ytest = 0;
 		// Für jeden vorhandenen Knoten ...
 		for (int i = 0; i < speichersteine.size(); i++) {
 			// Prüfung auf Wurzel
@@ -99,10 +97,6 @@ private Vector<Rectangle> Rechteckverwaltung;
 							* ( (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
 							.getMaxebene())) - (rechteckmase[1]))) - 10;
 					int x = ((maxbreite / (ebenenauspraegungen + 1)) - (rechteckmase[0] / 2));
-					ytest = ((int) ((maxhoehe
-							* (double) ( (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
-							.getMaxebene())) - (rechteckmase[1]))) - 10;
-					xtest = Zeichenkomponenten.getMaxebene();
 					// Das zu zeichnende Rechteckt der Rechteckverwaltung hinzufügen
 					Rechteckverwaltung.add(new Rectangle(x, y, rechteckmase[0], rechteckmase[1]));
 					// Zeichnen des Rechtecks und der Daten

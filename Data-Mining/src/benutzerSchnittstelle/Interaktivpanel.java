@@ -67,11 +67,15 @@ private Vector<Zeichenkomponenten> interaktivDaten = new Vector<Zeichenkomponent
 		ZeichnungsBaum baum = new ZeichnungsBaum(speichersteine);
 		zeichenflaeche.add(baum);
 		// Registrierungs des Mouselisteners am Pannel zur Darstellung der Teiltabellen bei Doppelklick
-		zeichenflaeche.addMouseListener(new ereignislistener.MausDoppelKlickPanel(baum, oberflaeche));
+		zeichenflaeche.addMouseListener(new ereignislistener.MausInteraktiv(baum, oberflaeche));
 		add(zeichenflaeche, BorderLayout.NORTH);
 		zeichenflaeche.setVisible(true);
 		repaint();
 		validate();
+	}
+	
+	public void setText(String text) {
+		ausgabe.setText(text);
 	}
 	
 	
