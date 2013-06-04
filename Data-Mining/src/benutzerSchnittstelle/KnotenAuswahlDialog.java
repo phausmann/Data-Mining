@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import logikschicht.Zeichenkomponenten;
 
 public class KnotenAuswahlDialog extends JDialog {
-
+	
 	public KnotenAuswahlDialog(Gui oberflaeche, Zeichenkomponenten knoten) {
 		super(oberflaeche.getFrame(), "Tabelle zu " + knoten.getZeichenattribut().toString(), true);
 		setLocationRelativeTo(oberflaeche.getFrame());
@@ -38,12 +38,24 @@ public class KnotenAuswahlDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				System.out.println(datentabelle.getSelectedColumn());
 				dispose();
 			}
 		});
+		
 		buttons.add(bestaetigen);
+		
+		JButton abbrechen = new JButton("Abbrechen");
+		abbrechen.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Wenn Abbrechen, dann Schließen des Dialogs
+				dispose();
+			}
+		});
+		
+		buttons.add(abbrechen);
 		
 		aufnahme.add(inhalt, BorderLayout.CENTER);
 		aufnahme.add(buttons, BorderLayout.SOUTH);
