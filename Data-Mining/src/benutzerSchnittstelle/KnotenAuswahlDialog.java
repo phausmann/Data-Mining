@@ -16,8 +16,10 @@ import logikschicht.InteraktivKomponenten;
 import logikschicht.Zeichenkomponenten;
 
 public class KnotenAuswahlDialog extends JDialog {
-	
-	public KnotenAuswahlDialog(Gui oberflaeche, InteraktivKomponenten knoten) {
+private boolean buttonauswahl;
+private int selectedcolumn;
+
+	public KnotenAuswahlDialog(Gui oberflaeche, final InteraktivKomponenten knoten) {
 		super(oberflaeche.getFrame(), "Tabelle zu " + knoten.getZeichenattribut().toString(), true);
 		setLocationRelativeTo(oberflaeche.getFrame());
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -40,6 +42,8 @@ public class KnotenAuswahlDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(datentabelle.getSelectedColumn());
+				buttonauswahl = true;
+				selectedcolumn = datentabelle.getSelectedColumn();
 				dispose();
 			}
 		});
@@ -51,6 +55,7 @@ public class KnotenAuswahlDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				buttonauswahl = false;
 				// Wenn Abbrechen, dann Schließen des Dialogs
 				dispose();
 			}
@@ -67,5 +72,14 @@ public class KnotenAuswahlDialog extends JDialog {
 		setResizable(false);
 		setVisible(true);
 	}
+
+	public boolean isButtonauswahl() {
+		return buttonauswahl;
+	}
+
+	public int getSelectedcolumn() {
+		return selectedcolumn;
+	}
+	
 	
 }

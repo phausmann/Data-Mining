@@ -60,6 +60,10 @@ public class InteraktivKomponenten {
 		public String getZeichenattribut() {
 			return zeichenattribut;
 		}
+		
+		public void setZeichenattribut(String zeichenattribut) {
+			this.zeichenattribut = zeichenattribut;
+		}
 
 		public Vector<String> getAuspraegungen() {
 			return auspraegungen;

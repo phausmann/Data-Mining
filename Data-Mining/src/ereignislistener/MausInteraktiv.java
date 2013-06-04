@@ -35,6 +35,22 @@ private Gui oberflaeche;
 					KnotenAuswahlDialog dialog = new KnotenAuswahlDialog(
 							oberflaeche, bild.getSpeichersteine().get(i));
 					// Abbruch der Schleife
+					if (dialog.isButtonauswahl()) {
+						bild.getSpeichersteine()
+								.get(i)
+								.setZeichenattribut(
+										bild.getSpeichersteine()
+												.get(i)
+												.getKopfzeile()
+												.get(dialog.getSelectedcolumn())
+												.toString());
+						System.out.println(bild.getSpeichersteine()
+												.get(i)
+												.getKopfzeile()
+												.get(dialog.getSelectedcolumn())
+												.toString());
+					}
+					oberflaeche.zeichneInteraktiv(bild.getSpeichersteine());
 					break;
 				}
 			}
