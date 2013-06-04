@@ -78,6 +78,9 @@ private Vector<InteraktivKomponenten> interaktivDaten = new Vector<InteraktivKom
 	public void setText(String text) {
 		ausgabe.setText(text);
 	}
-	
+
+	public Vector<InteraktivKomponenten> getInteraktivDaten() {
+		return interaktivDaten;
+	}
 	
 }

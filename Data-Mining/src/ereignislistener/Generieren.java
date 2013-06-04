@@ -21,7 +21,6 @@ private Gui oberflaeche;
 private JPanel zeichenflaeche;
 private Vector daten;
 private Vector kopfzeile;
-private int gesamtauspraegungsanzahl = 0;
 private int attributsanzahl;
 private int iteration;
 private Vector<Teilzustand> zustandsverwaltung;

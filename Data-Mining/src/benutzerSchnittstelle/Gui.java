@@ -144,4 +144,8 @@ private Vector<Zeichenkomponenten> speichersteine = new Vector<>();
 	public void setTextInteraktiv(String text) {
 		interaktiv.setText(text);
 	}
+	
+	public Vector<InteraktivKomponenten> getInteraktivDaten() {
+		return interaktiv.getInteraktivDaten();
+	}
 }
