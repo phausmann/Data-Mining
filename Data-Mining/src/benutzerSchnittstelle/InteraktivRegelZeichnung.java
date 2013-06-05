@@ -43,7 +43,7 @@ public class InteraktivRegelZeichnung extends Component {
 					// Verfügung
 					// stehenden Laenge und Breite der Komponente
 					int y = ((int) ((maxhoehe
-							* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
+							* (double) speichersteine.get(i).getEbene() / InteraktivKomponenten
 							.getMaxebene()) - (rechteckmase[1]))) - 10;
 					int x = ((maxbreite / 2) - (rechteckmase[0] / 2));
 					// Zeichnen des Rechtecks und der Daten
@@ -84,7 +84,7 @@ public class InteraktivRegelZeichnung extends Component {
 						// zur Verfügung
 						// stehenden Laenge und Breite der Komponente
 						int y = ((int) ((maxhoehe
-								* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
+								* (double) speichersteine.get(i).getEbene() / InteraktivKomponenten
 								.getMaxebene()) - (rechteckmase[1]))) - 10;
 						int x = ((maxbreite / (ebenenauspraegungen + 1)) - (rechteckmase[0] / 2));
 						// Zeichnen des Rechtecks und der Daten
@@ -140,7 +140,7 @@ public class InteraktivRegelZeichnung extends Component {
 						// zur Verfügung
 						// stehenden Laenge und Breite der Komponente
 						int y = ((int) ((maxhoehe
-								* (double) speichersteine.get(i).getEbene() / Zeichenkomponenten
+								* (double) speichersteine.get(i).getEbene() / InteraktivKomponenten
 								.getMaxebene()) - (rechteckmase[1]))) - 10;
 						int x = (((maxbreite / (ebenenauspraegungen + 1)) * multiplikator) - (rechteckmase[0] / 2));
 						
