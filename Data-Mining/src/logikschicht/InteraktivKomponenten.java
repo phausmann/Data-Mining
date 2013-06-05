@@ -161,6 +161,12 @@ public class InteraktivKomponenten {
 		public void setZielattributsspalte(int zielattributsspalte) {
 			this.zielattributsspalte = zielattributsspalte;
 		}
+
+
+		public void setRegelAttribut(String regelAttribut) {
+			this.regelAttribut = regelAttribut;
+		}
+		
 		
 		
 }

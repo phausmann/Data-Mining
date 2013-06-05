@@ -13,7 +13,7 @@ public class InteraktivRegelZeichnung extends Component {
 	private Vector<InteraktivKomponenten> speichersteine;
 	private int[] rechteckmase = new int[2];
 	private int maxbreite = 800;
-	private int maxhoehe = 350;
+	private int maxhoehe = 300;
 	private int ebenenanzahl;
 	private int ebenenauspraegungen;
 	private int aktuelleEbene;

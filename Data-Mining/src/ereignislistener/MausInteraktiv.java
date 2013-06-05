@@ -51,6 +51,11 @@ private Gui oberflaeche;
 												.get(dialog.getSelectedcolumn())
 												.toString());
 						
+						MengenObjekt temp = erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
+								bild.getSpeichersteine().get(i).getDaten(), bild.getSpeichersteine().get(i).getZielattributsspalte()));
+						
+						bild.getSpeichersteine().get(i).setRegelAttribut(temp.getRegelString());
+						
 						EntropieThread.entropieZuruecksetzen();
 						EntropieThread neu = new EntropieThread(getSpaltenDatenN(
 								bild.getSpeichersteine().get(i).getDaten(),
@@ -76,6 +81,7 @@ private Gui oberflaeche;
 							kopfzeile = erzeugeKopfzeile(bild.getSpeichersteine().get(i).getKopfzeile(), bild.getSpeichersteine().get(i).getZeichenattribut());
 							daten = erzeugeDaten(bild.getSpeichersteine().get(i).getDaten(), neu.getAuspraegungsVektor().get(j).toString());
 							int zielattributsspalteAktuell = kopfzeile.indexOf(bild.getSpeichersteine().get(i).getKopfzeile().get(bild.getSpeichersteine().get(i).getZielattributsspalte()));
+							
 							MengenObjekt zwischen = erzeugeKlassenAnzahlsVector(getSpaltenDatenN(
 									daten, zielattributsspalteAktuell));
 							

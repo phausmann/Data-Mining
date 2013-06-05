@@ -15,7 +15,7 @@ public class RegelZeichnung extends Component {
 private Vector<Zeichenkomponenten> speichersteine;
 private int[] rechteckmase = new int[2];
 private int maxbreite = 800;
-private int maxhoehe = 350;
+private int maxhoehe = 300;
 private int ebenenanzahl;
 private int ebenenauspraegungen;
 private int aktuelleEbene;
