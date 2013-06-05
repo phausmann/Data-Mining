@@ -115,8 +115,6 @@ private Gui oberflaeche;
 					
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				Vector<InteraktivKomponenten> nichts = new Vector<>();
-				oberflaeche.zeichneInteraktiv(nichts);
 				}
 				
 			} catch (IOException e2) {
@@ -196,10 +194,6 @@ private Gui oberflaeche;
         	   
 				// Aktualisierung der Tabelle
 				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				Vector<InteraktivKomponenten> nichts = new Vector<>();
-				oberflaeche.zeichneInteraktiv(nichts);
-                
            }
            
        } catch ( IOException ex ) {
@@ -273,11 +267,7 @@ private Gui oberflaeche;
 				}
         	   
 				// Aktualisierung der Tabelle
-				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				oberflaeche.datenaktualisieren(daten, kopfzeile);
-				Vector<InteraktivKomponenten> nichts = new Vector<>();
-				oberflaeche.zeichneInteraktiv(nichts);
-                
+				oberflaeche.datenaktualisieren(daten, kopfzeile);       
            }
            
        } catch ( IOException ex ) {
