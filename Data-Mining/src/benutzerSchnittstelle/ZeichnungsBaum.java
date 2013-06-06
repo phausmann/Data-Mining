@@ -18,7 +18,7 @@ private int[] rechteckmase = new int[2];
 private int maxbreite = java.awt.Toolkit.getDefaultToolkit()
 			.getScreenSize().width;
 private int maxhoehe = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height
-			- (java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 6);
+			- (java.awt.Toolkit.getDefaultToolkit().getScreenSize().height / 4);
 private int ebenenanzahl;
 private int ebenenauspraegungen;
 private int aktuelleEbene;
